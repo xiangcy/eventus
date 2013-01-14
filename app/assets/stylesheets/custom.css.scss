@@ -1,1 +1,22 @@
-@import "bootstrap"
+.navbar .brand{
+    padding:0px 20px;
+}
+.brand img{
+    height: 30px;
+    width: 100px;
+    margin-bottom: 0px;
+}
+.btn-group{
+    float: left;
+    width:150px;
+}
+.navbar .nav{
+    left: 20px;
+}
+.footer{
+    text-align: center;
+    position: relative;
+}
+.footer p,a{
+    display:inline;
+}

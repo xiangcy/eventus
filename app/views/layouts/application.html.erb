@@ -7,8 +7,62 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <header>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">  
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>  
+          </a>  
+          <a class="brand" href="#"><img src="LogoMaker.jpg"/></a>  
+          <div class="nav-collapse">
+            <div class="btn-group">
+              <button class="btn">City</button>
+              <button class="btn dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#boston">Boston</a></li>
+                <li><a href="#cambridge">Cambridge</a></li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button class="btn">Category</button>
+              <button class="btn dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#sports">Sports</a></li>
+                <li><a href="#music">Music</a></li>
+              </ul>
+            </div>
+              <ul class="nav">  
+              <li class="active"><a href="#">Home</a></li>  
+              <li><a href="#about">Post Events</a></li>  
+              <li><a href="#contact">My profile</a></li>  
+              </ul>  
+              <a class="navbar-text pull-right" href="#">Sign In</a>
+              <a class="navbar-text pull-right" href="#">Register</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <div clas="row-fluid">
+        <%= yield %>  
+      </div>
+    </div>
+<footer>
+  <div class="footer container-fluid navbar-fixed-bottom">
+    <p>Copyright &copy; 2013</p><br>
+    <p>Designed for </p><a href="http://6.470.scripts.mit.edu/2013/">MIT 6.470 </a><br>
+    <p>By XDL</p>
+  </div>
+</footer>
 
-<%= yield %>
 
 <%= debug(params) if Rails.env.development? %>
 </body>
