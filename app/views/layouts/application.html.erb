@@ -63,6 +63,14 @@
   </div>
 </footer>
 
+<<<<<<< HEAD
+=======
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+        <%= yield %>
+      
+>>>>>>> 43f8ad586cde2b6fe051521ac565f408591155ee
 
 <%= debug(params) if Rails.env.development? %>
 </body>
