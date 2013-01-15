@@ -1,6 +1,7 @@
 XDLRepo::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :events
   get "static_pages/home"
   get "static_pages/about"
   
