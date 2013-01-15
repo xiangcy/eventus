@@ -1,3 +1,7 @@
+$color: #d44413;
+body{
+    min-width:960px;
+}
 .navbar .brand{
     padding:0px 20px;
 }
@@ -13,11 +17,22 @@
 .navbar .nav{
     left: 20px;
 }
+.searchbar{
+    padding-top: 10px;
+    .search{
+        padding: 20px;
+        text-align: center;
+        background-color:rgb(245,245,245);
+        .form-inline{
+            margin: 0px;
+        }
+    }
+}
+
 .footer{
     text-align: center;
     position: relative;
+    p,a{display:inline;}
 }
-.footer p,a{
-    display:inline;
-}
+
 
