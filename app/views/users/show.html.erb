@@ -4,3 +4,6 @@
   <%= gravatar_for @user %>
 </h1>
 <%= @user.name %>, <%= @user.email %>
+<% if current_user?(User.find(params[:id])) %>
+  <%= link_to "Edit Profile",  edit_user_path(current_user) %>
+<% end %>

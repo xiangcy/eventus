@@ -39,12 +39,18 @@
               </ul>
             </div>
               <ul class="nav">  
-              <li class="active"><a href="#">Home</a></li>  
+              <li class="active"><%= link_to "Home", root_path %></li>  
               <li><a href="#about">Post Events</a></li>  
               <li><a href="#contact">My profile</a></li>  
-              </ul>  
-              <a class="navbar-text pull-right" href="#">Sign In</a>
-              <a class="navbar-text pull-right" href="#">Register</a>
+              </ul>
+              <% if signed_in? %>
+                <p class="navbar-text pull-right">Welcome, <%= link_to current_user.name,
+                                                      current_user %></p>
+                <%= link_to "Sign Out", signout_path, class: "navbar-text pull-right", method: "delete" %>
+              <% else %>
+                <%= link_to "Sign in", signin_path, class: "navbar-text pull-right" %>
+                <%= link_to "Register", signup_path, class: "navbar-text pull-right" %>
+              <% end %>
             </div>
           </div>
         </div>
