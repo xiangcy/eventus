@@ -1,4 +1,26 @@
 <% provide(:title, @user.name) %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span10 offset1 tabbable tabs-left">
+      <ul class="nav nav-tabs">
+        <li><p>Profile</p></li>
+        <li><a href="#tab1" data-toggle="tab">My Account</a>
+        <li><p>Events</p></li>
+        <li><a href="#tab2" data-toggle="tab">Posted</a></li>
+        <li><a href="#tab3" data-toggle="tab">Attend</a></li>
+        <li><a href="#tab4" data-toggle="tab">Interest</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <p>I'm in Section 1.</p>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <p>Howdy, I'm in Section 2.</p>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
 <h1>
   <%= @user.name %>
   <%= gravatar_for @user %>
@@ -8,4 +30,3 @@
 <% if current_user?(User.find(params[:id])) %>
   <%= link_to "Edit Profile",  edit_user_path(current_user) %>
 <% end %>
-
