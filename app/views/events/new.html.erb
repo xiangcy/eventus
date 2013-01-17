@@ -1,0 +1,24 @@
+<% provide(:title, 'Post Event') %>
+<div class="row-fluid">
+  <div class="span6 offset3 well signup">                                                          
+    <h1>Post my event</h1>
+    <%= form_for(@event) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="span6 offset3">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      
+      <%= f.label :time %>
+      <%= f.text_field :time %>
+        
+      <%= f.label :place %>
+      <%= f.text_field :place %>
+
+      <%= f.label :content %>
+      <%= f.text_area :content, placeholder: "Briefly introduce your event Here..."%>
+
+      <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -6,6 +6,7 @@ XDLRepo::Application.routes.draw do
   get "static_pages/about"
   
   root to: 'static_pages#home'
+  match '/postevent', to: 'events#new'
   match '/signup', to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
