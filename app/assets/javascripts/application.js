@@ -26,7 +26,10 @@ function edit(){
     $("table").append("<input type='submit'value='Save' class='btn btn-primary'><input type='submit'value='Cancel' class='btn'>");
 }
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 7edd78d14897fd62498c869a29c2207964f02f87
