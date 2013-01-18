@@ -15,15 +15,43 @@
             <div class="nav-collapse">
               <ul class="nav">  
               <li><%= link_to "Home", root_path %></li>  
-              <li><a href="#about">Post Events</a></li>  
-              <li><%= link_to "My profile", current_user %></li>  
+              <li><%= link_to "Post my event", postevent_path %></li>  
+              <li>
+                <%  if signed_in? %>
+                <%= link_to "My profile", current_user%>
+                <% else %>
+                <%= link_to "My profile", signin_path%>
+                <% end %>
+              </li>  
               </ul>
               <% if signed_in? %>
                 <%= link_to "Sign Out", signout_path, class: "navbar-text pull-right", method: "delete" %>
                 <p class="navbar-text pull-right">Welcome, <%= current_user.name%></p>
               <% else %>
                 <%= link_to "Register", signup_path, class: "navbar-text pull-right" %>
-                <%= link_to "Sign in", signin_path, class: "navbar-text pull-right" %>
+                <a href="#myModal" class="navbar-text pull-right" data-toggle="modal">Sign in</a>
+                <!--signin modal-->
+                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h3 id="myModalLabel">Sign In</h3>
+                  </div>
+                  <div class="modal-body span4 offset1">
+                    <%= form_for(:session, url: sessions_path) do |f| %>
+    
+                    <%= f.label :email %>
+                    <%= f.text_field :email %>
+
+                    <%= f.label :password %>
+                    <%= f.password_field :password %>
+                    
+                    <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+                  <% end %>
+                  </div>
+                  <div class="modal-footer">
+                  <p class="pull-left">New user? <%= link_to "Sign up now!", signup_path %></p>
+                  </div>
+                </div><!--signin modal ends-->
               <% end %>
             </div>
         </div>
