@@ -1,17 +1,17 @@
 <% provide(:title, @user.name) %>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span10 offset1 tabbable tabs-left">
-      <ul class="nav nav-tabs span3">
+    <div class="span10 offset0 tabbable tabs-left">
+      <ul class="nav nav-tabs span2">
         <li><p>Profile</p></li>
         <li class="active"><a href="#tab1" data-toggle="tab">My Account</a>
         <li><a href="#tab2" data-toggle="tab">Change Password</a></li>
-        <li><p>Events</p></li>
+        <li><p id = "tabEvents">Events</p></li>
         <li><a href="#tab3" data-toggle="tab">Host</a></li>
         <li><a href="#tab4" data-toggle="tab">Attend</a></li>
         <li><a href="#tab5" data-toggle="tab">Interest</a></li>
       </ul>
-      <div class="tab-content span8">
+      <div class="tab-content span9">
         <div class="tab-pane active" id="tab1">
           <div class="row-fluid edit"><a href="#" onclick="edit()">Edit</a></div>
           <div class="row-fluid">
@@ -34,26 +34,10 @@
               </thead>
               <tbody>
                 <tr><td>Email Address</td><td class="content"><p><%= @user.email %></p></td></tr>              
-                <tr><td>Location</td><td class="content"><p>
-					<select>
-					  <option>Boston</option>
-					  <option>Cambridge</option>
-					  <option>Chicago</option>
-					</select>
-					</p></td></tr>
-                <tr><td>Gender</td>
-					<td>
-						<label class="radio">
-						  <input type="radio" name="gender" id="optionsRadios1" value="option1" >
-						  Male
-						</label>
-						<label class="radio">
-						  <input type="radio" name="gender" id="optionsRadios2" value="option2">
-						  Female
-						</label>						
-					</td>
+                <tr><td>Location</td><td class="content"><p>Boston</p></td></tr>
+                <tr><td>Gender</td><td class="content"><p>female</p></td></tr>
                 <tr><td>My hobby</td><td class="content"><p>Sports, Music</p></td></tr>
-                <tr><td>My blog</td><td class="content"><p><input type=""</p></td></tr>
+                <tr><td>My blog</td><td class="content"><p>*******</p></td></tr>
  
               </tbody>
             </table>
