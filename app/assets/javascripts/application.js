@@ -24,3 +24,4 @@ function edit(){
     $(".edit").html("<p><font color = #B3B3B3>Edit</font></p>");
     $("table").append("<input type='submit'value='Save' class='btn btn-primary'><input type='submit'value='Cancel' class='btn'>");
 }
+
