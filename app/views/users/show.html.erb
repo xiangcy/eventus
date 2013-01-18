@@ -1,29 +1,40 @@
 <% provide(:title, @user.name) %>
+<% if current_user?(User.find(params[:id])) %><!--view self profile-->
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span10 offset1 tabbable tabs-left">
-      <ul class="nav nav-tabs span3">
+    <div class="span10 offset1 tabbable">
+      <ul class="nav nav-pills nav-stacked span3">
         <li><p>Profile</p></li>
-        <li class="active"><a href="#tab1" data-toggle="tab">My Account</a>
-        <li><a href="#tab2" data-toggle="tab">Change Password</a></li>
+        <li class="active"><a href="#pill1" data-toggle="pill">My Account</a>
+        <li><a href="#pill2" data-toggle="pill">Change Password</a></li>
         <li><p>Events</p></li>
-        <li><a href="#tab3" data-toggle="tab">Host</a></li>
-        <li><a href="#tab4" data-toggle="tab">Attend</a></li>
-        <li><a href="#tab5" data-toggle="tab">Interest</a></li>
+        <li><a href="#pill3" data-toggle="pill">Host</a></li>
+        <li><a href="#pill4" data-toggle="pill">Attend</a></li>
+        <li><a href="#pill5" data-toggle="pill">Interest</a></li>
       </ul>
       <div class="tab-content span8">
-        <div class="tab-pane active" id="tab1">
+        <div class="tab-pane active" id="pill1">
           <div class="row-fluid edit"><a href="#" onclick="edit()">Edit</a></div>
           <div class="row-fluid">
             <ul class="thumbnails">
               <li class="span3"><div class="thumbnail">
                 <%= image_tag("default_profile.jpg") %>
               </div></li>
-              <li class="span9">
-                <h2><%= @user.name %></h2>
+              <li class="span4">
+                <h4 style="color: blue"><%= @user.name %></h2>
                 <p>
                   *** people like you.
                 </p>
+              </li>
+              <!--<li class="span2"></li>-->
+              <li class="span5 cartoon">
+                
+                <div class="dialog span12">
+                <span class="bot"></span>
+                <span class="top"></span>
+                <p>Want more people like you?</p>
+                <a href="#">Host an Event!</a>
+                </div><div><%= image_tag("image.jpg", :class=>"picture span3") %></div>
               </li>
             </ul>
           </div>
@@ -36,13 +47,13 @@
                 <tr><td>Email Address</td><td class="content"><p><%= @user.email %></p></td></tr>              
                 <tr><td>Location</td><td class="content"><p>Boston</p></td></tr>
                 <tr><td>Gender</td><td class="content"><p>Female</p></td></tr>
-                <tr><td>My hobby</td><td class="content"><p>Sports, Music</p></td></tr>
-                <tr><td>My blog</td><td class="content"><p>**********</p></td></tr>
+                <tr><td>Hobby</td><td class="content"><p>Sports, Music</p></td></tr>
+                <tr><td>Blog</td><td class="content"><p>**********</p></td></tr>
               </tbody>
             </table>
           </div>
         </div><!--tab1 ends-->
-        <div class="tab-pane" id="tab2">
+        <div class="tab-pane" id="pill2">
           <div class="span6 offset3 well">
             <form>
               <label>Current password</label>
@@ -59,7 +70,7 @@
             </form>
           </div>
         </div><!--tab2 ends-->
-        <div class="tab-pane" id="tab3">
+        <div class="tab-pane" id="pill3">
           <div class="row-fluid events">
             <ul class="media-list">
               <li><div class="pull-left">
@@ -82,7 +93,7 @@
             </ul>
           </div>
         </div>
-        <div class="tab-pane" id="tab4">
+        <div class="tab-pane" id="pill4">
           <div class="row-fluid events">
             <ul class="media-list">
               <li><div class="pull-left">
@@ -105,7 +116,7 @@
             </ul>
           </div>
         </div>
-        <div class="tab-pane" id="tab5">
+        <div class="tab-pane" id="pill5">
           <div class="row-fluid events">
             <ul class="media-list">
               <li><div class="pull-left">
@@ -132,3 +143,112 @@
     </div> 
   </div>
 </div>
+<!--view others' profile-->
+<% else %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span10 offset1 tabbable">
+      <ul class="nav nav-pills nav-stacked span3">
+        <li class="active"><a href="#pill1" data-toggle="pill"><%= @user.name %>'s profile</a>
+        <li><a href="#pill3" data-toggle="pill"><%= @user.name %>'s Events</a></li>
+      </ul>
+      <div class="tab-content span8">
+        <div class="tab-pane active" id="pill1">
+          <div class="row-fluid">
+            <ul class="thumbnails">
+              <li class="span3"><div class="thumbnail">
+                <%= image_tag("default_profile.jpg") %>
+              </div></li>
+              <li class="span9">
+                <h2 style="color: blue"><%= @user.name %></h2>
+                <p>
+                  *** people like you.
+                </p>
+                <p>If you like <%= @user.name %>'s events, click like!</p>
+                <button class="btn btn-primary btn-small">Like</button>
+              </li>
+            </ul>
+          </div>
+          <div class="row-fluid">
+            <table class="table">
+              <thead>
+                <tr><th></th><th></th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Email Address</td><td class="content"><p><%= @user.email %></p></td></tr>              
+                <tr><td>Location</td><td class="content"><p>Boston</p></td></tr>
+                <tr><td>Gender</td><td class="content"><p>Female</p></td></tr>
+                <tr><td>Hobby</td><td class="content"><p>Sports, Music</p></td></tr>
+                <tr><td>Blog</td><td class="content"><p>**********</p></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div><!--tab1 ends-->
+        <!--tab2 ends-->
+        <div class="tab-pane" id="pill3">
+          <div class="row-fluid events">
+            <ul class="media-list">
+              <h3><%= @user.name %> Hosts</h3>
+              <li><div class="pull-left">
+                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
+                </div>
+                <div class="media-body">
+                <a class="media-heading" href="#">Event name</a>
+                <p>Time&nbsp&nbspPlace</p>
+                <p>Event's description</p>
+              </li>
+              <hr>
+              <li><div class="pull-left">
+                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
+                </div>
+                <div class="media-body">
+                <a href="#" class="media-heading">[Out of date]Event name</a>
+                <p>Time&nbsp&nbspPlace</p>
+                <p>Event's description</p>
+              </li>
+              <br>
+              <h3><%= @user.name %> Attends</h3>
+              <li><div class="pull-left">
+                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
+                </div>
+                <div class="media-body">
+                <a class="media-heading" href="#">Event name</a>
+                <p>Time&nbsp&nbspPlace</p>
+                <p>Event's description</p>
+              </li>
+              <hr>
+              <li><div class="pull-left">
+                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
+                </div>
+                <div class="media-body">
+                <a href="#" class="media-heading">Event name</a>
+                <p>Time&nbsp&nbspPlace</p>
+                <p>Event's description</p>
+              </li>
+              <br>
+              <h3><%= @user.name %> Interests</h3>
+              <li><div class="pull-left">
+                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
+                </div>
+                <div class="media-body">
+                <a class="media-heading" href="#">Event name</a>
+                <p>Time&nbsp&nbspPlace</p>
+                <p>Event's description</p>
+              </li>
+              <hr>
+              <li><div class="pull-left">
+                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
+                </div>
+                <div class="media-body">
+                <a href="#" class="media-heading">Event name</a>
+                <p>Time&nbsp&nbspPlace</p>
+                <p>Event's description</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+<% end %>
