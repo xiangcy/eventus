@@ -1,15 +1,15 @@
 <% provide(:title, 'Post Event') %>
 <div class="row-fluid">
-  <div class="span6 offset3 well signup">                                                          
+  <div class="span7 offset1 well signup">                                                          
     <h1>Post my event</h1>
     <%= form_for(@event) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="span6 offset3">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-      
-      <%= f.label :starttime %>
-      <%= f.text_field :time, :id => "time_area"%>
+    <div class="span6 offset0">
+    
+			<%= f.label :title %>
+			<%= f.text_field :title %>
+		  <%= f.label :startdate %>
+		  <%= f.text_field :time, :id => "time_area"%>
       
       <%= f.label :endtime %>
       <%= f.text_field :endtime, :id => "time_area"%>
