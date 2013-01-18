@@ -1,6 +1,6 @@
 <% provide(:title, @event.title) %>
 
-<%= @event.title %>, <%= @event.time %>, <%= @event.place %>, <%= @event.content %>
+<%= @event.title %>, <%= @event.time %>, <%= @event.endtime %>, <%= @event.place %>, <%= @event.content %>
 <%= @event.user.name %>
 <%= link_to "edit",  edit_event_path(@event) %>
 <%= link_to "delete", event_path(@event), method: :delete, data: { confirm: "You sure?" } %>
