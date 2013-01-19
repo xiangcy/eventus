@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20130119005118) do
     t.datetime "endtime"
   end
 
+  add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
+
   create_table "rs_evaluations", :force => true do |t|
     t.string   "reputation_name"
     t.integer  "source_id"

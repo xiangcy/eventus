@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
-    @events = Event.futuresearch(params[:cities]).find_with_reputation(:votes, :all, { :order => 'votes DESC'})
+    @events = Event.all
+    #futuresearch(params[:cities]).find_with_reputation(:votes, :all, { :order => 'votes DESC'})
   end
   
   def show

@@ -4,14 +4,20 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE&sensor=false">
 </script>
 
+<style type="text/css">
+  html { height: 10% }
+  body { height: 10%; margin: 0; padding: 0 }
+  #map_canvas { height: 10% }
+</style>
+
 <div class='row-fluid'>	
-  <div class="span9	 offset1 well signup">                                                          
+  <div class="span8 offset2 well signup">                                                          
     <h1>Post my event</h1><br/>
 		<div>
 			<%= form_for(@event) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
-			<div class="span7 left">
+			<div class="span8 left">
 
 			
 				<%= f.label :title, class:"eachItem"%>
@@ -22,28 +28,40 @@
 			</div>
 			<div class="span3 offset0" >
 
-				<h5><em>Never forget to tell people WEHN and WHERE you event is going to held!</em></h4><br/>
-				<label, class="eachItem">Event start time:</label>
-				<input type="datetime" name="event[time]">
+				<h5><em>Never forget to tell people WHEN and WHERE you event is going to held!</em></h4><br/>
+				
+				<label, class="eachItem">Event start time:</label><br>
+				<div id="datetimepicker1"  name="event[time]" class="input-append date">
+					<input data-format="MM/dd/yyyy hh:mm" type="text"></input>
+					<span class="add-on">
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						</i>
+					</span>
+				</div>
 
-				<label, class="eachItem">Event end date:</label>
-				<input type="datetime" name="event[endtime]">
-				<%#= f.datetime_field :time%> 
+				<label, class="eachItem">Event end date:</label><br>	
+				<div id="datetimepicker2"  name="event[endtime]" class="input-append date">
+					<input data-format="MM/dd/yyyy hh:mm" type="text"></input>
+					<span class="add-on">
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						</i>
+					</span>
+				</div>
+				
 
 				<label, class="eachItem">Place:</label>
 				<%#= f.label :place %>
 				<%= f.text_field :place, :class=>"eachItem"%>
 				
-				<label class="control-label" for="City">City:</label>
-					<select name="city">
+				<label class="control-label" for="category">City:</label>
+				<select class="span12" name="city">
 					<option value="City">All Cities</option>
 					<option value="Boston">Boston</option>
 					<option value="Cambridge">Cambridge</option>
 					<option value="Chicago">Chicago</option>
 				</select>
-				
 				<label class="control-label" for="category">Category:</label>
-				<select name="category">
+				<select class="span12" name="category">
 					<option value="category">All Categories</option>
 					<option value="Sports">Sports</option>
 					<option value="Music">Music</option>
@@ -54,9 +72,39 @@
 		<%end%>	
 		</div>
 
-
-		<div id="map_canvas" style="width: 50%; height: 50%">
+		<div id="map_canvas" style="width: 10%; height: 10%" onload="initialize()">
 		</div>
-		
   </div>
+
+<script type="text/javascript">
+  function initialize() {
+	var mapOptions = {
+	  center: new google.maps.LatLng(-34.397, 150.644),
+	  zoom: 8,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	var map = new google.maps.Map(document.getElementById("map_canvas"),
+		mapOptions);
+  }
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+		format: 'dd/MM/yyyy hh:mm',
+      language: 'en'
+    });
+  });
+  $(function() {
+    $('#datetimepicker2').datetimepicker({
+		format: 'dd/MM/yyyy hh:mm',
+      language: 'en'
+    });
+  });
+   
+</script>
+
+  
 </div>
+	
+
