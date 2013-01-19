@@ -16,4 +16,12 @@ class Event < ActiveRecord::Base
     where("time > ?", ::Time.now )
   end
   
+  def self.futuresearch(search)
+    if search
+      
+    else
+      self.future
+    end
+  end
+  
 end

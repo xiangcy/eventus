@@ -61,21 +61,12 @@
       <div class="row-fluid">
         <div class="span12 well search">
           <form class="form-inline">
-            <label class="control-label" for="City">City:</label>
-            <select name="city">
-              <option value="City">All Cities</option>
-              <option value="Boston">Boston</option>
-              <option value="Cambridge">Cambridge</option>
-              <option value="Chicago">Chicago</option>
-            </select>
-            <label class="control-label" for="category">Category:</label>
-            <select name="category">
-              <option value="category">All Categories</option>
-              <option value="Sports">Sports</option>
-              <option value="Music">Music</option>
-              <option value="Movie">Movie</option>
-            </select>
-            <button class="btn btn-primary" type="submit">Search</button>
+            <label for "City">City:</label>&nbsp; 
+            <%= select_tag  "cities", options_for_select([['All Cities',''],['Boston','Boston'],['New York','New York']]) %>
+            &nbsp;&nbsp;
+            <label for "Category">Category:</label>&nbsp;
+            <%= select_tag  "catogories", options_for_select([['All Categories',''],['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Party','Party']]) %>
+            <%= submit_tag "Search", :class => "submit" %>
           </form>
         </div>
       </div>
