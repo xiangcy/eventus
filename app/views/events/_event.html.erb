@@ -1,0 +1,12 @@
+
+
+<% if current_user && !event.has_evaluation?(:votes, current_user) %>
+  <%= link_to "up", vote_event_path(event, type: "up"), method: "post"%>,
+
+  <%= link_to "down", vote_event_path(event, type: "down"), method: "post"%>
+<% else %>
+  
+<% end %>
+
+
+<%= pluralize event.reputation_for(:votes).to_i, "vote" %>

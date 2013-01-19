@@ -1,0 +1,6 @@
+<% provide(:title, 'Search Results') %>
+<h1>Search results</h1>
+
+<% @events.each do |event| %>
+  <%= render event %>
+<% end %>
