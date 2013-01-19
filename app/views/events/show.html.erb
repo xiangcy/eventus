@@ -1,6 +1,45 @@
 <% provide(:title, @event.title) %>
+<div class="row-fluid">
+  <div class="span8 eventprofile offset1">
+    <div class="row-fluid">
+      <ul class"thumbnails">
+      <li class="span2 offset1"><div class="thumbnail"><%= image_tag("default_avatar.png") %></div></li>
+      <li class="span6">
+        <h3 style="color: blue; margin-top: 0px"><%= @event.title %></h3>
+        <p>Organized by <%=link_to @event.user.name , @event.user, :class=>"username"%>&nbsp&nbsp
+        <% if current_user?(Event.find(params[:id]).user) %>
+        <%= link_to "edit",  edit_event_path(@event) %>
+        <%= link_to "delete", event_path(@event), method: :delete, data: { confirm: "You sure?" } %>
+        <% else %>
+        <% end %>
+        </p>
+        <p><i class="icon-time"></i><%= @event.time %>-<%= @event.endtime %></p>
+        <p><i class="icon-map-marker"></i><%= @event.place %></p>
+      </li>
+      <li class="span3 vote">
+        <div>
+        <a class="btn"><i class="icon-arrow-up"></i></a>
+        <p>Vote:</p>
+        <a class="btn"><i class="icon-arrow-down"></i></a><br>
+        <input type="button" class="btn btn-primary attend" value="Attend this Event!">
+        </div>
+        </li>
+      </ul>
+    </div>
+    <hr class="line">
+    <div class="row-fluid">
+      <h4 style="margin-left:10px">Event Description</h4>
+      <hr class="line">
+      <div class="eventcontent">
+      <%= @event.content %>
+      </div>
+    </div>
 
-<%= @event.title %>, <%= @event.time %>, <%= @event.endtime %>, <%= @event.place %>, <%= @event.content %>
-<%= @event.user.name %>
-<%= link_to "edit",  edit_event_path(@event) %>
-<%= link_to "delete", event_path(@event), method: :delete, data: { confirm: "You sure?" } %>
+  </div>
+  <div class="span3">
+    <div>
+    <h4 style="background-color:#f5f5f5">Where</h4> 
+    </div>
+    <p>google map</p>
+  </div>
+</div>

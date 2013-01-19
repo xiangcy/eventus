@@ -1,0 +1,9 @@
+
+<% if current_user && !current_user.voted_for?(:votes) %>
+  
+  <%= link_to "up", vote_event_path(event, type: "up"), method :"post"%>,
+
+  <%= link_to "down", vote_event_path(event, type: "down"), method :"post"%>
+<% end %>
+
+<%= pluralize event.reputation_value_for(:votes).to_i, "vote" %>

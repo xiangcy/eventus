@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :new, :edit, :update, :destroy]
+  before_filter :signed_in_user, only: [:create, :new, :edit, :update, :destroy, :vote]
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index
+    @events = Event.future.find_with_reputation(:votes, :all, { :order => 'votes DESC'})
   end
   
   def show
@@ -41,6 +42,13 @@ class EventsController < ApplicationController
     Event.find(params[:id]).destroy
     flash[:success] = "Event destroyed"
     redirect_to current_user
+  end
+  
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @event = Event.find(params[:id])
+    @event.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for voting"
   end
   
   private
