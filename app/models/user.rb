@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
   has_many :events
+  #has_many :evaluations, class_name: "RSevaluation", as: :source
   
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -22,6 +23,11 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+  
+  #def voted_for?(event)
+ #   evaluations.where(target_type: event.class, target_id: event.id).present?
+ # end
+  
   
   private
     
