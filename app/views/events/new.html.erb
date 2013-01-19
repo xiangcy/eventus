@@ -4,8 +4,14 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE&sensor=false">
 </script>
 
+<style type="text/css">
+  html { height: 10% }
+  body { height: 10%; margin: 0; padding: 0 }
+  #map_canvas { height: 10% }
+</style>
+
 <div class='row-fluid'>	
-  <div class="span9	 offset1 well signup">                                                          
+  <div class="span10 offset1 well signup">                                                          
     <h1>Post my event</h1><br/>
 		<div>
 			<%= form_for(@event) do |f| %>
@@ -20,7 +26,7 @@
 				<%= f.label :content, :class=>"eachItem" %>
 				<%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "300px", placeholder: "Briefly introduce your event Here..."%>
 			</div>
-			<div class="span3 offset0" >
+			<div class="span4 offset0" >
 
 				<h5><em>Never forget to tell people WEHN and WHERE you event is going to held!</em></h4><br/>
 				<label, class="eachItem">Event start time:</label>
@@ -54,9 +60,23 @@
 		<%end%>	
 		</div>
 
-
-		<div id="map_canvas" style="width: 50%; height: 50%">
+		<div id="map_canvas" style="width: 10%; height: 10%" onload="initialize()">
 		</div>
-		
   </div>
+
+	<script type="text/javascript">
+  function initialize() {
+	var mapOptions = {
+	  center: new google.maps.LatLng(-34.397, 150.644),
+	  zoom: 8,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	var map = new google.maps.Map(document.getElementById("map_canvas"),
+		mapOptions);
+  }
+</script>
+
+  
 </div>
+	
+

@@ -2,18 +2,16 @@
 
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=true">
-</script>
+</script>	
 
 <div class="row-fluid">
-  <div class="span9	 offset1 well signup">                                                          
+  <div class="span10	offset1  well signup">                                                          
     <h1>Edit my event</h1><br/>
 		<div>
 			<%= form_for(@event) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
 			<div class="span7 left">
-
-			
 				<%= f.label :title, class:"eachItem"%>
 				<%= f.text_field :title , class: "field span11"%>
 				
