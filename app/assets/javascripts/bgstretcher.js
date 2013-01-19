@@ -6,7 +6,6 @@
 	
 	Version: 2.0.1
 */
-
 ;(function($){
 	/*  Variables  */
 	var container = null;
