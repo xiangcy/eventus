@@ -1,28 +1,58 @@
-<% provide(:title, "Edit Event") %> 
-<h1>Update your event</h1>
+<% provide(:title, "Edit Event") %>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@event) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-      
-      <%= f.label :starttime %>
-      <%= f.text_field :time :id => "time_area" %>
-      
-      <%= f.label :endtime %>
-      <%= f.text_field :endtime :id => "time_area"%>
-        
-      <%= f.label :place %>
-      <%= f.text_field :place %>
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=true">
+</script>
 
-      <%= f.label :content %>
-      <%= f.text_area :content, placeholder: "Briefly introduce your event Here..."%>
-      
+<div class="row-fluid">
+  <div class="span9	 offset1 well signup">                                                          
+    <h1>Edit my event</h1><br/>
+		<div>
+			<%= form_for(@event) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<div class="span7 left">
+
+			
+				<%= f.label :title, class:"eachItem"%>
+				<%= f.text_field :title , class: "field span11"%>
+				
+				<%= f.label :content, :class=>"eachItem" %>
+				<%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "300px", placeholder: "Briefly introduce your event Here..."%>
+			</div>
+			<div class="span3" >
+				<h5><em>Never forget to tell people WEHN and WHERE you event is going to held!</em></h4><br/>
+				<label, class="eachItem">Event start time:</label>
+				<input type="datetime" name="event[time]">
+
+				<label, class="eachItem">Event end date:</label>
+				<input type="datetime" name="event[endtime]">
+				<%#= f.datetime_field :time%> 
+
+				<label, class="eachItem">Place:</label>
+				<%#= f.label :place %>
+				<%= f.text_field :place, :class=>"eachItem"%>
+				
+				<label class="control-label" for="City">City:</label>
+					<select name="city">
+					<option value="City">All Cities</option>
+					<option value="Boston">Boston</option>
+					<option value="Cambridge">Cambridge</option>
+					<option value="Chicago">Chicago</option>
+				</select>
+				
+				<label class="control-label" for="category">Category:</label>
+				<select name="category">
+					<option value="category">All Categories</option>
+					<option value="Sports">Sports</option>
+					<option value="Music">Music</option>
+					<option value="Movie">Movie</option>
+				</select>
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-    <% end %>
-
+			</div>
+		<%end%>	
+		</div>
+		
   </div>
 </div>
+

@@ -1,27 +1,62 @@
 <% provide(:title, 'Post Event') %>
-<div class="row-fluid">
-  <div class="span7 offset1 well signup">                                                          
-    <h1>Post my event</h1>
-    <%= form_for(@event) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div class="span6 offset0">
-    
-			<%= f.label :title %>
-			<%= f.text_field :title %>
-		  <%= f.label :startdate %>
-		  <%= f.text_field :time, :id => "time_area"%>
-      
-      <%= f.label :endtime %>
-      <%= f.text_field :endtime, :id => "time_area"%>
-        
-      <%= f.label :place %>
-      <%= f.text_field :place %>
 
-	  <%= f.label :content, :class=>"content" %>
-	  <%= f.text_area :content, placeholder: "Briefly introduce your event Here..."%>
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE&sensor=false">
+</script>
 
-	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
-    </div>
-    <% end %>
+<div class='row-fluid'>	
+  <div class="span9	 offset1 well signup">                                                          
+    <h1>Post my event</h1><br/>
+		<div>
+			<%= form_for(@event) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<div class="span7 left">
+
+			
+				<%= f.label :title, class:"eachItem"%>
+				<%= f.text_field :title , class: "field span11"%>
+				
+				<%= f.label :content, :class=>"eachItem" %>
+				<%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "300px", placeholder: "Briefly introduce your event Here..."%>
+			</div>
+			<div class="span3 offset0" >
+
+				<h5><em>Never forget to tell people WEHN and WHERE you event is going to held!</em></h4><br/>
+				<label, class="eachItem">Event start time:</label>
+				<input type="datetime" name="event[time]">
+
+				<label, class="eachItem">Event end date:</label>
+				<input type="datetime" name="event[endtime]">
+				<%#= f.datetime_field :time%> 
+
+				<label, class="eachItem">Place:</label>
+				<%#= f.label :place %>
+				<%= f.text_field :place, :class=>"eachItem"%>
+				
+				<label class="control-label" for="City">City:</label>
+					<select name="city">
+					<option value="City">All Cities</option>
+					<option value="Boston">Boston</option>
+					<option value="Cambridge">Cambridge</option>
+					<option value="Chicago">Chicago</option>
+				</select>
+				
+				<label class="control-label" for="category">Category:</label>
+				<select name="category">
+					<option value="category">All Categories</option>
+					<option value="Sports">Sports</option>
+					<option value="Music">Music</option>
+					<option value="Movie">Movie</option>
+				</select>
+				<%= f.submit "Post", :class=> "btn btn-large btn-primary" %>
+			</div>
+		<%end%>	
+		</div>
+
+
+		<div id="map_canvas" style="width: 50%; height: 50%">
+		</div>
+		
   </div>
 </div>
