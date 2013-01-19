@@ -20,32 +20,44 @@
 			</div>
 			<div class="span3" >
 				<h5><em>Never forget to tell people WEHN and WHERE you event is going to held!</em></h4><br/>
-				<label, class="eachItem">Event start time:</label>
-				<input type="datetime" name="event[time]">
+				<label, class="eachItem">Event start time:</label><br>
+				<div id="datetimepicker1"  name="event[time]" class="input-append date">
+					<input data-format="MM/dd/yyyy hh:mm" type="text"></input>
+					<span class="add-on">
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						</i>
+					</span>
+				</div>
 
-				<label, class="eachItem">Event end date:</label>
-				<input type="datetime" name="event[endtime]">
-				<%#= f.datetime_field :time%> 
-
-				<label, class="eachItem">Place:</label>
-				<%#= f.label :place %>
-				<%= f.text_field :place, :class=>"eachItem"%>
+				<label, class="eachItem">Event end date:</label><br>
 				
-				<label class="control-label" for="City">City:</label>
-					<select name="city">
+				<div id="datetimepicker2"  name="event[endtime]" class="input-append date">
+					<input data-format="MM/dd/yyyy hh:mm" type="text"></input>
+					<span class="add-on">
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						</i>
+					</span>
+				</div>
+			<label, class="eachItem">Place:</label>
+			<%#= f.label :place %>
+			<%= f.text_field :place, :class=>"eachItem"%>
+				<label class="control-label" for="category">City:</label>
+
+				<select class="span12" name="city">
 					<option value="City">All Cities</option>
 					<option value="Boston">Boston</option>
 					<option value="Cambridge">Cambridge</option>
 					<option value="Chicago">Chicago</option>
 				</select>
-				
 				<label class="control-label" for="category">Category:</label>
-				<select name="category">
+
+				<select class="span12" name="category">
 					<option value="category">All Categories</option>
 					<option value="Sports">Sports</option>
 					<option value="Music">Music</option>
 					<option value="Movie">Movie</option>
 				</select>
+					
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 			</div>
 		<%end%>	
