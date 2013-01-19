@@ -17,11 +17,7 @@ class Event < ActiveRecord::Base
   end
   
   def self.futuresearch(search)
-    if search
-      
-    else
       self.future
-    end
   end
   
 end
