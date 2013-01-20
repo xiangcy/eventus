@@ -644,6 +644,4 @@ function edit(){
 	$.fn.bgStretcher.settings = {};
 })(jQuery);
 //bgstretcher ends
-    $("body").bgStretcher({
-    images: ["assets/newyork.jpg", "assets/boston2.jpg","assets/boston3.jpg"]
-    });
+

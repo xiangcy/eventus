@@ -1,7 +1,5 @@
-
-
 <% if current_user && !event.has_evaluation?(:votes, current_user) %>
-  <%= link_to "up", vote_event_path(event, type: "up"), method: "post"%>,
+  ,
 
   <%= link_to "down", vote_event_path(event, type: "down"), method: "post"%>
 <% else %>
@@ -9,4 +7,23 @@
 <% end %>
 
 
-<%= pluralize event.reputation_for(:votes).to_i, "vote" %>
+
+      <div>
+        <%= link_to "i class="icon-arrow-up"></i>", vote_event_path(event, type: "up"), method: "post"%, :class=>"btn">
+        <p>Vote: <%= pluralize event.reputation_for(:votes).to_i, "vote" %></p>
+        <a class="btn"><i class="icon-arrow-down"></i></a><br>
+        <input type="button" class="btn btn-primary attend" value="Attend this Event!">
+      </div>
+        
+        <ul class="media-list">
+              <li><div class="pull-left">
+                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
+                </div>
+                <div class="media-body">
+                <a class="media-heading" href="#">Event name</a>
+                <p>Time&nbsp&nbspPlace</p>
+                <p>Event's description</p>
+                </div>
+              </li>
+              <hr>
+            </ul>
