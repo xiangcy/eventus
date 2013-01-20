@@ -42,20 +42,10 @@
 			</div>
 			<div>
 			<label class="control-label" for="City">City:</label>
-					<select name="city" multiple = "multiple">
-					<option value="City">All Cities</option>
-					<option value="Boston">Boston</option>
-					<option value="Cambridge">Cambridge</option>
-					<option value="Chicago">Chicago</option>
-				</select>
+			      <%= f.select(:city, [['Boston','Boston'],['New York','New York']]) %>
 				
 				<label class="control-label" for="category">Category:</label>
-				<select name="category" multiple = "multiple">
-					<option value="category">All Categories</option>
-					<option value="Sports">Sports</option>
-					<option value="Music">Music</option>
-					<option value="Movie">Movie</option>
-				</select>
+				<%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']]) %>
 
 			</div>
 
