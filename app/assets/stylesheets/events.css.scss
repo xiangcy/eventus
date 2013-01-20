@@ -46,9 +46,14 @@ h5{
 
 }
 
-.selectClass{
+#map_canvas{
+	position: absolute;
+	float: right;
+	//overflow: auto;
+	margin-top: 0px;
 
-	width: 20%;
+	height: 35%;
+	min-width: 100px;
 
 }
 

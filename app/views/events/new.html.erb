@@ -5,13 +5,13 @@
 </script>
 
 <div class='row-fluid'>	
-  <div class="span8 offset2 well signup">                                                          
+  <div class="span10 offset1 well signup">                                                          
     <h1>Post my event</h1><br/>
 		<div>
 			<%= form_for(@event) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
-			<div class="span8 left">
+			<div class="span7 left">
 
 				<div>
 					<label, class="eachItem">Theme or title of your event:</label>
@@ -20,7 +20,7 @@
 				
 				<div>
 					<label, class="eachItem">Describe your event:</label>
-					<%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "300px", placeholder: "Briefly introduce your event Here..."%>
+					<%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "400px", placeholder: "Briefly introduce your event Here..."%>
 				</div>
 
 
@@ -29,33 +29,39 @@
 					<%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']]) %>
 				</div>
 			</div>
-			<div class="span3 offset0" >
+			<div class="span4 offset0" >
 
 				<h5><em>Never forget to tell people WHEN and WHERE you event is going to held!</em></h5><br/>
 				
 				<label, class="eachItem">Event start time:</label>
-				<input type="text" class="datetimepicker" name="event[time]"/>
+				<%= f.text_field :time, :value=> f.object.time, :class=>"datetimepicker" %>
 				
 				<label, class="eachItem">Event end date:</label>
-				<input type="text" class="datetimepicker" name="event[endtime]"/>
+
+				<%= f.text_field :endtime, :value=> f.object.endtime, :class=>"datetimepicker" %>
+				<!--<input type="text" class="datetimepicker" name="event[endtime]"/>-->
 
 				<label, class="control-label" for="City">City:</label>
 				<%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12")%>
 
 				<label, class="eachItem">Location:</label>
-				<%= f.text_field :place, :class=>"eachItem"%>
+				<%= f.text_field :place, :class=>"eachItem locationInput"%>
+
+
+<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
+<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
+				<label, class=" eachItem" >Map!</label>
+				<div id="map_canvas" class="span3" ><br></div>
+<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->		
+<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
+				
 			</div>
-			<div class="span12 offset3">
+			<div class="span12">
 				<br>
-				<%= f.submit :class=> "offset1 btn btn-large btn-primary" %>
+				<%= f.submit :class=> "offset2 btn btn-large btn-primary" %>
 			</div>
 			<%end%>
-			<div id="map_canvas" style="width:100%; height:100%"></div>
-			<script>
-				$(document).ready(function(){
-					$(map_canvas)
-				});
-			</script>
+
 		</div>
 	</div>
 </div>

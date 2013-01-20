@@ -5,7 +5,7 @@
 </script>	
 
 <div class="row-fluid">
-  <div class="span8 offset2 well signup">                                                           
+  <div class="span10 offset1 well signup">                                                           
     <h1>Edit my event</h1><br/>
 		<div>
 			<%= form_for(@event) do |f| %>
@@ -34,10 +34,10 @@
 				<h5><em>Never forget to tell people WHEN and WHERE you event is going to held!</em></h5><br/>
 				
 				<label, class="eachItem">Event start time:</label>
-				<input type="text" class="datetimepicker" name="event[time]"/>
+				<%= f.text_field :time, :value=> f.object.time, :class=>"datetimepicker" %>
 				
 				<label, class="eachItem">Event end date:</label>
-				<input type="text" class="datetimepicker" name="event[endtime]"/>
+				<%= f.text_field :endtime, :value=> f.object.endtime, :class=>"datetimepicker" %>
 
 				<label, class="control-label" for="City">City:</label>
 				<%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12")%>
@@ -50,12 +50,8 @@
 				<%= f.submit :class=> "offset1 btn btn-large btn-primary" %>
 			</div>
 			<%end%>
-			<div id="map_canvas" style="width:100%; height:100%"></div>
-			<script>
-				$(document).ready(function(){
-					$(map_canvas)
-				});
-			</script>
+			<<div class = "offset5" id="map_canvas" style="width:100%; height:100%"></div>
+
 		</div>
 	</div>
 </div>
