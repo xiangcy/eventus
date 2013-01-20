@@ -21,7 +21,7 @@ function edit(){
     $(".content").each(function(){
     var a=this.firstChild;
     this.innerHTML="<input type='text' value='"+a.innerHTML+"'>";
-    });
+    });	
     $(".edit").html("<p><font color = #B3B3B3>Edit</font></p>");
     $("table").append("<input type='submit'value='Save' class='btn btn-primary'><input type='submit'value='Cancel' class='btn'>");
 }
