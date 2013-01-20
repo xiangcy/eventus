@@ -1,7 +1,13 @@
 <% provide(:title, 'Search Results') %>
-<h1>Search results</h1>
-
-
+<div class="row-fluid">
+<div class="span9">
+  <div class="head">
+    <h2>Search results</h2>
+  </div>
+<ul class="media-list">
 <% @events.each do |event| %>
   <%= render event %>
 <% end %>
+</ul>
+</div>
+</div>
