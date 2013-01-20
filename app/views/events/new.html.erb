@@ -6,7 +6,7 @@
 
 <div class='row-fluid'>	
   <div class="span8 offset2 well signup">                                                          
-    <h1 onclick="myFunction()">Post my event</h1><br/>
+    <h1>Post my event</h1><br/>
 		<div>
 			<%= form_for(@event) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
@@ -40,19 +40,23 @@
 				<input type="text" class="datetimepicker" name="event[endtime]"/>
 
 				<label, class="control-label" for="City">City:</label>
-				<%= f.select(:city, [['Boston',{:class => 'span12'},'Boston'],['New York','New York']])%>
+				<%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12")%>
 
 				<label, class="eachItem">Location:</label>
 				<%= f.text_field :place, :class=>"eachItem"%>
 			</div>
 			<div class="span12 offset3">
-
 				<br>
 				<%= f.submit :class=> "offset1 btn btn-large btn-primary" %>
 			</div>
-			<%end%>	
+			<%end%>
+			<div id="map_canvas" style="width:100%; height:100%"></div>
+			<script>
+				$(document).ready(function(){
+					$(map_canvas)
+				});
+			</script>
 		</div>
 	</div>
 </div>
 	
-
