@@ -4,12 +4,6 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE&sensor=false">
 </script>
 
-<style type="text/css">
-  html { height: 10% }
-  body { height: 10%; margin: 0; padding: 0 }
-  #map_canvas { height: 10% }
-</style>
-
 <div class='row-fluid'>	
   <div class="span8 offset2 well signup">                                                          
     <h1 onclick="myFunction()">Post my event</h1><br/>
@@ -19,45 +13,46 @@
 
 			<div class="span8 left">
 
-			
-				<%= f.label :title, class:"eachItem"%>
-				<%= f.text_field :title , class: "field span11"%>
+				<div>
+					<label, class="eachItem">Theme or title of your event:</label>
+					<%= f.text_field :title , class: "field span11"%>				
+				</div>
 				
-				<%= f.label :content, :class=>"eachItem" %>
-				<%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "300px", placeholder: "Briefly introduce your event Here..."%>
+				<div>
+					<label, class="eachItem">Describe your event:</label>
+					<%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "300px", placeholder: "Briefly introduce your event Here..."%>
+				</div>
+
+
+				<div>
+					<label, class="control-label" for="category">Category:</label>
+					<%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']]) %>
+				</div>
 			</div>
 			<div class="span3 offset0" >
 
-				<h5><em>Never forget to tell people WHEN and WHERE you event is going to held!</em></h4><br/>
+				<h5><em>Never forget to tell people WHEN and WHERE you event is going to held!</em></h5><br/>
 				
 				<label, class="eachItem">Event start time:</label>
 				<input type="text" class="datetimepicker" name="event[time]"/>
 				
 				<label, class="eachItem">Event end date:</label>
 				<input type="text" class="datetimepicker" name="event[endtime]"/>
-				
-				<label, class="eachItem">Place:</label>
-				<%#= f.label :place %>
+
+				<label, class="control-label" for="City">City:</label>
+				<%= f.select(:city, [['Boston',{:class => 'span12'},'Boston'],['New York','New York']])%>
+
+				<label, class="eachItem">Location:</label>
 				<%= f.text_field :place, :class=>"eachItem"%>
 			</div>
-			<div>
-			<label class="control-label" for="City">City:</label>
-			      <%= f.select(:city, [['Boston','Boston'],['New York','New York']]) %>
-				
-				<label class="control-label" for="category">Category:</label>
-				<%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']]) %>
+			<div class="span12 offset3">
 
+				<br>
+				<%= f.submit :class=> "offset1 btn btn-large btn-primary" %>
 			</div>
-
-			<%= f.submit "Post", :class=> "btn btn-large btn-primary" %>
-
 			<%end%>	
 		</div>
-
-		<div id="map_canvas" style="width: 10%; height: 10%" onload="initialize()">
-		</div>
-  </div>
-  
+	</div>
 </div>
 	
 
