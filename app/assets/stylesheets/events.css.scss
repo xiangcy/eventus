@@ -44,3 +44,31 @@ h5{
 	
 
 }
+.vote{
+    text-align: center;
+    margin-top: 12px;
+    margin-left: 20px;
+    margin-right: 20px!important;
+}
+.vote p{
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+.vote input{
+    position: relative;
+    top: 5px;
+}
+.media-body p{
+    display: inline;
+    margin: 0px;
+    word-wrap:break-word;
+}
+.head{
+    h2{
+        color: #ffffff;
+    }
+    background-color: #d44413;
+    border: #d3d3d3;
+    padding: 0px 20px;
+    -webkit-border-radius: 10px;
+}
