@@ -62,10 +62,10 @@
         <div class="span12 well search">
           <%= form_tag events_path, :method => "get", :class => "form-inline" do %>
           <label for "City">City:</label>&nbsp; 
-            <%= select_tag  "cities", options_for_select([['All Cities',''],['Boston','Boston'],['New York','New York']]) %>
+            <%= select_tag  "city", options_for_select([['All Cities',''],['Boston','Boston'],['New York','New York']], @city) %>
             &nbsp;&nbsp;
             <label for "Category">Category:</label>&nbsp;
-            <%= select_tag  "categories", options_for_select([['All Categories',''],['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Party','Party']]) %>
+            <%= select_tag  "category", options_for_select([['All Categories',''],['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']], @category) %>
             <%= submit_tag "Search", :name => nil, :class => "submit btn btn-primary" %>
           <% end %>
         </div>
