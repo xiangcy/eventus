@@ -3,7 +3,7 @@
 //# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 	
 $(function() {
-    $( ".datetimepicker" ).datetimepicker()
+    $( ".datetimepicker" ).datetimepicker({dateFormat: "yy-mm-dd"})
  });
 
 function initialize() {
