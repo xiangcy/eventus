@@ -19,11 +19,18 @@
 				<%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "300px", placeholder: "Briefly introduce your event Here..."%>
 			</div>
 			<div class="span3" >
-				<h5><em>Never forget to tell people WEHN and WHERE you event is going to held!</em></h4><br/>
-				<label, class="eachItem">Event start time:</label><br>
-
-
-				<label, class="eachItem">Event end date:</label><br>
+				<h5><em>Never forget to tell people WHEN and WHERE you event is going to held!</em></h4><br/>
+				
+				<label, class="eachItem">Event start time:</label>
+				<input type="text" name="event[time]" />
+				<!--class="datepicker"-->
+				
+				<label, class="eachItem">Event end date:</label>
+				<input type="text" name="event[endtime]" />
+				<!--class="datepicker"-->
+				<label, class="eachItem">Place:</label>
+				<%#= f.label :place %>
+				<%= f.text_field :place, :class=>"eachItem"%>
 				
 
 			<label, class="eachItem">Place:</label>

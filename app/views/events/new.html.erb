@@ -31,31 +31,21 @@
 				<h5><em>Never forget to tell people WHEN and WHERE you event is going to held!</em></h4><br/>
 				
 				<label, class="eachItem">Event start time:</label>
-				<input type="text" id="selectedDateTime" />
-				<label, class="eachItem">Event end date:</label>
-				<input type="text" id="selectedDateTime" />
+				<input type="text" class="datetimepicker" name="event[time]"/>
 				
-
+				<label, class="eachItem">Event end date:</label>
+				<input type="text" class="datetimepicker" name="event[endtime]"/>
+				
 				<label, class="eachItem">Place:</label>
 				<%#= f.label :place %>
 				<%= f.text_field :place, :class=>"eachItem"%>
 			</div>
 			<div>
 			<label class="control-label" for="City">City:</label>
-					<select name="city" multiple = "multiple">
-					<option value="City">All Cities</option>
-					<option value="Boston">Boston</option>
-					<option value="Cambridge">Cambridge</option>
-					<option value="Chicago">Chicago</option>
-				</select>
+			      <%= f.select(:city, [['Boston','Boston'],['New York','New York']]) %>
 				
 				<label class="control-label" for="category">Category:</label>
-				<select name="category" multiple = "multiple">
-					<option value="category">All Categories</option>
-					<option value="Sports">Sports</option>
-					<option value="Music">Music</option>
-					<option value="Movie">Movie</option>
-				</select>
+				<%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']]) %>
 
 			</div>
 
@@ -67,11 +57,6 @@
 		<div id="map_canvas" style="width: 10%; height: 10%" onload="initialize()">
 		</div>
   </div>
-
-<script type="text/javascript">
-
-</script>
-
   
 </div>
 	
