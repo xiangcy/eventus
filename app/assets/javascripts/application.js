@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require bootstrap
 //= require_tree .
-//= require jquery-ui
+
 
 function edit(){
     $(".content").each(function(){
