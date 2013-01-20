@@ -20,9 +20,9 @@ class Event < ActiveRecord::Base
     if params[:city].blank? && params[:category].blank?
       self.future
     elsif params[:city].blank? && !params[:category].blank?
-      where("time > ? AND city = ?", ::Time.now, params[:city])
-    elsif !params[:city].blank? && params[:category].blank?
       where("time > ? AND category = ?", ::Time.now, params[:category])
+    elsif !params[:city].blank? && params[:category].blank?
+      where("time > ? AND city = ?", ::Time.now, params[:city])
     else
       where("time > ? AND category = ? AND city = ?", ::Time.now, params[:category], params[:city])
     end

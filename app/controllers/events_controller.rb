@@ -4,6 +4,8 @@ class EventsController < ApplicationController
   
   def index
     @events = Event.futuresearch(params).find_with_reputation(:votes, :all, { :order => 'votes DESC'})
+    @city = params[:city]
+    @category = params[:category]
   end
   
   def show
