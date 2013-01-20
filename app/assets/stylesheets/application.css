@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require vendor
  */
 
 /*event profile*/
@@ -38,3 +39,5 @@
     position: relative;
     top: 10px;
 }
+
+
