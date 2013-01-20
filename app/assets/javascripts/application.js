@@ -13,8 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require_tree .
 //= require jquery-ui
+//= require_tree .
+
 
 function edit(){
     $(".content").each(function(){
@@ -643,12 +644,6 @@ function edit(){
 	$.fn.bgStretcher.settings = {};
 })(jQuery);
 //bgstretcher ends
-//home page
-$(document).ready(function(){
-        //  Initialize Backgound Stretcher
-        $(".home").bgStretcher({
-        images: ["assets/newyork.jpg", "assets/boston2.jpg","assets/boston3.jpg"]
-        });
+    $("body").bgStretcher({
+    images: ["assets/newyork.jpg", "assets/boston2.jpg","assets/boston3.jpg"]
     });
-//home page ends
-
