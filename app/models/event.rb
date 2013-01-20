@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :content, :place, :time, :title, :endtime
+  attr_accessible :content, :place, :time, :title, :endtime, :city
   belongs_to :user
   has_reputation :votes, source: :user, aggregated_by: :sum
   
@@ -16,8 +16,12 @@ class Event < ActiveRecord::Base
     where("time > ?", ::Time.now )
   end
   
-#  def self.futuresearch(search)
- #     self.future
-  #end
+  def self.futuresearch(params)
+    if params[:city].blank?
+      self.future
+    else
+      where("time > ? AND city = ?", ::Time.now, params[:city])
+    end
+  end
   
 end
