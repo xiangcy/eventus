@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+//= require jquery-ui
 
 function edit(){
     $(".content").each(function(){
@@ -650,3 +651,4 @@ $(document).ready(function(){
         });
     });
 //home page ends
+

@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require vendor
  */
 
 /*event profile*/
@@ -38,6 +39,7 @@
     position: relative;
     top: 10px;
 }
+
 /*home page*/
 @-webkit-keyframes myfirst
 {
@@ -52,3 +54,4 @@ to {height: 300px;}
     -webkit-animation: myfirst 2s;
     height: 300px;
 }
+
