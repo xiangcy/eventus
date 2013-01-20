@@ -2,3 +2,21 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+$(document).ready(
+	alert("adfasdf");
+	 $(function() {
+    $('#datetimepicker1').datetimepicker({
+		format: 'dd/MM/yyyy hh:mm',
+      language: 'en'
+    });
+
+    $('#datetimepicker2').datetimepicker({
+		format: 'dd/MM/yyyy hh:mm',
+      language: 'en'
+    });
+  });
+
+
+
+
+}

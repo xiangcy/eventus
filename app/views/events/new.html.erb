@@ -39,14 +39,25 @@
 					</span>
 				</div>
 
+				<label, class="eachItem">Event end date:</label><br>	
+				<div id="datetimepicker2"  name="event[endtime]" class="input-append date">
+					<input data-format="MM/dd/yyyy hh:mm" type="text"></input>
+					<span class="add-on">
+						<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						</i>
+					</span>
+				</div>		
 				
 
 				<label, class="eachItem">Place:</label>
 				<%#= f.label :place %>
 				<%= f.text_field :place, :class=>"eachItem"%>
 				
-				<label class="control-label" for="City">City:</label>
-					<select name="city">
+	
+			</div>
+			<div>
+			<label class="control-label" for="City">City:</label>
+					<select name="city" multiple = "multiple">
 					<option value="City">All Cities</option>
 					<option value="Boston">Boston</option>
 					<option value="Cambridge">Cambridge</option>
@@ -54,15 +65,18 @@
 				</select>
 				
 				<label class="control-label" for="category">Category:</label>
-				<select name="category">
+				<select name="category" multiple = "multiple">
 					<option value="category">All Categories</option>
 					<option value="Sports">Sports</option>
 					<option value="Music">Music</option>
 					<option value="Movie">Movie</option>
 				</select>
-				<%= f.submit "Post", :class=> "btn btn-large btn-primary" %>
+
 			</div>
-		<%end%>	
+
+			<%= f.submit "Post", :class=> "btn btn-large btn-primary" %>
+
+			<%end%>	
 		</div>
 
 		<div id="map_canvas" style="width: 10%; height: 10%" onload="initialize()">
@@ -79,9 +93,6 @@
 	var map = new google.maps.Map(document.getElementById("map_canvas"),
 		mapOptions);
   }
-</script>
-
-<script type="text/javascript">
   $(function() {
     $('#datetimepicker1').datetimepicker({
 		format: 'dd/MM/yyyy hh:mm',
