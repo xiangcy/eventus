@@ -17,30 +17,16 @@
 	    <p class="eachItem">Theme or title of your event:</p>
 	    <%= f.text_field :title , class: "field span11"%>				
 	    </div>
-	  <div class="form-horizontal" style="float: left">
-	    <div class="control-group">
+
+	    <div class="form-inline" style="margin-bottom: 5px; margin-top: 5px;">
 	      <label class="control-label eachItem" for="category">Category:</label>
-	      <div class="controls">
 	      <%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']],:id=>"category") %>
-	      </div>
 	    </div>
-	    <!--
-	    <div class="control-group">
-	      <label class="control-label eachItem">Upload events picture</label>
-	      <div class="controls input-append">
-		<input class="span2" id="appendedInputButton" type="text">
-		<button class="btn" type="button">Browse</button>
-	      </div>
-	    </div>
-	    -->
-	  </div>
-	  <div>
+	   
+	    <div>
 	      <p class="eachItem">Describe your event:</p>
 	      <%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "400px", placeholder: "Briefly introduce your event Here..."%>
 	    </div>
-
-
-
 	</div><!--left ends-->
 	<div class="span4 offset0" >
 
