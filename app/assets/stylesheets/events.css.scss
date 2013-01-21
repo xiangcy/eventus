@@ -45,13 +45,16 @@ h5{
 	margin-left: 0px;
 
 }
-
+.category{
+    display: inline;
+}
 
 #map_canvas{
-	position: absolute;
-	float: right;
+	float: left;
 	//overflow: auto;
 	margin-top: 0px;
+        height: 200px;
+        width: 100%;
 }
 
 .vote{
