@@ -33,26 +33,29 @@
 
 	  <h5><b>Don't forget to tell people WHEN and WHERE your event is!</b></h5><br/>
 
-	<div class="inline">
-	  <p class="eachItem">Event start time:</p>
+	<div class="span5">
+	  <p class="eachItem">Start time:</p>
 	  <%= f.text_field :time, :value=> f.object.time, :class=>"datetimepicker" %>
-				
-	  <p class="eachItem">Event end time:</p>
+	</div>
+	<div class ="span5 offset1 right">
+	  <p class="eachItem">End time:</p>
 	  <%= f.text_field :endtime, :value=> f.object.endtime, :class=>"datetimepicker" %>
+	</div>
+	
 		<!--<input type="text" class="datetimepicker" name="event[endtime]"/>-->
-		</div>
+	<div class="span12">
 	  <p class="control-label eachItem" for="City">City:</p>
 	  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12")%>
 
 
-				<label, class="eachItem">Location:</label>
-				<%= f.text_field :place, :id =>"locationInput", :class=>"eachItem "%>
-
+				<lp class="eachItem">Location:</p>
+				<%= f.text_field :place, :id =>"locationInput", :class=>"eachItem span12"%>
+	</div>
 
 <!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
 <!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
-	  <a href="#" :id="mapButton">Pin it on the map!</a>
 	  <div class="span12">
+		 <a href="#" :id="mapButton">Pin it on the map!</a>
 	    <div id="map_canvas"><br></div>
 	  </div>
 <!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->		
