@@ -19,7 +19,7 @@
 	    </div>
 
 	    <div class="form-inline" style="margin-bottom: 5px; margin-top: 5px;">
-	      <label class="control-label eachItem" for="category">Category:</label>
+	      <label class="control-label eachItem" for="category">Category:   <br>	</label>
 	      <%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']],:id=>"category") %>
 	    </div>
 	   
@@ -45,7 +45,7 @@
 		<!--<input type="text" class="datetimepicker" name="event[endtime]"/>-->
 	<div class="span12">
 	  <p class="control-label eachItem" for="City">City:</p>
-	  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12")%>
+	  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12", :id=>"citySelect")%>
 
 
 				<lp class="eachItem">Location:</p>
@@ -55,8 +55,8 @@
 <!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
 <!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
 	  <div class="span12">
-		 <a href="#" :id="mapButton">Pin it on the map!</a>
-	    <div id="map_canvas"><br></div>
+		 <a id="mapButton">Pin it on the map!</a>
+	     <div id="map_canvas"></div>
 	  </div>
 <!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->		
 <!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->

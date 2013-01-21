@@ -9,10 +9,28 @@ $(function() {
 
 $(document).ready(function(){		
 		initializeMap();
-		$('#locationInput').change(function(){
-			codeAddress();
+		
+		$('#citySelect').change(function(){
+			var addressCity = $(this).val();
+			codeAddress(addressCity);
 		});
+		
+		$('#locationInput').change(function(){
+			var address = $(this).val();
+			var addressCity = $("#citySelect").val();
+			codeAddress(addressCity+" "+address);
+		});
+
+		$("#mapButton").click(function(){
+			var address = $("#locationInput").val();
+			var addressCity = $("#citySelect").val();
+			alert(address+" "+addressCity);
+			codeAddress(addressCity+" "+address);
+		})
+
+
 })
+
 
 var geocoder;
 var map;
@@ -32,8 +50,8 @@ function initializeMap() {
 	map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
 }
 
-function codeAddress() {
-	var address = document.getElementById("locationInput").value;
+function codeAddress( address ) {
+	alert(address);
 	geocoder.geocode( { 'address': address}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
@@ -42,7 +60,7 @@ function codeAddress() {
 				position: results[0].geometry.location
 			});
 		  } else {
-			alert("Geocode was not successful for the following reason: " + status);
+			alert("Cannot pin location for the following reason: " + status);
 		  }
 	});
 }
