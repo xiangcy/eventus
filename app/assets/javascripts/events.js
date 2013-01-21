@@ -7,7 +7,7 @@ $(function() {
  });
 
 
-$(document).ready(function(){
+$(document).ready(function(){		
 		initializeMap();
 		$('#locationInput').change(function(){
 			codeAddress();
@@ -34,7 +34,6 @@ function initializeMap() {
 
 function codeAddress() {
 	var address = document.getElementById("locationInput").value;
-	alert(address);
 	geocoder.geocode( { 'address': address}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
