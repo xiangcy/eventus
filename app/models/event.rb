@@ -3,6 +3,23 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_reputation :votes, source: :user, aggregated_by: :sum
   
+  validate :start_time, :end_time
+  def start_time
+    if !time.blank?
+      if ::Time.now > time
+        errors.add(:time, "Error: Can't be in the past, change your start time.")
+      end
+    end
+  end
+  
+  def end_time
+    if !time.blank? and !endtime.blank?
+      if endtime < time
+        errors.add(:endtime, "Error: End time should be later than start time.")
+      end
+    end
+  end
+  
   validates :user_id, presence: true
   validates :content, presence: true
   validates :place, presence: true
@@ -16,9 +33,13 @@ class Event < ActiveRecord::Base
     where("time > ?", ::Time.now )
   end
   
+  def self.past
+    where("time < ?", ::Time.now )
+  end
+  
   def self.futuresearch(params)
     if params[:city].blank? && params[:category].blank?
-      self.future
+      where("time > ?", ::Time.now )
     elsif params[:city].blank? && !params[:category].blank?
       where("time > ? AND category = ?", ::Time.now, params[:category])
     elsif !params[:city].blank? && params[:category].blank?

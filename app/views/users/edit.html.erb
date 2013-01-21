@@ -11,17 +11,30 @@
 
       <%= f.label :email %>
       <%= f.text_field :email %>
-
+      
       <%= f.label :password %>
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirm Password" %>
       <%= f.password_field :password_confirmation %>
+      
+      <%= f.label :city %>
+      <%= f.select(:city, [['Not Public', ''],['Boston','Boston'],['New York','New York']],{},:class=>"span12")%>
+            
+      <%= f.label :gender %>
+      <%= f.select(:gender, [['Not Public', ''],['Male','Male'],['Female','Female']],{},:class=>"span12")%>
+                  
+      <%= f.label :hobby %>
+      <%= f.text_field :hobby %>
+                  
+      <%= f.label :blog, "Blog Address" %>
+      <%= f.text_field :blog %>
+      
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
 
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
+    <!--<%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails">change</a>-->
   </div>
 </div>

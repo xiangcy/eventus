@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120031147) do
+ActiveRecord::Schema.define(:version => 20130121001253) do
 
   create_table "events", :force => true do |t|
     t.string   "place"
@@ -26,11 +26,8 @@ ActiveRecord::Schema.define(:version => 20130120031147) do
     t.string   "category"
   end
 
-<<<<<<< HEAD
-=======
   add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
 
->>>>>>> 763552f13bc3e2ba9fe40c5e6a93c69d6700e520
   create_table "rs_evaluations", :force => true do |t|
     t.string   "reputation_name"
     t.integer  "source_id"
@@ -82,6 +79,10 @@ ActiveRecord::Schema.define(:version => 20130120031147) do
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
     t.string   "remember_token"
+    t.string   "gender"
+    t.string   "hobby"
+    t.string   "blog"
+    t.string   "city"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
