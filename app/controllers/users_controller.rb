@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @pastevents = @user.events.past.order('time DESC')
+    @futureevents = @user.events.future.order('time DESC')
   end
   
   def new
@@ -27,6 +29,7 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
+    params[:user].delete(:password) if params[:user][:password].blank?
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile Updated"
       sign_in @user
