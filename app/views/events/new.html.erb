@@ -8,64 +8,67 @@
   <div class="span10 offset1 well signup">                                                          
     <h1>Post my event</h1><br>
       <div>
-	<%= form_for(@event) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
+		<%= form_for(@event) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
 
-	<div class="span7 left">
+		<div class="span7 left">
 
-	    <div>
-	    <p class="eachItem">Theme or title of your event:</p>
-	    <%= f.text_field :title , class: "field span11"%>				
-	    </div>
+		  <div>
+			<p class="eachItem">Theme or title of your event:</p>
+			<%= f.text_field :title , class: "field span11"%>				
+		  </div>
 
-	    <div class="form-inline" style="margin-bottom: 5px; margin-top: 5px;">
-	      <label class="control-label eachItem" for="category">Category:   <br>	</label>
-	      <%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']],:id=>"category") %>
-	    </div>
-	   
-	    <div>
-	      <p class="eachItem">Describe your event:</p>
-	      <%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "400px", placeholder: "Briefly introduce your event Here..."%>
+			<div class="form-inline" style="margin-bottom: 5px; margin-top: 5px;">
+			  <label class="control-label eachItem" for="category">Category:   <br>	</label>
+			  <%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']],:id=>"category") %>
+			</div>
+		   
+			<div>
+			  <p class="eachItem">Describe your event:</p>
+			  <%= f.text_area :content,  :class=> "field span11" ,:width => "350px", :hight => "400px", placeholder: "Briefly introduce your event Here..."%>
+			</div>
+
+		</div><!--left ends-->
+		<div class="span4 offset0" >
+			<div class="span5">
+			  <p class="eachItem">Start time:</p>
+			  <%= f.text_field :time, :value=> f.object.time, :class=>"datetimepicker" %>
+			</div>
+			<div class ="span5 offset1 right">
+			  <p class="eachItem">End time:</p>
+			  <%= f.text_field :endtime, :value=> f.object.endtime, :class=>"datetimepicker" %>
+			</div>
+		
+			<!--<input type="text" class="datetimepicker" name="event[endtime]"/>-->
+			<div class="span12">
+			  <p class="control-label eachItem" for="City">City:</p>
+			  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12", :id=>"citySelect")%>
+
+
+						<p class="eachItem">Location:</p>
+
+						<div class="control-group" title="Click on the marker icon to pin your location on the map">
+							<div class="controls">
+							<div class="input-append" >
+								<%= f.text_field :place, :class=>"span11", :id=>"locationInput"%>	
+								<span class="add-on madeUpButton" id="mapButton"><i class="icon-map-marker"></i></span>
+								</div>
+							</div>
+						</div>
+						
+		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
+				 <div id="map_canvas"><br/><br/></div>
+					<a id="locGen" class="madeUpButton">Generate address from marker</a>
+				 </div>
+		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
+			
+
+		</div><!--right ends-->
+		<div class="span12">
+		  <br>
+		  <%= f.submit :class=> "offset2 btn btn-large btn-primary" %>
 		</div>
-
-	</div><!--left ends-->
-	<div class="span4 offset0" >
-
-	  <h5><b>Don't forget to tell people WHEN and WHERE your event is!</b></h5><br/>
-
-	<div class="span5">
-	  <p class="eachItem">Start time:</p>
-	  <%= f.text_field :time, :value=> f.object.time, :class=>"datetimepicker" %>
-	</div>
-	<div class ="span5 offset1 right">
-	  <p class="eachItem">End time:</p>
-	  <%= f.text_field :endtime, :value=> f.object.endtime, :class=>"datetimepicker" %>
-	</div>
-	
-		<!--<input type="text" class="datetimepicker" name="event[endtime]"/>-->
-	<div class="span12">
-	  <p class="control-label eachItem" for="City">City:</p>
-	  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12", :id=>"citySelect")%>
-
-
-				<lp class="eachItem">Location:</p>
-				<%= f.text_field :place, :id =>"locationInput", :class=>"eachItem span12"%>
-	</div>
-
-<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
-<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
-	  <div class="span12">
-		 <a id="mapButton">Pin it on the map!</a>
-	     <div id="map_canvas"></div>
-	  </div>
-<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->		
-<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
-	</div><!--right ends-->
-	<div class="span12">
-	  <br>
-	  <%= f.submit :class=> "offset2 btn btn-large btn-primary" %>
-	</div>
-	<%end%>
+		<%end%>
 
       </div>
     </div>

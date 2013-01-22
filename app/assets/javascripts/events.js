@@ -7,11 +7,14 @@ $(function() {
  });
 
 
-$(document).ready(function(){		
+$(document).ready(function(){
+
+		var addressCity = $("#citySelect").val();
 		initializeMap();
 		
+		
 		$('#citySelect').change(function(){
-			var addressCity = $(this).val();
+			addressCity = $(this).val();
 			codeAddress(addressCity);
 		});
 		
@@ -21,19 +24,37 @@ $(document).ready(function(){
 			codeAddress(addressCity+" "+address);
 		});
 
-		$("#mapButton").click(function(){
-			var address = $("#locationInput").val();
-			var addressCity = $("#citySelect").val();
-			alert(address+" "+addressCity);
-			codeAddress(addressCity+" "+address);
+		$("#locationInput").click(function(){
+
+			$( document ).tooltip();
+
 		})
 
-
+		$("#mapButton").click(function(){
+			var address = $("#locationInput").val();
+			addressCity = $("#citySelect").val();
+			codeAddress(addressCity+" "+address);
+		})
+		$("#locGen").click(function(){
+			if (marker){
+				var markerPos=marker.position;
+				codeLatLng(markerPos, function(address){
+					if(address){
+						fillLocation(address);
+					}
+				}) ;
+			}
+			else{
+				alert("put a pin first...");
+			}
+		})
 })
 
 
 var geocoder;
 var map;
+var marker
+var foundAddress;
 
 function initializeMap() {
 	geocoder = new google.maps.Geocoder();
@@ -48,14 +69,21 @@ function initializeMap() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+
+	google.maps.event.addListener(map, 'click', function(event) {
+		addMarker(event.latLng);
+  });
 }
 
 function codeAddress( address ) {
-	alert(address);
 	geocoder.geocode( { 'address': address}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
-			var marker = new google.maps.Marker({
+			if (marker){
+				marker.setMap(null);
+				marker=null;
+			}
+				marker = new google.maps.Marker({
 				map: map,
 				position: results[0].geometry.location
 			});
@@ -65,3 +93,80 @@ function codeAddress( address ) {
 	});
 }
 
+function addMarker(location) {
+	if (marker){
+		marker.setMap(null);
+		marker=null;
+		}
+		
+	marker = new google.maps.Marker({
+		position: location,
+		map: map
+	});
+}
+
+
+
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(40.730885,-73.997383);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  }
+
+function codeLatLng(position, callback) {
+
+	var latlng = position;
+
+	geocoder.geocode({'latLng': latlng}, function(results, status) {
+	  if (status == google.maps.GeocoderStatus.OK) {
+		if (results[0]) {
+			map.setCenter(position);
+			if (marker){
+				marker.setMap(null);
+				marker=null;
+			}
+			marker = new google.maps.Marker({
+			  position: latlng,
+			  map: map
+			});
+		  callback(results[0]);
+		}
+	  } else {
+		alert("No address found");
+		callback(false);
+	  }
+	});
+}
+
+function fillLocation(address){
+	var addressString="";
+	var foundCity=false;
+	for (comp in address.address_components){
+		addressString+=address.address_components[comp].short_name+" ";
+		if (address.address_components[comp].types[0]=="administrative_area_level_1"){
+			var foundCityName=address.address_components[comp].long_name;
+			foundCity=true;
+			$("#citySelect").each(function(){
+				if (foundCityName = $(this).val()){
+					$("#citySelect").val(address.address_components[comp].long_name);
+				}
+				else{
+					$("#citySelect").val("Others")
+				}
+				//other cities???
+			})
+			break;
+		}
+	}
+	if (foundCity){
+		$("#locationInput").val(addressString);
+	}
+	else{
+		alert("no city found");
+	}
+}
