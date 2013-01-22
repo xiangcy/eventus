@@ -2,6 +2,9 @@ class Event < ActiveRecord::Base
   attr_accessible :content, :place, :time, :title, :endtime, :city, :category
   belongs_to :user
   has_reputation :votes, source: :user, aggregated_by: :sum
+  has_many :attendrelations, foreign_key: "event_id", dependent: :destroy
+  has_many :participants, through: :attendrelations, source: :participant
+  
   
   validate :start_time, :end_time
   def start_time
@@ -48,6 +51,7 @@ class Event < ActiveRecord::Base
       where("time > ? AND category = ? AND city = ?", ::Time.now, params[:category], params[:city])
     end
   end
+  
 
 
   #acts_as_gmappable
