@@ -29,3 +29,17 @@
     background-position: bottom center;
     margin-bottom: 20px;
 }
+@-webkit-keyframes myfirst
+{
+from {height: 0px;}
+to {height: 300px;}
+}
+
+.eventus{
+    -webkit-border-radius: 10px;
+    margin-top: 250px;
+    background-color: rgba(211,211,211,0.7);
+    -webkit-animation: myfirst 1s;
+    height: 300px;
+}
+

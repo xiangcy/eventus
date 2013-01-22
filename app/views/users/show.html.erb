@@ -3,20 +3,23 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span10 offset1 tabbable">
-      <ul class="nav nav-pills nav-stacked span3">
-        <li><p>Profile</p></li>
+      <div class="span2 sidenav">
+      <ul class="nav nav-pills nav-stacked">
+        <li><h4>Profile</h4></li>
+        <hr class="line">
         <li class="active"><a href="#pill1" data-toggle="pill">My Account</a>
         <li><a href="#pill6" data-toggle="pill">Edit my profile</a></li>
-        <li><p>Events</p></li>
+        <li><h4>Events</h4></li>
+        <hr class="line">
         <li><a href="#pill3" data-toggle="pill">Host</a></li>
         <li><a href="#pill4" data-toggle="pill">Attend</a></li>
       </ul>
-      <div class="tab-content span8">
+      </div>
+      <div class="tab-content span10">
         <div class="tab-pane active" id="pill1">
-          <!--<div class="row-fluid edit"><a href="#" onclick="edit()">Edit</a></div>-->
           <div class="row-fluid">
             <ul class="thumbnails">
-              <li class="span3"><div class="thumbnail">
+              <li class="span2"><div class="thumbnail">
                 <%= image_tag("default_profile.jpg") %>
               </div></li>
               <li class="span4">
@@ -25,7 +28,6 @@
                   *** people like you.
                 </p>
               </li>
-              <!--<li class="span2"></li>-->
               <li class="span5 cartoon">
                 
                 <div class="dialog span12">
@@ -43,8 +45,7 @@
                 <tr><th></th><th></th></tr>
               </thead>
               <tbody>
-                <tr><td>Email Address</td><td class="content"><p><%= @user.email %></p></td></tr>              
-                <tr><td>City</td><td class="content"><p><%= @user.city %></p></td></tr>
+                <tr><td>Email Address</td><td class="content"><p><%= @user.email %></p></td></tr>                <tr><td>City</td><td class="content"><p><%= @user.city %></p></td></tr>
                 <tr><td>Gender</td><td class="content"><p><%= @user.gender %></p></td></tr>
                 <tr><td>Hobby</td><td class="content"><p><%= @user.hobby %></p></td></tr>
                 <tr><td>Blog Address</td><td class="content"><p><%= @user.blog %></p></td></tr>
@@ -53,54 +54,72 @@
           </div>
         </div><!--tab1 ends-->
         <div class="tab-pane" id="pill6"><!--edit profile-->
-          <div class="row">
-            <div class="span6 offset3">
-                <%= form_for(@user, :action => user_path(@user), :method => "put" ) do |f| %>
-            
+          <div class="row-fluid">
+            <div class="span12">
+              <%= form_for(@user, :action => user_path(@user), :method => "put" ) do |f| %>
+              <div class="row-fluid">
+                <h4>Personal Info</h4>
+                <hr class="line">
+                <div class="span2" style="text-align: center;">
+                  <div class="thumbnail"><%= image_tag("default_profile.jpg") %></div>
+                  <br>
+                  <button class="btn">Upload</button>
+                </div>
+                <div class="span8 offset1 profile">
+                  <div class="form-inline">
                   <%= f.label :name %>
-                  <%= f.text_field :name %>
-            
+                  <%= f.text_field :name,:class=>"span7" %>
+                  </div><br>
+                  <div class="form-inline">
                   <%= f.label :email %>
-                  <%= f.text_field :email %>
-                  
-                  <%= f.label :password %>
-                  <%= f.password_field :password%>
-
-                  <%= f.label :password_confirmation, "Confirm Password" %>
-                  <%= f.password_field :password_confirmation %>
-                  
+                  <%= f.text_field :email,:class=>"span7" %>
+                  </div><br>
+                  <div class="form-inline">
                   <%= f.label :city %>
-                  <%= f.select(:city, [['Not Public', ''],['Boston','Boston'],['New York','New York']],{},:class=>"span12")%>
-            
+                  <%= f.select(:city, [['Not Public', ''],['Boston','Boston'],['New York','New York']],{},:class=>"span7") %>
+                  </div><br>
+                  <div class="form-inline">
                   <%= f.label :gender %>
-                  <%= f.select(:gender, [['Not Public', ''],['Male','Male'],['Female','Female']],{},:class=>"span12")%>
+                  <%= f.select(:gender, [['Not Public', ''],['Male','Male'],['Female','Female']],{},:class=>"span7")%>
+                  </div><br>
+                  <%= f.label :blog, "Blog Address(Optional)" %>
+                  <%= f.text_field :blog, :class=>"span10" %>
                   
                   <%= f.label :hobby, "Hobby(Optional)" %>
-                  <%= f.text_field :hobby %>
-                  
-                  <%= f.label :blog, "Blog Address(Optional)" %>
-                  <%= f.text_field :blog %>
-                  
-                  
-                  
-                  <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-                <% end %>
-
-                  <!--<%= gravatar_for @user %>
-                  <a href="http://gravatar.com/emails">change</a>-->
-             </div>
+                  <%= f.text_field :hobby, :class=>"span10" %>
+                </div>  
+              </div> 
+              <div class="changepassword">
+                <div>
+                  <h4>Change Password</h4> 
+                </div>
+                <hr class="line">
+                <div class="form-inline offset1">
+                <%= f.label :password, "Change password:" %>&nbsp&nbsp&nbsp
+                <%= f.password_field :password%>
+                </div><br>
+                <div class="form-inline offset1">
+                <%= f.label :password_confirmation, "Confirm Password:" %>&nbsp&nbsp
+                <%= f.password_field :password_confirmation %>
+                </div>
+              </div>
+              <br><br>
+              <%= f.submit "Save changes", class: "btn btn-large btn-primary"%>
+              <% end %>
             </div>
-
+          </div>
         </div>
         <div class="tab-pane" id="pill3"><!--events-->
           <div class="row-fluid events">
-            <p> Not happened Event</p>
+            <h4> Not happened Event</h4>
+            <hr class="line">
             <ul class="media-list">
               <% @futureevents.each do |event| %>
               <%= render event %>
               <% end %>
             </ul>
-            <p> Out of date event</p>
+            <h4> Out of date event</h4>
+            <hr class="line">
             <ul class="media-list">
               <% @pastevents.each do |event| %>
               <%= render event %>
@@ -111,22 +130,30 @@
         <div class="tab-pane" id="pill4">
           <div class="row-fluid events">
             <ul class="media-list">
-              <li><div class="pull-left">
+              <li>
+                <div class="media">
+                <div class="pull-left">
                 <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
                 </div>
                 <div class="media-body">
                 <a class="media-heading" href="#">Event name</a>
                 <p>Time&nbsp&nbspPlace</p>
                 <p>Event's description</p>
+                </div>
+                </div>
               </li>
-              <hr>
-              <li><div class="pull-left">
+              <hr class="line">
+              <li>
+                <div class="media">
+                <div class="pull-left">
                 <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
                 </div>
                 <div class="media-body">
                 <a href="#" class="media-heading">Event name</a>
                 <p>Time&nbsp&nbspPlace</p>
                 <p>Event's description</p>
+                </div>
+                </div>
               </li>
             </ul>
           </div>

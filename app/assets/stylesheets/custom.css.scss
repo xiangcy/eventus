@@ -30,9 +30,14 @@ body{
 }
 
 .footer{
+    //background:-webkit-linear-gradient(top, rgba(212,68,19,1) 0%,rgba(181,68,29,1) 44%,rgba(133,38,5,1) 100%);
+    padding:20px;
     text-align: center;
     position: relative;
-    p,a{display:inline;}
+    p,a{
+        display:inline;
+        color: #000000;
+    }
 }
 .signup{
     h1{
