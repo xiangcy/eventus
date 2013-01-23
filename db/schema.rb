@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121001253) do
+ActiveRecord::Schema.define(:version => 20130123014936) do
+
+  create_table "attendrelations", :force => true do |t|
+    t.integer  "participant_id"
+    t.integer  "event_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "attendrelations", ["event_id"], :name => "index_attendrelations_on_event_id"
+  add_index "attendrelations", ["participant_id", "event_id"], :name => "index_attendrelations_on_participant_id_and_event_id", :unique => true
+  add_index "attendrelations", ["participant_id"], :name => "index_attendrelations_on_participant_id"
 
   create_table "events", :force => true do |t|
     t.string   "place"
@@ -25,6 +36,19 @@ ActiveRecord::Schema.define(:version => 20130121001253) do
     t.string   "city"
     t.string   "category"
   end
+
+  add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "liker_id"
+    t.integer  "liked_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "relationships", ["liked_id"], :name => "index_relationships_on_liked_id"
+  add_index "relationships", ["liker_id", "liked_id"], :name => "index_relationships_on_liker_id_and_liked_id", :unique => true
+  add_index "relationships", ["liker_id"], :name => "index_relationships_on_liker_id"
 
   create_table "rs_evaluations", :force => true do |t|
     t.string   "reputation_name"
