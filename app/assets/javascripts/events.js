@@ -9,45 +9,50 @@ $(function() {
 
 $(document).ready(function(){
 
-		var addressCity = $("#citySelect").val();
-		initializeMap();
-		
-		
-		$('#citySelect').change(function(){
-			addressCity = $(this).val();
-			codeAddress(addressCity);
-		});
-		
-		$('#locationInput').change(function(){
-			var address = $(this).val();
-			var addressCity = $("#citySelect").val();
-			codeAddress(addressCity+" "+address);
-		});
+	
 
-		$("#locationInput").click(function(){
+	gapi.client.load('plus', 'v1', function() { console.log('loaded.'); });
 
-			$( document ).tooltip();
+	var addressCity = $("#citySelect").val();
+	var address = $("#locationInput").val();
+	
+	initializeMap(addressCity+" "+address);
+	
+	$('#citySelect').change(function(){
+		addressCity = $(this).val();
+		codeAddress(addressCity);
+	});
+	
+	$('#locationInput').change(function(){
+		address = $(this).val();
+		addressCity = $("#citySelect").val();
+		codeAddress(addressCity+" "+address);
+	});
 
-		})
+	$("#locationInput").click(function(){
 
-		$("#mapButton").click(function(){
-			var address = $("#locationInput").val();
-			addressCity = $("#citySelect").val();
-			codeAddress(addressCity+" "+address);
-		})
-		$("#locGen").click(function(){
-			if (marker){
-				var markerPos=marker.position;
-				codeLatLng(markerPos, function(address){
-					if(address){
-						fillLocation(address);
-					}
-				}) ;
-			}
-			else{
-				alert("put a pin first...");
-			}
-		})
+		$( document ).tooltip();
+
+	})
+
+	$("#mapButton").click(function(){
+		address = $("#locationInput").val();
+		addressCity = $("#citySelect").val();
+		codeAddress(addressCity+" "+address);
+	})
+	$("#locGen").click(function(){
+		if (marker){
+			var markerPos=marker.position;
+			codeLatLng(markerPos, function(address){
+				if(address){
+					fillLocation(address);
+				}
+			}) ;
+		}
+		else{
+			alert("put a pin first...");
+		}
+	})
 })
 
 
@@ -56,23 +61,38 @@ var map;
 var marker
 var foundAddress;
 
-function initializeMap() {
+function initializeMap(addInForm) {
 	geocoder = new google.maps.Geocoder();
-	var latlng = new google.maps.LatLng(42.358, -71.060);
-	var mapOptions = {
-		center: latlng,
-		zoom: 12,
-		zomControl: true,
-		zoomControlOptions: {
-			style: google.maps.ZoomControlStyle.DEFAULT
-		},
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-	map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+	geocoder.geocode( { 'address': addInForm}, function(results, status) {
+	if (status == google.maps.GeocoderStatus.OK){
+		var mapOptions = {
+			center: results[0].geometry.location,
+			zoom: 12,
+			zomControl: true,
+			zoomControlOptions: {
+				style: google.maps.ZoomControlStyle.DEFAULT
+			},
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
 
-	google.maps.event.addListener(map, 'click', function(event) {
-		addMarker(event.latLng);
-  });
+		google.maps.event.addListener(map, 'click', function(event) {
+			addMarker(event.latLng);
+		});
+		if (marker){
+			marker.setMap(null);
+			marker=null;
+		}
+			marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location,
+				title: results[0].formatted_address
+			});
+		}
+		else {
+			alert("Cannot pin location for the following reason: " + status);
+		}
+	});
 }
 
 function codeAddress( address ) {
@@ -85,7 +105,8 @@ function codeAddress( address ) {
 			}
 				marker = new google.maps.Marker({
 				map: map,
-				position: results[0].geometry.location
+				position: results[0].geometry.location,
+				title: address
 			});
 		  } else {
 			alert("Cannot pin location for the following reason: " + status);
@@ -132,7 +153,8 @@ function codeLatLng(position, callback) {
 			}
 			marker = new google.maps.Marker({
 			  position: latlng,
-			  map: map
+			  map: map,
+			  title: results[0].formatted_address
 			});
 		  callback(results[0]);
 		}
@@ -147,7 +169,7 @@ function fillLocation(address){
 	var addressString="";
 	var foundCity=false;
 	for (comp in address.address_components){
-		addressString+=address.address_components[comp].short_name+" ";
+		
 		if (address.address_components[comp].types[0]=="administrative_area_level_1"){
 			var foundCityName=address.address_components[comp].long_name;
 			foundCity=true;
@@ -161,6 +183,9 @@ function fillLocation(address){
 				//other cities???
 			})
 			break;
+		}
+		else{
+			addressString+=address.address_components[comp].short_name+" ";
 		}
 	}
 	if (foundCity){

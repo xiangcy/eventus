@@ -4,6 +4,11 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE&sensor=false">
 </script>
 
+<script type="text/javascript"
+	src="https://apis.google.com/js/client.js?onload=OnLoadCallback">
+</script>
+
+
 <div class='row-fluid'>	
   <div class="span10 offset1 well signup">                                                          
     <h1>Post my event</h1><br>
@@ -43,18 +48,15 @@
 			<div class="span12">
 			  <p class="control-label eachItem" for="City">City:</p>
 			  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12", :id=>"citySelect")%>
-
-
-						<p class="eachItem">Location:</p>
-
-						<div class="control-group" title="Click on the marker icon to pin your location on the map">
-							<div class="controls">
-							<div class="input-append" >
-								<%= f.text_field :place, :class=>"span11", :id=>"locationInput"%>	
-								<span class="add-on madeUpButton" id="mapButton"><i class="icon-map-marker"></i></span>
-								</div>
-							</div>
+				<p class="eachItem">Location:</p>
+				<div class="control-group" title="Click on the marker icon to pin your location on the map">
+					<div class="controls">
+					<div class="input-append" >
+						<%= f.text_field :place, :class=>"span11", :id=>"locationInput"%>	
+						<span class="add-on madeUpButton" id="mapButton"><i class="icon-map-marker"></i></span>
 						</div>
+					</div>
+				</div>
 						
 		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
 				 <div id="map_canvas"><br/><br/></div>

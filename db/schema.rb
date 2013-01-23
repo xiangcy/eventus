@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130123014936) do
     t.string   "category"
   end
 
+
   create_table "relationships", :force => true do |t|
     t.integer  "liker_id"
     t.integer  "liked_id"
@@ -47,6 +48,8 @@ ActiveRecord::Schema.define(:version => 20130123014936) do
   add_index "relationships", ["liked_id"], :name => "index_relationships_on_liked_id"
   add_index "relationships", ["liker_id", "liked_id"], :name => "index_relationships_on_liker_id_and_liked_id", :unique => true
   add_index "relationships", ["liker_id"], :name => "index_relationships_on_liker_id"
+  add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
+
 
   create_table "rs_evaluations", :force => true do |t|
     t.string   "reputation_name"
@@ -109,4 +112,3 @@ ActiveRecord::Schema.define(:version => 20130123014936) do
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
-end
