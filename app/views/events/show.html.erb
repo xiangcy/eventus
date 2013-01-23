@@ -2,8 +2,17 @@
 <div class="row-fluid">
   <div class="span8 eventprofile offset1">
     <div class="row-fluid">
+<<<<<<< HEAD
       <div class="media">
         <% if current_user?(@event.user) %>
+      <ul class"thumbnails">
+      <li class="span2 offset1"><div class="thumbnail"><%= image_tag("default_avatar.png") %></div></li>
+      <li class="span6">
+        <h3 style="color: blue; margin-top: 0px"><%= @event.title %></h3>
+        <p>Organized by <%=link_to @event.user.name , @event.user, :class=>"username"%>&nbsp&nbsp
+        <% if current_user?(@event.user) %>
+        <%= link_to "edit",  edit_event_path(@event) %>
+        <%= link_to "delete", event_path(@event), method: :delete, data: { confirm: "You sure?" } %>
         <% else %>
         <div class="pull-left vote">         
           <%= link_to vote_event_path(@event, type: "up"), method: "post" do %>

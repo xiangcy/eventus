@@ -1,4 +1,5 @@
 <% provide(:title, @user.name) %>
+
 <% if current_user?(User.find(params[:id])) %><!--view self profile-->
 <div class="container-fluid">
   <div class="row-fluid">
@@ -86,7 +87,7 @@
                   <%= f.text_field :blog, :class=>"span10" %>
                   
                   <%= f.label :hobby, "Hobby(Optional)" %>
-                  <%= f.text_field :hobby, :class=>"span10" %>
+                  <%= f.text_field :hobby, :class=>"span10", :value=>@user.hobby %>
                 </div>  
               </div> 
               <div class="changepassword">
@@ -100,7 +101,7 @@
                 </div><br>
                 <div class="form-inline offset1">
                 <%= f.label :password_confirmation, "Confirm Password:" %>&nbsp&nbsp
-                <%= f.password_field :password_confirmation %>
+                <%= f.password_field :password_confirmation%>
                 </div>
               </div>
               <br><br>
@@ -111,14 +112,14 @@
         </div>
         <div class="tab-pane" id="pill3"><!--events-->
           <div class="row-fluid events">
-            <h4> Not happened Event</h4>
+            <h4> Not happened Event (<%= @futureevents.count %>)</h4>
             <hr class="line">
             <ul class="media-list">
               <% @futureevents.each do |event| %>
               <%= render event %>
               <% end %>
             </ul>
-            <h4> Out of date event</h4>
+            <h4> Out of date event (<%= @pastevents.count %>)</h4>
             <hr class="line">
             <ul class="media-list">
               <% @pastevents.each do |event| %>
@@ -129,32 +130,12 @@
         </div>
         <div class="tab-pane" id="pill4">
           <div class="row-fluid events">
+            <h4> Attend (<%= @user.attended_events.count %>)</h4>
+            <hr class="line">
             <ul class="media-list">
-              <li>
-                <div class="media">
-                <div class="pull-left">
-                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
-                </div>
-                <div class="media-body">
-                <a class="media-heading" href="#">Event name</a>
-                <p>Time&nbsp&nbspPlace</p>
-                <p>Event's description</p>
-                </div>
-                </div>
-              </li>
-              <hr class="line">
-              <li>
-                <div class="media">
-                <div class="pull-left">
-                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
-                </div>
-                <div class="media-body">
-                <a href="#" class="media-heading">Event name</a>
-                <p>Time&nbsp&nbspPlace</p>
-                <p>Event's description</p>
-                </div>
-                </div>
-              </li>
+              <% @user.attended_events.order('time DESC').each do |event| %>
+              <%= render event %>
+              <% end %>
             </ul>
           </div>
         </div>

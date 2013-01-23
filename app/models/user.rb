@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation, :gender, :hobby, :blog, :city
   has_secure_password
   has_many :events
+  has_many :attendrelations, foreign_key: "participant_id", dependent: :destroy
+  has_many :attended_events, through: :attendrelations, source: :event
   #has_many :evaluations, class_name: "RSevaluation", as: :source
   
   before_save { |user| user.email = email.downcase }
@@ -21,13 +23,24 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6 },  :on => :create
-  validates :password_confirmation, presence: true,   :unless => lambda{ |user| user.password.blank? } 
+  validates :password, length: { minimum: 6 }
+  validates :password_confirmation, presence: true
   
   #def voted_for?(event)
  #   evaluations.where(target_type: event.class, target_id: event.id).present?
  # end
   
+  def attending?(event)
+    attendrelations.find_by_event_id(event.id)
+  end
+  
+  def attend!(event)
+    attendrelations.create!(event_id: event.id)
+  end
+  
+  def unattend!(event)
+    attendrelations.find_by_event_id(event.id).destroy
+  end
   
   private
     
