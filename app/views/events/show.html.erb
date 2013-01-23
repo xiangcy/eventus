@@ -1,4 +1,23 @@
 <% provide(:title, @event.title) %>
+
+<%= @event.participants.count %>
+
+<% unless current_user?(@event.user) %>
+  <div id="follow_form">
+    <% if current_user.attending?(@event) %>
+      <%= form_for(current_user.attendrelations.find_by_event_id(@event),
+             html: { method: :delete }) do |f| %>
+      <%= f.submit "Unattend", class: "btn btn-large" %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.attendrelations.build(event_id: @event.id)) do |f| %>
+      <div><%= f.hidden_field :event_id %></div>
+      <%= f.submit "Attend", class: "btn btn-large btn-primary" %>
+    <% end %>
+  <% end %>
+  </div>
+<% end %>
+
 <div class="row-fluid">
   <div class="span8 eventprofile offset1">
     <div class="row-fluid">
@@ -7,7 +26,7 @@
       <li class="span6">
         <h3 style="color: blue; margin-top: 0px"><%= @event.title %></h3>
         <p>Organized by <%=link_to @event.user.name , @event.user, :class=>"username"%>&nbsp&nbsp
-        <% if current_user?(Event.find(params[:id]).user) %>
+        <% if current_user?(@event.user) %>
         <%= link_to "edit",  edit_event_path(@event) %>
         <%= link_to "delete", event_path(@event), method: :delete, data: { confirm: "You sure?" } %>
         <% else %>
