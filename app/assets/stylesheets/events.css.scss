@@ -75,7 +75,7 @@ h5{
 .media-body p{
     display: inline;
     margin: 0px;
-    word-wrap:break-word;
+    word-wrap: break-word;
 }
 .head{
     h2{
@@ -99,4 +99,36 @@ h5{
 	color: white;
 	border-radius: 4px;
 }
-
+.eventprofile{
+    .media a{
+        font-size: 14px;
+        font-weight: normal;
+        
+    }
+    .iconbutton{
+            margin:0px 10px;
+        }
+    h4{
+        margin-left:10px;
+    }
+    p{
+        word-wrap: break-word;
+    }
+    .attendlist{
+        li:first-child{
+            margin-left: 10px;
+        }
+        .thumbnail{
+            text-align: center;
+        }
+    }
+}
+.color{
+    color: #d44413;
+}
+.more{
+    font-size: 14px;
+    font-weight: normal;
+    margin-right: 20px;
+    float: right;
+}

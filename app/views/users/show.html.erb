@@ -1,5 +1,31 @@
 <% provide(:title, @user.name) %>
 
+<% unless current_user?(@user) %>
+  <div id="like_form">
+    <% if current_user.liking?(@user) %>
+      <%= form_for(current_user.relationships.find_by_liked_id(@user),
+             html: { method: :delete }) do |f| %>
+      <%= f.submit "Dislike", class: "btn btn-large" %>
+    <% end %> 
+  <% else %>
+    <%= form_for(current_user.relationships.build(liked_id: @user.id)) do |f| %>
+      <div><%= f.hidden_field :liked_id %></div>
+      <%= f.submit "Like", class: "btn btn-large btn-primary" %>
+      <% end %>
+  <% end %>
+  </div>
+<% end %>
+
+<!--People who like me-->
+<% @user.likers.each do |user| %>
+  <%= user.name %>
+<% end %>
+
+<!--People who I like-->
+<% @user.liked_users.each do |user| %>
+  <%= user.name %>
+<% end %>
+ 
 <% if current_user?(User.find(params[:id])) %><!--view self profile-->
 <div class="container-fluid">
   <div class="row-fluid">
@@ -9,7 +35,7 @@
         <li><h4>Profile</h4></li>
         <hr class="line">
         <li class="active"><a href="#pill1" data-toggle="pill">My Account</a>
-        <li><a href="#pill6" data-toggle="pill">Edit my profile</a></li>
+        <li><a href="#pill6" data-toggle="pill">Edit</a></li>
         <li><h4>Events</h4></li>
         <hr class="line">
         <li><a href="#pill3" data-toggle="pill">Host</a></li>
@@ -26,7 +52,7 @@
               <li class="span4">
                 <h4 style="color: blue"><%= @user.name %></h2>
                 <p>
-                  *** people like you.
+                  <%= pluralize @user.likers.count, 'people' %>  like you.
                 </p>
               </li>
               <li class="span5 cartoon">
