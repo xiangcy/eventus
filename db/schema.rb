@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121001253) do
+ActiveRecord::Schema.define(:version => 20130122182726) do
+
+  create_table "attendrelations", :force => true do |t|
+    t.integer  "participant_id"
+    t.integer  "event_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "attendrelations", ["event_id"], :name => "index_attendrelations_on_event_id"
+  add_index "attendrelations", ["participant_id", "event_id"], :name => "index_attendrelations_on_participant_id_and_event_id", :unique => true
+  add_index "attendrelations", ["participant_id"], :name => "index_attendrelations_on_participant_id"
 
   create_table "events", :force => true do |t|
     t.string   "place"
