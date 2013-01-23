@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :new, :edit, :update, :destroy, :vote]
+  before_filter :signed_in_user, only: [:show, :create, :new, :edit, :update, :destroy, :vote]
   before_filter :correct_user, only: [:edit, :update, :destroy]
   
   def index

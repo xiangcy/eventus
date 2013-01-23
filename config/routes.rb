@@ -1,4 +1,6 @@
 XDLRepo::Application.routes.draw do
+  get "relationships/new"
+
   get "attendrelations/new"
 
   resources :users
@@ -7,6 +9,7 @@ XDLRepo::Application.routes.draw do
     member {post :vote}
   end
   resources :attendrelations, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   
   get "static_pages/home"
   get "static_pages/about"

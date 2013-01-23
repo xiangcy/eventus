@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :attendrelations, foreign_key: "participant_id", dependent: :destroy
   has_many :attended_events, through: :attendrelations, source: :event
+  has_many :relationships, foreign_key: "liker_id", dependent: :destroy
+  has_many :liked_users, through: :relationships, source: :liked
+  has_many :reverse_relationships, foreign_key: "liked_id", class_name: "Relationship", dependent: :destroy
+  has_many :likers, through: :reverse_relationships, source: :liker
   #has_many :evaluations, class_name: "RSevaluation", as: :source
   
   before_save { |user| user.email = email.downcase }
@@ -40,6 +44,18 @@ class User < ActiveRecord::Base
   
   def unattend!(event)
     attendrelations.find_by_event_id(event.id).destroy
+  end
+  
+  def liking?(other_user)
+    relationships.find_by_liked_id(other_user.id)
+  end
+  
+  def like!(other_user)
+    relationships.create!(liked_id: other_user.id)
+  end
+  
+  def unlike!(other_user)
+    relationships.find_by_liked_id(other_user.id).destroy
   end
   
   private
