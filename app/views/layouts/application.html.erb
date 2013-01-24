@@ -18,12 +18,18 @@
             <div class="nav-collapse">
               <ul class="nav">  
               <li><%= link_to "Home", root_path %></li>  
-              <li><%= link_to "Post my event", postevent_path %></li>  
+              <li>
+                <%  if signed_in? %>
+                <%= link_to "Post event", postevent_path %>
+                <% else %>
+                <a href="#signin" class="navbar-text pull-right" data-toggle="modal">Post event</a>
+                <% end %>
+                </li>  
               <li>
                 <%  if signed_in? %>
                 <%= link_to "My profile", current_user%>
                 <% else %>
-                <%= link_to "My profile", signin_path%>
+                <a href="#signin" class="navbar-text pull-right" data-toggle="modal">My profile</a>
                 <% end %>
               </li>  
               </ul>
@@ -32,9 +38,9 @@
                 <p class="navbar-text pull-right">Welcome, <%= current_user.name%></p>
               <% else %>
                 <%= link_to "Register", signup_path, class: "navbar-text pull-right" %>
-                <a href="#myModal" class="navbar-text pull-right" data-toggle="modal">Sign in</a>
+                <a href="#signin" class="navbar-text pull-right" data-toggle="modal">Sign in</a>
                 <!--signin modal-->
-                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div id="signin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                   <h3 id="myModalLabel">Sign In</h3>

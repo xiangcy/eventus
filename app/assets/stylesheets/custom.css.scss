@@ -4,6 +4,9 @@ body{
     background-color:#eee1ba;
     color: #1f5944;
 }
+.well{
+    background-color: #F2EDD0;
+}
 .navbar .brand{
     padding:0px;
 }
@@ -48,7 +51,7 @@ body{
 }
 
 .footer{
-    background:-webkit-linear-gradient(top, rgba(212,68,19,1) 0%,rgba(181,68,29,1) 44%,rgba(133,38,5,1) 100%);
+    background:-webkit-linear-gradient(top, #d44413 0%, #ff670f 100%);
     padding:20px;
     text-align: center;
     position: relative;

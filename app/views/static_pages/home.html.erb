@@ -1,8 +1,41 @@
 <% provide(:title, 'Home') %>
 <div class="row-fluid">
-  <div class="span10 offset1" id="page">
-   
-  
+  <div class="span10 offset1 page">
+    <% if signed_in? %>
+    <div class="well home1" style="background-color: #d44413">
+      <div class="row-fluid">
+      <div class="span4"><%=image_tag("eventus2.png",:class=>"logo" )%></div>
+      <div class="span7 offset1">
+        <h4>Events you may like</h4>
+        <hr class="line">
+        <ul class="media-list">
+          
+        </ul>
+      </div>
+      </div>
+    </div>
+    <% else %>
+    <div class="well home2" style="background-color: #d44413">
+      <%=image_tag("eventus2.png",:class=>"logo" )%><br>
+      <h4 class="word">Find and attend the most popular events in the city</h4>
+      <h4 class="word">Meet new people and make new friends</h4>
+      <br>
+      <%= link_to "Register", signup_path, class: "btn btn-info btn-large" %>
+      <a href="#signin" class="btn btn-info btn-large" data-toggle="modal">Sign in</a>
+    </div>
+    <% end %>
+    <div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+      <div class="carousel-inner">
+        <div class="active item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+      </div>
+  <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div><!--carousel ends-->
+    
   </div>
 </div>
 

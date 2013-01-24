@@ -1,37 +1,29 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.bgstretcher-area { text-align: left; }
-.bgstretcher, .bgstretcher UL, .bgstretcher UL LI {
-	position: absolute;
-	top: 0;
-	left: 0;
+.page{
+    min-height: 500px !important;
+    .home1{  
+        margin-bottom: 20px;
+        background: -webkit-linear-gradient(top, #d44413 0%, #ff670f 100%);
+        border-radius: 20px;
+        color: #ffffff;  
+    }
+    .home2{ 
+        margin-bottom: 20px;
+        text-align: center;
+        background: -webkit-linear-gradient(top, #d44413 0%, #ff670f 100%);
+        border-radius: 20px;
+        .logo{
+            width: 400px;
+            height: 150px;
+        }
+        .word{
+            color: #ffffff;
+        }
+        .btn{
+            width: 150px;
+            margin-right: 20px;
+        }
+    }
 }
-.bgstretcher UL, .bgstretcher UL LI {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-.bgstretcher {
-	background: black;
-	overflow: hidden;
-	width: 100%;
-	position: fixed;
-	z-index: 1;
-	_position: absolute; /*IE6 doesn't support fixed positioning*/
-	top: 0;
-	left: 0;
-}
-.home{
-    height: 800px;
-    background-size:100%, 100%;
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    margin-bottom: 20px;
-}
-@-webkit-keyframes myfirst
-{
-from {height: 0px;}
-to {height: 300px;}
-}
-
