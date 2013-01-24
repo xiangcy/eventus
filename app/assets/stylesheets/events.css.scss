@@ -99,7 +99,12 @@ h5{
 	color: white;
 	border-radius: 4px;
 }
+.eventcontent{
+    padding:0px 20px 10px 20px;
+}
 .eventprofile{
+    margin-bottom: 10px;
+    padding-top: 5px;
     .media a{
         font-size: 14px;
         font-weight: normal;
@@ -123,8 +128,8 @@ h5{
         }
     }
 }
-.color{
-    color: #d44413;
+.eventcontent{
+    padding:0px 20px 10px 20px;
 }
 .more{
     font-size: 14px;

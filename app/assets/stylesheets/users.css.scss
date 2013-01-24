@@ -1,7 +1,13 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.tab-content{
+    margin-left: 0px;
+    padding-left: 20px;
+    border-left: solid;
+    border-left-width: 1px;
+    border-left-color: whiteSmoke;
+}
 .edit{
     text-align: right;
 }
@@ -12,32 +18,49 @@
         font-weight: bold;
     }
 }
-.dialog{padding-left: 10px; border:4px solid #d44413; position:relative;
+.dialog{
+    padding-left: 10px;
+    border:4px solid #d44413;
+    position:relative;
+    margin-right: 20px;
     p{
         margin: 0;
     }
 }
 .dialog span{width:0; height:0; font-size:0; overflow:hidden; position:absolute;}
 .dialog span.bot{
-    border-width:8px; 
+    border-width:4px; 
     border-style:solid dashed dashed; 
     border-color:#d44413 transparent transparent; 
     left:40px; 
-    bottom:-20px;
+    bottom:-12px;
 }
 .dialog span.top{
-    border-width: 8px; 
+    border-width: 4px; 
     border-style:solid dashed dashed; 
-    border-color:#ffffff transparent transparent; 
+    border-color:#FFE089 transparent transparent; 
     left:40px; 
-    bottom:-16px;
+    bottom:-8px;
 }
 .picture{
     margin-top: 10px;
+    img{
+        width: 80px;
+        height: 60px;
+    }
 }
 .profile .form-inline label{
     width: 100px;
 }
+.likelist{
+    min-height: 200px;
+        li:first-child{
+            margin-left: 10px !important;
+        }
+        .thumbnail{
+            text-align: center;
+        }
+    }
 /*nav-pills*/
 .sidenav{
     .nav-pills{

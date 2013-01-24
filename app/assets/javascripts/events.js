@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 	
 
-	gapi.client.load('plus', 'v1', function() { console.log('loaded.'); });
+	//gapi.client.load('plus', 'v1', function() { console.log('loaded.'); });
 
 	var addressCity = $("#citySelect").val();
 	var address = $("#locationInput").val();
