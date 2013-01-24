@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -12,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122182726) do
+ActiveRecord::Schema.define(:version => 20130123014936) do
 
   create_table "attendrelations", :force => true do |t|
     t.integer  "participant_id"
@@ -38,7 +37,19 @@ ActiveRecord::Schema.define(:version => 20130122182726) do
     t.string   "category"
   end
 
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "liker_id"
+    t.integer  "liked_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "relationships", ["liked_id"], :name => "index_relationships_on_liked_id"
+  add_index "relationships", ["liker_id", "liked_id"], :name => "index_relationships_on_liker_id_and_liked_id", :unique => true
+  add_index "relationships", ["liker_id"], :name => "index_relationships_on_liker_id"
   add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
+
 
   create_table "rs_evaluations", :force => true do |t|
     t.string   "reputation_name"
@@ -101,4 +112,3 @@ ActiveRecord::Schema.define(:version => 20130122182726) do
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
-end

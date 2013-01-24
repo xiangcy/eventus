@@ -1,6 +1,8 @@
 $color: #d44413;
 body{
     min-width:960px;
+    background-color:#FFE089;
+    color: #1f5944;
 }
 .navbar .brand{
     padding:0px;
@@ -18,25 +20,41 @@ body{
     left: 20px;
 }
 .searchbar{
-    padding-top: 10px;
+    //padding-top: 10px;
     .search{
+        background-color:  #F2EDD0;
+       // background: -webkit-linear-gradient(top, #e4683e 0%,#d74d1e 50%,#e4683e 100%);
+        //background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#19408D), color-stop(50%,#356DDB), color-stop(80%,#19408D));
+        //background:-webkit-linear-gradient(top, rgba(90,137,230,1) 0%,rgba(43,92,189,1) 44%,rgba(25,64,141,1) 100%);
         padding: 20px;
         text-align: center;
-        background-color:rgb(245,245,245);
+        color: #1f5944;
+        label{
+            font-weight: bold;   
+        }
+        
         .form-inline{
             margin: 0px;
+        }
+        select{
+            width:150px;
+            margin-left: 5px;
+            margin-right: 10px;
+        }
+        .btn{
+            
         }
     }
 }
 
 .footer{
-    //background:-webkit-linear-gradient(top, rgba(212,68,19,1) 0%,rgba(181,68,29,1) 44%,rgba(133,38,5,1) 100%);
+    background:-webkit-linear-gradient(top, rgba(212,68,19,1) 0%,rgba(181,68,29,1) 44%,rgba(133,38,5,1) 100%);
     padding:20px;
     text-align: center;
     position: relative;
     p,a{
         display:inline;
-        color: #000000;
+        color: #ffffff;
     }
 }
 .signup{
@@ -63,5 +81,6 @@ body{
         }
     }
 }
+
 
 
