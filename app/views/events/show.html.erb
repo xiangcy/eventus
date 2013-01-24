@@ -1,3 +1,7 @@
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE&sensor=false">
+</script>
+
 <% provide(:title, @event.title) %>
 <div class="row-fluid">
   <div class="span8 eventprofile offset1">
@@ -31,7 +35,7 @@
             <i class="icon-time"></i><%= @event.time %>----<%= @event.endtime %>
             <a href="#" rel="tooltip" data-placement="bottom" title="add events to google calendar"><i class="icon-calendar"></i></a>
           </p><br>
-          <p><i class="icon-map-marker"></i><%= @event.place %></p><br>
+          <p id="locationShown"><i class="icon-map-marker"></i><%= @event.place+", "+@event.city %></p><br>
           <p><span class="color"><%= @event.participants.count %></span> people attend</p>
           </div>
           <div class="span3" style="padding-top: 25px; text-align: center;"><% if current_user?(@event.user) %>
@@ -95,8 +99,12 @@
   </div>
   <div class="span3">
     <div style="background-color:#f5f5f5">
-    <h4>Where</h4> 
-    <p>google map</p>
+    <h4>Where</h4>
+    <div>
+    <div id="map_canvas"><br/><br/></div>
+    <a id="returnAddress" class="madeUpButton">Return</a>
+    </div>
+    
     </div>
   </div>
 </div>
