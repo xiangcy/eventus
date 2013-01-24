@@ -24,17 +24,142 @@
       <a href="#signin" class="btn btn-info btn-large" data-toggle="modal">Sign in</a>
     </div>
     <% end %>
+    <h4>Hottest Events</h4> 
     <div id="myCarousel" class="carousel slide">
   <!-- Carousel items -->
-      <div class="carousel-inner">
-        <div class="active item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
-      </div>
+        <div class="carousel-inner">
+          <!--item1-->
+          <div class="active item">
+            <ul class="form-inline media-list span10 offset1">
+              <li class="span6">
+                <div class="media">
+                <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                <div class="media-body">
+                  <h4><%=link_to @events[0].title,@events[0]%></h4>
+                  <p><%= @events[0].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[0].participants.count%> will attend</p>
+                </div>
+                </div>
+              </li>
+              <li class="span6">
+                <div class="media">
+                  <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                  <div class="media-body">
+                  <h4><%=link_to @events[1].title,@events[1]%></h4>
+                  <p><%= @events[1].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[1].participants.count%> will attend</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!--item2-->
+          <div class="item">
+            <ul class="form-inline media-list span10 offset1">
+              <li class="span6">
+                <div class="media">
+                <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                <div class="media-body">
+                  <h4><%=link_to @events[2].title,@events[2]%></h4>
+                  <p><%= @events[2].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[2].participants.count%> will attend</p>
+                </div>
+                </div>
+              </li>
+              <li class="span6">
+                <div class="media">
+                  <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                  <div class="media-body">
+                  <h4><%=link_to @events[3].title,@events[3]%></h4>
+                  <p><%= @events[3].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[3].participants.count%> will attend</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!--item3-->
+          <div class="item">
+            <ul class="form-inline media-list span10 offset1">
+              <li class="span6">
+                <div class="media">
+                <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                <div class="media-body">
+                  <h4><%=link_to @events[4].title,@events[4]%></h4>
+                  <p><%= @events[4].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[4].participants.count%> will attend</p>
+                </div>
+                </div>
+              </li>
+              <li class="span6">
+                <div class="media">
+                  <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                  <div class="media-body">
+                  <h4><%=link_to @events[5].title,@events[5]%></h4>
+                  <p><%= @events[5].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[5].participants.count%> will attend</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!--item4-->
+          <div class="item">
+            <ul class="form-inline media-list span10 offset1">
+              <li class="span6">
+                <div class="media">
+                <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                <div class="media-body">
+                  <h4><%=link_to @events[6].title,@events[6]%></h4>
+                  <p><%= @events[6].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[6].participants.count%> will attend</p>
+                </div>
+                </div>
+              </li>
+              <li class="span6">
+                <div class="media">
+                  <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                  <div class="media-body">
+                  <h4><%=link_to @events[7].title,@events[7]%></h4>
+                  <p><%= @events[7].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[7].participants.count%> will attend</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!--item5-->
+          <div class="item">
+            <ul class="form-inline media-list span10 offset1">
+              <li class="span6">
+                <div class="media">
+                <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                <div class="media-body">
+                  <h4><%=link_to @events[8].title,@events[8]%></h4>
+                  <p><%= @events[8].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[8].participants.count%> will attend</p>
+                </div>
+                </div>
+              </li>
+              <li class="span6">
+                <div class="media">
+                  <div class="pull-left image"><%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> </div>
+                  <div class="media-body">
+                  <h4><%=link_to @events[9].title,@events[9]%></h4>
+                  <p><%= @events[9].reputation_for(:votes).to_i %> voted</p><br>
+                  <p><%= @events[9].participants.count%> will attend</p><br>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!---->
+        </div>
   <!-- Carousel nav -->
       <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div><!--carousel ends-->
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> 
+    </div>
+  <!--carousel ends-->
     
   </div>
 </div>
