@@ -16,7 +16,7 @@
         </div>
         <div class="media-body span8">
         <%= link_to event.title, event%><br>
-        <p><i class="icon-time"></i><%= event.time %>----<%= event.endtime %>&nbsp&nbsp&nbsp&nbsp</p>
+        <p><i class="icon-time"></i><%= event.time.strftime('%H:%M, %m/%d/%Y') %>&nbsp&nbsp----&nbsp&nbsp<%= event.endtime.strftime('%H:%M, %m/%d/%Y') %>&nbsp&nbsp&nbsp&nbsp</p>
         <p><i class="icon-map-marker"></i><%= event.place %></p><br>
         <p><%= event.content[0..200]+"..." %></p>
         </div>

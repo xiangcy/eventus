@@ -1,15 +1,21 @@
 $color: #d44413;
 body{
     min-width:960px;
-    background-color:#FFE089;
+    background-color:#eee1ba;
     color: #1f5944;
+}
+p{
+    word-wrap: break-word !important;
+}
+.well{
+    background-color: #F2EDD0;
 }
 .navbar .brand{
     padding:0px;
 }
 .brand img{
     height: 30px;
-    width: 200px;
+    width: 150px;
     margin-bottom: 0px;
 }
 .btn-group{
@@ -48,7 +54,7 @@ body{
 }
 
 .footer{
-    background:-webkit-linear-gradient(top, rgba(212,68,19,1) 0%,rgba(181,68,29,1) 44%,rgba(133,38,5,1) 100%);
+    background:-webkit-linear-gradient(top, #d44413 0%, #ff670f 100%);
     padding:20px;
     text-align: center;
     position: relative;
@@ -81,6 +87,12 @@ body{
         }
     }
 }
-
-
+.line{
+    margin:5px 10px 10px 10px;  
+}
+.color{
+    font-family: "Kavoon", cursive;
+    color: #d44413;
+    font-size: 20px;
+}
 

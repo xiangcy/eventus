@@ -1,30 +1,14 @@
 <% provide(:title, @user.name) %>
-
-<% unless current_user?(@user) %>
-  <div id="like_form">
-    <% if current_user.liking?(@user) %>
-      <%= form_for(current_user.relationships.find_by_liked_id(@user),
-             html: { method: :delete }) do |f| %>
-      <%= f.submit "Dislike", class: "btn btn-large" %>
-    <% end %> 
-  <% else %>
-    <%= form_for(current_user.relationships.build(liked_id: @user.id)) do |f| %>
-      <div><%= f.hidden_field :liked_id %></div>
-      <%= f.submit "Like", class: "btn btn-large btn-primary" %>
-      <% end %>
-  <% end %>
-  </div>
-<% end %>
-
-<!--People who like me-->
+<!--People who like me
 <% @user.likers.each do |user| %>
   <%= user.name %>
-<% end %>
+<% end %>-->
 
-<!--People who I like-->
+<!--People who I like
 <% @user.liked_users.each do |user| %>
   <%= user.name %>
 <% end %>
+-->
  
 <% if current_user?(User.find(params[:id])) %><!--view self profile-->
 <div class="container-fluid">
@@ -50,19 +34,19 @@
                 <%= image_tag("default_profile.jpg") %>
               </div></li>
               <li class="span4">
-                <h4 style="color: blue"><%= @user.name %></h2>
+                <h4><%= @user.name %></h2>
                 <p>
-                  <%= pluralize @user.likers.count, 'people' %>  like you.
+                  <span class="color"><%= pluralize @user.likers.count, '' %></span>  people like your event.
                 </p>
               </li>
-              <li class="span5 cartoon">
-                
-                <div class="dialog span12">
+              <li class="span5 cartoon">  
+                <div class="dialog span9">
                 <span class="bot"></span>
                 <span class="top"></span>
                 <p>Want more people like you?</p>
                 <%= link_to "Host an event", postevent_path %>
-                </div><div><%= image_tag("image.jpg", :class=>"picture span3") %></div>
+                </div><br>
+                <div class="span4 picture"><%= image_tag("smile.png") %></div>
               </li>
             </ul>
           </div>
@@ -78,6 +62,42 @@
                 <tr><td>Blog Address</td><td class="content"><p><%= @user.blog %></p></td></tr>
               </tbody>
             </table>
+          </div>
+          <!--people like you-->
+          <div class="row-fluid">
+            <h4>People like you</h4>
+            <hr class="line">
+            <div class="likelist">
+            <ul class="thumbnails"> 
+            <% @user.likers.each do |user| %>
+              <li class="span2">
+                <div class="thumbnail">
+                <%=image_tag("default_profile.jpg") %>
+                <br>
+                <%=link_to user.name, user %>
+                </div>
+              </li>
+            <% end %>
+            </ul>
+            </div>
+          </div>
+          <!--people you like-->
+          <div class="row-fluid">
+            <h4>People you like</h4>
+            <hr class="line">
+            <div class="likelist">
+            <ul class="thumbnails"> 
+            <% @user.liked_users.each do |user| %>
+              <li class="span2">
+                <div class="thumbnail">
+                <%=image_tag("default_profile.jpg") %>
+                <br>
+                <%=link_to user.name, user %>
+                </div>
+              </li>
+            <% end %>
+            </ul>
+            </div>
           </div>
         </div><!--tab1 ends-->
         <div class="tab-pane" id="pill6"><!--edit profile-->
@@ -186,12 +206,26 @@
                 <%= image_tag("default_profile.jpg") %>
               </div></li>
               <li class="span9">
-                <h2 style="color: blue"><%= @user.name %></h2>
+                <h2><%= @user.name %></h2>
                 <p>
-                  *** people like you.
+                  <span class="color"><%= pluralize @user.likers.count, '' %></span> people like <%=@user.name %>.
                 </p>
-                <p>If you like <%= @user.name %>'s events, click like!</p>
-                <button class="btn btn-primary btn-small">Like</button>
+                <% unless current_user?(@user) %>
+                <div id="like_form">
+                  <% if current_user.liking?(@user) %>
+                    <%= form_for(current_user.relationships.find_by_liked_id(@user),html: { method: :delete }) do |f| %>
+                      <%= f.submit "Unlike", class: "btn btn-small" %>
+                    <% end %> 
+                  <% else %>
+                    <%= form_for(current_user.relationships.build(liked_id: @user.id)) do |f| %>
+                    <div><%= f.hidden_field :liked_id %></div>
+                    <p>If you like <%= @user.name %>'s events, click like!</p>
+                    <%= f.submit "Like", class: "btn btn-small btn-primary" %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <% end %>
+                <!--<button class="btn btn-primary btn-small">Like</button>-->
               </li>
             </ul>
           </div>
@@ -201,75 +235,76 @@
                 <tr><th></th><th></th></tr>
               </thead>
               <tbody>
-                <tr><td>Email Address</td><td class="content"><p><%= @user.email %></p></td></tr>              
-                <tr><td>Location</td><td class="content"><p>Boston</p></td></tr>
-                <tr><td>Gender</td><td class="content"><p>Female</p></td></tr>
-                <tr><td>Hobby</td><td class="content"><p>Sports, Music</p></td></tr>
-                <tr><td>Blog</td><td class="content"><p>**********</p></td></tr>
+                <tr><td>Email Address</td><td class="content"><p><%= @user.email %></p></td></tr>
+                <tr><td>City</td><td class="content"><p><%= @user.city %></p></td></tr>
+                <tr><td>Gender</td><td class="content"><p><%= @user.gender %></p></td></tr>
+                <tr><td>Hobby</td><td class="content"><p><%= @user.hobby %></p></td></tr>
+                <tr><td>Blog Address</td><td class="content"><p><%= @user.blog %></p></td></tr>
               </tbody>
             </table>
+          </div>
+          <!--people this people like-->
+          <div class="row-fluid">
+            <h4>People <%= @user.name %> like</h4>
+            <hr class="line">
+            <div class="likelist">
+            <ul class="thumbnails"> 
+            <% @user.liked_users.each do |user| %>
+              <li class="span2">
+                <div class="thumbnail">
+                <%=image_tag("default_profile.jpg") %>
+                <br>
+                <%=link_to user.name, user %>
+                </div>
+              </li>
+            <% end %>
+            </ul>
+            </div>
+          </div>
+          <!--people like this person-->
+          <div class="row-fluid">
+            <h4>People like <%=@user.name %></h4>
+            <hr class="line">
+            <div class="likelist">
+            <ul class="thumbnails"> 
+            <% @user.likers.each do |user| %>
+              <li class="span2">
+                <div class="thumbnail">
+                <%=image_tag("default_profile.jpg") %>
+                <br>
+                <%=link_to user.name, user %>
+                </div>
+              </li>
+            <% end %>
+            </ul>
+            </div>
           </div>
         </div><!--tab1 ends-->
         <!--tab2 ends-->
         <div class="tab-pane" id="pill3">
           <div class="row-fluid events">
+            <h2><%= @user.name %> Hosts</h2>
+            <hr class="line">
+            <h4> Not happened Event (<%= @futureevents.count %>)</h4>
+            <hr class="line">
             <ul class="media-list">
-              <h3><%= @user.name %> Hosts</h3>
-              <li><div class="pull-left">
-                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
-                </div>
-                <div class="media-body">
-                <a class="media-heading" href="#">Event name</a>
-                <p>Time&nbsp&nbspPlace</p>
-                <p>Event's description</p>
-              </li>
-              <hr>
-              <li><div class="pull-left">
-                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
-                </div>
-                <div class="media-body">
-                <a href="#" class="media-heading">[Out of date]Event name</a>
-                <p>Time&nbsp&nbspPlace</p>
-                <p>Event's description</p>
-              </li>
-              <br>
-              <h3><%= @user.name %> Attends</h3>
-              <li><div class="pull-left">
-                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
-                </div>
-                <div class="media-body">
-                <a class="media-heading" href="#">Event name</a>
-                <p>Time&nbsp&nbspPlace</p>
-                <p>Event's description</p>
-              </li>
-              <hr>
-              <li><div class="pull-left">
-                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
-                </div>
-                <div class="media-body">
-                <a href="#" class="media-heading">Event name</a>
-                <p>Time&nbsp&nbspPlace</p>
-                <p>Event's description</p>
-              </li>
-              <br>
-              <h3><%= @user.name %> Interests</h3>
-              <li><div class="pull-left">
-                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
-                </div>
-                <div class="media-body">
-                <a class="media-heading" href="#">Event name</a>
-                <p>Time&nbsp&nbspPlace</p>
-                <p>Event's description</p>
-              </li>
-              <hr>
-              <li><div class="pull-left">
-                <%= image_tag("default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
-                </div>
-                <div class="media-body">
-                <a href="#" class="media-heading">Event name</a>
-                <p>Time&nbsp&nbspPlace</p>
-                <p>Event's description</p>
-              </li>
+              <% @futureevents.each do |event| %>
+              <%= render event %>
+              <% end %>
+            </ul>
+            <h4> Out of date event (<%= @pastevents.count %>)</h4>
+            <hr class="line">
+            <ul class="media-list">
+              <% @pastevents.each do |event| %>
+              <%= render event %>
+              <% end %>
+            </ul>
+            <h2><%= @user.name %> Attends(<%= @user.attended_events.count %>)</h2>
+            <hr class="line">
+            <ul class="media-list">
+              <% @user.attended_events.order('time DESC').each do |event| %>
+              <%= render event %>
+              <% end %>
             </ul>
           </div>
         </div>

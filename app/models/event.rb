@@ -41,14 +41,27 @@ class Event < ActiveRecord::Base
   end
   
   def self.futuresearch(params)
-    if params[:city].blank? && params[:category].blank?
-      where("time > ?", ::Time.now )
-    elsif params[:city].blank? && !params[:category].blank?
-      where("time > ? AND category = ?", ::Time.now, params[:category])
-    elsif !params[:city].blank? && params[:category].blank?
-      where("time > ? AND city = ?", ::Time.now, params[:city])
+    if params[:timeperiod].blank?
+      if params[:city].blank? && params[:category].blank?
+        where("time > ?", ::Time.now )
+      elsif params[:city].blank? && !params[:category].blank?
+        where("time > ? AND category = ?", ::Time.now, params[:category])
+      elsif !params[:city].blank? && params[:category].blank?
+        where("time > ? AND city = ?", ::Time.now, params[:city])
+      else
+        where("time > ? AND category = ? AND city = ?", ::Time.now, params[:category], params[:city])
+      end
     else
-      where("time > ? AND category = ? AND city = ?", ::Time.now, params[:category], params[:city])
+      t = params[:timeperiod]
+      if params[:city].blank? && params[:category].blank?
+        where("time > ? AND time < ?", ::Time.now, ::Time.now + t.to_i )
+      elsif params[:city].blank? && !params[:category].blank?
+        where("time > ? AND time < ? AND category = ?", ::Time.now, ::Time.now + t.to_i, params[:category])
+      elsif !params[:city].blank? && params[:category].blank?
+        where("time > ? AND time < ? AND city = ?", ::Time.now, ::Time.now + t.to_i, params[:city])
+      else
+        where("time > ? AND time < ? AND category = ? AND city = ?", ::Time.now, ::Time.now + t.to_i, params[:category], params[:city])
+      end
     end
   end
   

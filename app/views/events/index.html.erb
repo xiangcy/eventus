@@ -1,13 +1,17 @@
 <% provide(:title, 'Search Results') %>
+
+
 <div class="row-fluid">
 <div class="span9">
   <div class="head">
     <h2>Search results</h2>
   </div>
-<ul class="media-list">
-<% @events.each do |event| %>
-  <%= render event %>
-<% end %>
-</ul>
+  <div id='endlessevents'>
+    <ul class='media-list'>
+      <%= render @events %>
+    </ul>
+  </div>
+  <%= will_paginate @events %>
 </div>
 </div>
+

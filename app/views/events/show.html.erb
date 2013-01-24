@@ -34,7 +34,9 @@
           <% end %>
           </p><br>
           <p></p>
-            <i class="icon-time"></i><%= @event.time %>----<%= @event.endtime %>
+
+            <i class="icon-time"></i><%= @event.time.strftime('%H:%M, %m/%d/%Y') %>----<%= @event.endtime.strftime('%H:%M, %m/%d/%Y') %>
+            <a href="#" rel="tooltip" data-placement="bottom" title="add events to google calendar"><i class="icon-calendar"></i></a>
           </p><br>
           <p id="locationShown"><i class="icon-map-marker"></i><%= @event.place+", "+@event.city %></p><br>
 	  <a id="addCal"  data-placement="bottom" title="add events to google calendar"><p>Add to Google Calendar!</p><i class="icon-calendar"></i></a><br>
