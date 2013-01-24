@@ -7,6 +7,7 @@ class EventsController < ApplicationController
                                        :page => params[:page], :per_page => 7)
     @city = params[:city]
     @category = params[:category]
+    @timeperiod = params[:timeperiod]
   end
   
   def show

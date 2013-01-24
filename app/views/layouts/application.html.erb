@@ -76,7 +76,7 @@
             <label for "Category">Category:</label>&nbsp;
             <%= select_tag  "category", options_for_select([['All Categories',''],['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']], @category) %>
             <label for "Time">Time Period:</label>&nbsp;
-            <%= select_tag  "time", options_for_select([['All Period',''],['In three days','259200'],['In a week','604800'],['In thirty days','2592000']], @time) %>
+            <%= select_tag  "timeperiod", options_for_select([['All Period',''],['In three days','259200'],['In a week','604800'],['In thirty days','2592000']], @timeperiod) %>
             <%= submit_tag "Search", :name => nil, :class => "submit btn btn-primary" %>
           <% end %>
         </div>
