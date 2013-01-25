@@ -9,6 +9,9 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'execjs'
 gem 'carrierwave'
 gem 'rmagick', :require => 'RMagick'
+gem 'fog'
+gem 'carrierwave_direct'
+gem 'sidekiq'
 #gem 'therubyracer'
 
 group :development, :test do
