@@ -59,6 +59,7 @@ module XDLRepo
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
-    config.time_zone = "Eastern Time (US & Canada)" 
+    config.time_zone = "Eastern Time (US & Canada)"
+    config.assets.initialize_on_precompile = false
   end
 end
