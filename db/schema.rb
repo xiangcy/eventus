@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123014936) do
+ActiveRecord::Schema.define(:version => 20130125021753) do
 
   create_table "attendrelations", :force => true do |t|
     t.integer  "participant_id"
@@ -28,13 +28,14 @@ ActiveRecord::Schema.define(:version => 20130123014936) do
     t.string   "place"
     t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "title"
     t.datetime "time"
     t.datetime "endtime"
     t.string   "city"
     t.string   "category"
+    t.string   "event_image"
   end
 
   add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
@@ -105,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20130123014936) do
     t.string   "hobby"
     t.string   "blog"
     t.string   "city"
+    t.string   "image"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

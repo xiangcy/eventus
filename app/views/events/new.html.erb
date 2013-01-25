@@ -14,7 +14,7 @@
   <div class="span10 offset1 well signup">                                                          
     <h1>Post my event</h1><br>
       <div>
-		<%= form_for(@event) do |f| %>
+		<%= form_for @event, :html => {:multipart => true} do |f| %>
 		<%= render 'shared/error_messages', object: f.object %>
 
 		<div class="span7 left">
@@ -64,7 +64,7 @@
 					<a id="locGen" class="madeUpButton">Generate address from marker</a>
 				 </div>
 		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
-			
+			<%= f.file_field :event_image %>
 
 		</div><!--right ends-->
 		<div class="span12">
