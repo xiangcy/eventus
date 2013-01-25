@@ -37,8 +37,6 @@ ActiveRecord::Schema.define(:version => 20130123014936) do
     t.string   "category"
   end
 
-  add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
-
   create_table "relationships", :force => true do |t|
     t.integer  "liker_id"
     t.integer  "liked_id"
@@ -112,4 +110,3 @@ ActiveRecord::Schema.define(:version => 20130123014936) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end
-
