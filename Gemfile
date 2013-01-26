@@ -11,7 +11,7 @@ gem 'carrierwave'
 #gem 'rmagick', :require => 'RMagick'
 gem 'fog'
 gem 'acts_as_commentable_with_threading'
-#gem 'therubyracer'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
