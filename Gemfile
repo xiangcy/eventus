@@ -10,9 +10,8 @@ gem 'execjs'
 gem 'carrierwave'
 gem 'rmagick', :require => 'RMagick'
 gem 'fog'
-gem 'carrierwave_direct'
-gem 'sidekiq'
-#gem 'therubyracer'
+gem 'acts_as_commentable_with_threading'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
