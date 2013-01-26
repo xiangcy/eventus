@@ -23,7 +23,7 @@ $(function() {
 
 $(document).ready(function(){
 
-	
+	$("#linkToCal").hide();
 	 	
 	$("#addCal").click(function(){
 		handleAuthClick();
@@ -229,7 +229,6 @@ function handleAuthClick() {
 			makeApiCall();
 		}
 		else{
-			
 			gapi.auth.authorize(
 				{client_id: clientId, scope: scopes, immediate:false},
 				function(authResult){
@@ -297,6 +296,8 @@ function addEvent(calendarID, timezone){
 	var summary = $("#titleShown").text();
 
 var request = gapi.client.calendar.events.insert({
+  
+	'approval_prompt':'force',
 	'calendarId': calendarID,
 	
 	'resource' : {
@@ -317,8 +318,23 @@ var request = gapi.client.calendar.events.insert({
 	
 	request.execute(function(anewEvent){
 		console.log(anewEvent);
-		if (anewEvent.kin==="calendar#event"){
+		if (anewEvent.kind=="calendar#event"){
 		  
+		  showUpLindToCal(anewEvent.htmlLink);
+		  
+		}
+		
+		else{
+		  alert('failed to create event...');
+		}
 
 	});
+}
+
+
+function showUpLindToCal(link){
+  
+  window.open(link, '_blank');
+   window.focus();
+  
 }
