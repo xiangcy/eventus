@@ -1,17 +1,19 @@
 <% provide(:title, 'Search Results') %>
-
-
 <div class="row-fluid">
 <div class="span9">
   <div class="head">
     <h2>Search results</h2>
   </div>
-  <div id='endlessevents'>
+  <div id="events">
     <ul class='media-list'>
       <%= render @events %>
     </ul>
+    <div><%=image_tag "loading.gif", :class => 'loading none'%></div>
   </div>
-  <%= will_paginate @events %>
+<%= will_paginate @events %>
 </div>
 </div>
+
+
+  
 

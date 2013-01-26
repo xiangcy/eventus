@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   
   def index
     @events = Event.futuresearch(params).find_with_reputation(:votes, :all, { :order => 'votes DESC'}).paginate(
-                                       :page => params[:page], :per_page => 7)
+                                       :page => params[:page], :per_page => 5)
     @city = params[:city]
     @category = params[:category]
     @timeperiod = params[:timeperiod]

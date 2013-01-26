@@ -1,6 +1,6 @@
 <% if current_user && !event.has_evaluation?(:votes, current_user) %><% else %><% end %>
 
-    <li>
+    <li class="searchevents">
       <div class="media">
         <div class="pull-left vote">
           <%= link_to vote_event_path(event, type: "up"), method: "post" do %>
