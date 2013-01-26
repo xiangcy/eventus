@@ -1,9 +1,11 @@
 class Event < ActiveRecord::Base
-  attr_accessible :content, :place, :time, :title, :endtime, :city, :category
+  attr_accessible :content, :place, :time, :title, :endtime, :city, :category, :event_image
   belongs_to :user
   has_reputation :votes, source: :user, aggregated_by: :sum
   has_many :attendrelations, foreign_key: "event_id", dependent: :destroy
   has_many :participants, through: :attendrelations, source: :participant
+  mount_uploader :event_image, ImageUploader
+  acts_as_commentable
   
   
   validate :start_time, :end_time

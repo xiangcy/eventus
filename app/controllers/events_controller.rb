@@ -12,6 +12,7 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find(params[:id])
+    @new_comment = Comment.build_from(@event, current_user.id, "")
   end
   
   def new

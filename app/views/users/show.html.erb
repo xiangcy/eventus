@@ -31,7 +31,7 @@
           <div class="row-fluid">
             <ul class="thumbnails">
               <li class="span2"><div class="thumbnail">
-                <%= image_tag("default_profile.jpg") %>
+                <%= image_tag(@user.image_url || "default_profile.jpg") %>
               </div></li>
               <li class="span4">
                 <h4><%= @user.name %></h2>
@@ -65,14 +65,14 @@
           </div>
           <!--people like you-->
           <div class="row-fluid">
-            <h4>People like you</h4>
+            <h4>People who like you</h4>
             <hr class="line">
             <div class="likelist">
             <ul class="thumbnails"> 
             <% @user.likers.each do |user| %>
               <li class="span2">
                 <div class="thumbnail">
-                <%=image_tag("default_profile.jpg") %>
+                <%=image_tag(user.image_url || "default_profile.jpg") %>
                 <br>
                 <%=link_to user.name, user %>
                 </div>
@@ -90,7 +90,7 @@
             <% @user.liked_users.each do |user| %>
               <li class="span2">
                 <div class="thumbnail">
-                <%=image_tag("default_profile.jpg") %>
+                <%=image_tag(user.image_url || "default_profile.jpg") %>
                 <br>
                 <%=link_to user.name, user %>
                 </div>
@@ -103,14 +103,15 @@
         <div class="tab-pane" id="pill6"><!--edit profile-->
           <div class="row-fluid">
             <div class="span12">
-              <%= form_for(@user, :action => user_path(@user), :method => "put" ) do |f| %>
+              <%= form_for(@user, :action => user_path(@user), :method => "put", :html => {:multipart => true} ) do |f| %>
               <div class="row-fluid">
                 <h4>Personal Info</h4>
                 <hr class="line">
                 <div class="span2" style="text-align: center;">
-                  <div class="thumbnail"><%= image_tag("default_profile.jpg") %></div>
+                  <div class="thumbnail"><%= image_tag(@user.image_url || "default_profile.jpg") %></div>
                   <br>
-                  <button class="btn">Upload</button>
+                  <%= f.file_field :image %>
+                  <br>  
                 </div>
                 <div class="span8 offset1 profile">
                   <div class="form-inline">
@@ -203,7 +204,7 @@
           <div class="row-fluid">
             <ul class="thumbnails">
               <li class="span3"><div class="thumbnail">
-                <%= image_tag("default_profile.jpg") %>
+                <%= image_tag(@user.image_url ||"default_profile.jpg") %>
               </div></li>
               <li class="span9">
                 <h2><%= @user.name %></h2>
@@ -252,7 +253,7 @@
             <% @user.liked_users.each do |user| %>
               <li class="span2">
                 <div class="thumbnail">
-                <%=image_tag("default_profile.jpg") %>
+                <%=image_tag(user.image_url || "default_profile.jpg") %>
                 <br>
                 <%=link_to user.name, user %>
                 </div>
@@ -263,14 +264,14 @@
           </div>
           <!--people like this person-->
           <div class="row-fluid">
-            <h4>People like <%=@user.name %></h4>
+            <h4>People who like <%=@user.name %></h4>
             <hr class="line">
             <div class="likelist">
             <ul class="thumbnails"> 
             <% @user.likers.each do |user| %>
               <li class="span2">
                 <div class="thumbnail">
-                <%=image_tag("default_profile.jpg") %>
+                <%=image_tag(user.image_url || "default_profile.jpg") %>
                 <br>
                 <%=link_to user.name, user %>
                 </div>
