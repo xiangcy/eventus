@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123014936) do
+ActiveRecord::Schema.define(:version => 20130125215141) do
 
   create_table "attendrelations", :force => true do |t|
     t.integer  "participant_id"
@@ -24,22 +24,38 @@ ActiveRecord::Schema.define(:version => 20130123014936) do
   add_index "attendrelations", ["participant_id", "event_id"], :name => "index_attendrelations_on_participant_id_and_event_id", :unique => true
   add_index "attendrelations", ["participant_id"], :name => "index_attendrelations_on_participant_id"
 
+  create_table "comments", :force => true do |t|
+    t.integer  "commentable_id",   :default => 0
+    t.string   "commentable_type", :default => ""
+    t.string   "title",            :default => ""
+    t.text     "body",             :default => ""
+    t.string   "subject",          :default => ""
+    t.integer  "user_id",          :default => 0,  :null => false
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
   create_table "events", :force => true do |t|
     t.string   "place"
     t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "title"
     t.datetime "time"
     t.datetime "endtime"
     t.string   "city"
     t.string   "category"
+    t.string   "event_image"
   end
 
-
   add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
-
 
   create_table "relationships", :force => true do |t|
     t.integer  "liker_id"
@@ -107,11 +123,11 @@ ActiveRecord::Schema.define(:version => 20130123014936) do
     t.string   "hobby"
     t.string   "blog"
     t.string   "city"
+    t.string   "image"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
-
 
 end

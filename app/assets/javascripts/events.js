@@ -9,26 +9,26 @@ a,H);try{$(function(){var a;a=c===G()?A(E,"_",D()):D();a=A(I(c),"_",a);b(a)})}fi
 U(p))[i](/\/$/,"")+(e[k]?"/ed=1/exm="+U(e):"")+("/cb=gapi."+K);j=d.match(da);l=d.match(ca);if(!l||!(1===l[k]&&ba.test(d)&&aa.test(d)&&j&&1===j[k]))throw"Bad URL "+a;e[h].apply(e,p);P("ml0",p,H);b[S.g]||m.___gapisync?(b=a,"loading"!=r.readyState?X(b):r.write("<"+T+' src="'+encodeURI(b)+'"></'+T+">")):X(a)}else s[t](w)}else V(p)};var $=function(a){if(F.hee&&0<F.hel)try{return a()}catch(b){F.hel--,Z("debug_error",function(){g.___jsl.hefn(b)})}else return a()};E.load=function(a,b){return $(function(){return Z(a,b)})};L.bs0=g.gapi._bs||(new Date).getTime();N("bs0");L.bs1=(new Date).getTime();N("bs1");delete g.gapi._bs;})();
 gapi.load("client",{callback:window["onLoadCallBack"],_c:{"jsl":{"ci":{"services":{},"deviceType":"desktop","lexps":[69,100,71,96,97,79,74,45,17,86,82,92,94,61,90,30],"inline":{"css":1},"report":{},"oauth-flow":{"authUrl":"https://accounts.google.com/o/oauth2/auth","proxyUrl":"https://accounts.google.com/o/oauth2/postmessageRelay"},"isPlusUser":true,"iframes":{"additnow":{"methods":["launchurl"],"url":"https://apis.google.com/additnow/additnow.html?bsv"},"plus":{"methods":["onauth"],"url":":socialhost:/u/:session_index:/_/pages/badge?bsv"},":socialhost:":"https://plusone.google.com","plus_followers":{"params":{"url":""},"url":":socialhost:/_/im/_/widget/render/plus/followers?bsv"},"recobox":{"params":{"url":""},"url":":socialhost:/:session_prefix:_/widget/render/recobox?bsv"},"autocomplete":{"params":{"url":""},"url":":socialhost:/:session_prefix:_/widget/render/autocomplete?bsv"},"plus_share":{"params":{"url":""},"url":":socialhost:/:session_prefix:_/+1/sharebutton?plusShare\u003dtrue\u0026bsv"},"savetowallet":{"url":"https://clients5.google.com/s2w/o/savetowallet?bsv"},"plus_circle":{"params":{"url":""},"url":":socialhost:/:session_prefix:_/widget/plus/circle?bsv"},"hangout":{"url":"https://talkgadget.google.com/widget/go?bsv"},"savetodrive":{"methods":["save"],"url":"https://drive.google.com/savetodrivebutton?bsv"},"card":{"url":":socialhost:/:session_prefix:_/hovercard/card?bsv"},"evwidget":{"params":{"url":""},"url":":socialhost:/:session_prefix:_/events/widget?bsv"},":signuphost:":"https://plus.google.com","plusone":{"preloadUrl":["https://ssl.gstatic.com/s2/oz/images/stars/po/Publisher/sprite4-a67f741843ffc4220554c34bd01bb0bb.png"],"params":{"count":"","size":"","url":""},"url":":socialhost:/:session_prefix:_/+1/fastbutton?bsv"}},"debug":{"host":"https://plusone.google.com","reportExceptionRate":0.05,"rethrowException":true},"csi":{"rate":0.0},"googleapis.config":{"mobilesignupurl":"https://m.google.com/app/plus/oob?"}},"h":"m;/_/scs/apps-static/_/js/k\u003doz.gapi.en._sqI7l0acxE.O/m\u003d__features__/am\u003diQ/rt\u003dj/d\u003d1/rs\u003dAItRSTMbbIb-pqI80neWn4EsRMp_9-jtaA","u":"https://apis.google.com/js/client.js?onload\u003donLoadCallBack\u0026async\u003d1","hee":true,"fp":"71d2d09f45ddd96da1f2c66485b54d0a6ce3678e","dpo":false},"fp":"71d2d09f45ddd96da1f2c66485b54d0a6ce3678e","annotation":["autocomplete","profile"],"bimodal":[]}});
 
-
+var geocoder;
+var map;
+var marker
+var firstLocation;
+var clientId = '157080884144.apps.googleusercontent.com';
+var apiKey = 'AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE';
+var scopes = 'https://www.googleapis.com/auth/calendar';
 
 $(function() {
     $( ".datetimepicker" ).datetimepicker({dateFormat: "yy-mm-dd"})
  });
 
 $(document).ready(function(){
+
 	
-	gapi.client.load('calendar', 'v3', function() {
-
-	gapi.client.setApiKey('AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE')
-		
-	 });
-	//gapi.client.setApiKey('AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE');
+	 	
+	$("#addCal").click(function(){
+		handleAuthClick();
+	})
 	
-
-
-
-
-		
 	var addressCity = $("#citySelect").val();
 	var address = $("#locationInput").val();
 	var locationShown = $("#locationShown").text();
@@ -81,10 +81,6 @@ $(document).ready(function(){
 });
 
 
-var geocoder;
-var map;
-var marker
-var firstLocation;
 
 function initializeMap(addInForm, inShowMode) {
 	geocoder = new google.maps.Geocoder();
@@ -224,3 +220,105 @@ function fillLocation(address){
 }
 
 
+
+function handleAuthClick() {  
+	
+	
+	gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, function(authResult){
+		if (authResult){
+			makeApiCall();
+		}
+		else{
+			
+			gapi.auth.authorize(
+				{client_id: clientId, scope: scopes, immediate:false},
+				function(authResult){
+					if (authResult) {
+						makeApiCall();
+					}
+					else{
+						alert("you don't seem to have logged in...'");
+					}
+				});
+		}
+	});
+}
+
+function makeApiCall() {
+	gapi.client.setApiKey('AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE');
+	gapi.client.load('calendar', 'v3', function() {
+		var existEventus = false;
+		var calendarID;
+		var timezone;
+		var request = gapi.client.calendar.calendarList.list();	
+		request.execute(function(longList){
+			console.log(longList);
+			for (eachCal in longList.items ){
+				if (longList.items[eachCal].summary==="Eventus"){
+					existEventus = true;
+					calendarID = longList.items[eachCal].id;
+					timezone = longList.items[eachCal].timeZone;
+					break;
+				}
+			}
+			if (!existEventus){
+				addEventusCal = gapi.client.calendar.calendars.insert({
+					"summary": 'Eventus'
+				});
+				addEventusCal.execute(function(newCalendar){
+					calendarID = newCalendar.id;
+					addEvent(calendarID);
+					timezone = newCalendar.timeZone;
+				});
+			}
+			addEvent(calendarID, timezone);
+		});
+	});
+}
+
+function addEvent(calendarID, timezone){
+	
+		var startTimeString = $("#startTimeShown").text();
+	var endTimeString = $("#endTimeShown").text();
+	
+	var startTime = startTimeString.split(",")[0].split(" ")[1];
+	var startDateArray = startTimeString.split(",")[1].split("/");
+	
+	var endTime = endTimeString.split(",")[0].split(" ")[1];
+	var endDateArray = endTimeString.split(",")[1].split("/");	
+	
+	var startDateTime = startDateArray[2]+"-"+startDateArray[0].slice(1)+"-"+startDateArray[1]+"T"+startTime+":00.000-07:00";
+	var endDateTime = endDateArray[2]+"-"+endDateArray[0].slice(1)+"-"+endDateArray[1]+"T"+endTime+":00.000-07:00";
+	
+	var eventLocation = $("#locationShown").text();
+	var summary = $("#summary").text();
+	var description = $("#descriptionShown").text();
+	
+	var summary = $("#titleShown").text();
+
+var request = gapi.client.calendar.events.insert({
+	'calendarId': calendarID,
+	
+	'resource' : {
+		"location" : eventLocation,
+
+		"summary" : summary,
+		
+		'description': description,
+
+		'start': {
+			'dateTime': startDateTime
+		},
+		'end': {
+			'dateTime': endDateTime
+		}
+	}
+	});
+	
+	request.execute(function(anewEvent){
+		console.log(anewEvent);
+		if (anewEvent.kin==="calendar#event"){
+		  
+
+	});
+}
