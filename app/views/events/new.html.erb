@@ -24,6 +24,12 @@
 			<%= f.text_field :title , class: "field span11"%>				
 		  </div>
 
+
+			      
+			<div class="form-inline" style="margin-bottom: 5px; margin-top: 5px;">
+			  <label class="control-label eachItem" for="image">Upload an image to your event profile: <br></label>
+			  <%= f.file_field :event_image%>
+			</div>
 			<div class="form-inline" style="margin-bottom: 5px; margin-top: 5px;">
 			  <label class="control-label eachItem" for="category">Category:   <br>	</label>
 			  <%= f.select(:category, [['Music','Music'],['Sports','Sports'],['Movies','Movies'],['Volunteer','Volunteer'],['Tour','Tour'],['Party','Party']],:id=>"category") %>
@@ -35,36 +41,64 @@
 			</div>
 
 		</div><!--left ends-->
-		<div class="span4 offset0" >
-			<div class="span5">
-			  <p class="eachItem">Start time:</p>
-			  <%= f.text_field :time, :value=> f.object.time, :class=>"datetimepicker" %>
-			</div>
-			<div class ="span5 offset1 right">
-			  <p class="eachItem">End time:</p>
-			  <%= f.text_field :endtime, :value=> f.object.endtime, :class=>"datetimepicker" %>
-			</div>
 		
+		<div class="span4 offset0 setupright" >
+		  <div class="span12">
+		    <div>
+			<div class="span5">
+			  <p class="eachItem">Start date:</p>
+			  <%= f.text_field :time, :value=> f.object.time, :id=>"datepicker1" %>
+			</div>
+			<div class ="span6 offset1 right">
+			  <p class="eachItem">Start time:</p>
+<!---===========================-change":time" to ":startHour etc."=====================-->
+			  <%= f.select(:time, [['0','0'],['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],
+			  ['6','6'],['7','7'],['8','8'],['9','9'],['10','10'],['11','11'],['12','12']],{},
+			  :class=>"span5", :id=>"startHour")%>
+<!---===========================-change":time" to ":startHour etc."=====================-->
+			  <%= f.select(:time, [['00','00'],['15','15'],['30','30'],['45','45']],{},:class=>"span6", :id=>"startMinute")%>
+
+			</div>
+		  </div>
+		</div>
+		<div class="span12">
+		      <div class="span5">
+			<p class="eachItem">End date:</p>
+			<%= f.text_field :endtime, :value=> f.object.endtime, :id=>"datepicker2"%>
+		      </div>
+		      <div class ="span6 offset1 right">
+			<p class="eachItem">End time:</p>
+<!---===========================-change":endtime" to ":endHour etc."=====================-->
+			<%= f.select(:endtime, [['0','0'],['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],
+			['6','6'],['7','7'],['8','8'],['9','9'],['10','10'],['11','11'],['12','12']],{},
+			:class=>"span5", :id=>"endHour")%>
+<!---===========================-change":endtime" to ":endHour etc."=====================-->
+			<%= f.select(:endtime, [['00','00'],['15','15'],['30','30'],['45','45']],{},:class=>"span6", :id=>"endMinute")%>
+
+		      </div>
+		</div>
+			
+	      
 			<!--<input type="text" class="datetimepicker" name="event[endtime]"/>-->
 			<div class="span12">
 			  <p class="control-label eachItem" for="City">City:</p>
 			  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12", :id=>"citySelect")%>
-				<p class="eachItem">Location:</p>
-				<div class="control-group" title="Click on the marker icon to pin your location on the map">
-					<div class="controls">
-					<div class="input-append" >
-						<%= f.text_field :place, :class=>"span11", :id=>"locationInput"%>	
-						<span class="add-on madeUpButton" id="mapButton"><i class="icon-map-marker"></i></span>
-						</div>
-					</div>
+			  <p class="eachItem">Location:</p>
+			  <div class="control-group" title="Click on the marker icon to pin your location on the map">
+				  <div class="controls">
+				  <div class="input-append" >
+					  <%= f.text_field :place, :class=>"span11", :id=>"locationInput"%>	
+					  <span class="add-on madeUpButton" id="mapButton"><i class="icon-map-marker"></i></span>
+				  </div>
 				</div>
+			    </div>
+			  </div>
 						
 		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
-				 <div id="map_canvas"><br/><br/></div>
-					<a id="locGen" class="madeUpButton">Generate address from marker</a>
-				 </div>
+			 <div id="map_canvas"><br/><br/></div>
+				<a id="locGen" class="madeUpButton">Generate address from marker</a>
+			 </div>
 		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
-			<%= f.file_field :event_image %>
 
 		</div><!--right ends-->
 		<div class="span12">

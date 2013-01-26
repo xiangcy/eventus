@@ -18,10 +18,26 @@ var apiKey = 'AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE';
 var scopes = 'https://www.googleapis.com/auth/calendar';
 
 $(function() {
-    $( ".datetimepicker" ).datetimepicker({dateFormat: "yy-mm-dd"})
- });
+    $( "#datepicker1, #datepicker2" ).datepicker({
+	dateFormat: "mm/dd/yy",
+	changeMonth: true,
+	changeYear: true,
+	altFormat: "yy-mm-dd" 
+	})
+    $("#timepicker1, #timepicker2").timePicker({
+	step: 15,
+	show24Hours: false
+      });
+    
+});
 
 $(document).ready(function(){
+
+
+	$("#timepicker1").change(function(){
+	    updateTime();
+	});
+
 
 	$("#linkToCal").hide();
 	 	
@@ -82,6 +98,16 @@ $(document).ready(function(){
 
 
 
+function updateTime() {
+	  if ($("#time4").val()) { // Only update when second input has a value.
+	    // Calculate duration.
+	    var duration = ($.timePicker("#time4").getTime() - oldTime);
+	    var time = $.timePicker("#time3").getTime();
+	    // Calculate and update the time in the second input.
+	    $.timePicker("#time4").setTime(new Date(new Date(time.getTime() + duration)));
+	    oldTime = time;
+	  }
+  }
 function initializeMap(addInForm, inShowMode) {
 	geocoder = new google.maps.Geocoder();
 	geocoder.geocode( { 'address': addInForm}, function(results, status){
@@ -229,9 +255,10 @@ function handleAuthClick() {
 			makeApiCall();
 		}
 		else{
-			gapi.auth.authorize(
-				{client_id: clientId, scope: scopes, immediate:false},
+			gapi.auth.authorize({client_id: clientId, scope: scopes, immediate:false},
 				function(authResult){
+				  
+				  		  console.log("111");
 					if (authResult) {
 						makeApiCall();
 					}
@@ -244,6 +271,7 @@ function handleAuthClick() {
 }
 
 function makeApiCall() {
+  console.log("making api call...");
 	gapi.client.setApiKey('AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE');
 	gapi.client.load('calendar', 'v3', function() {
 		var existEventus = false;
@@ -251,9 +279,8 @@ function makeApiCall() {
 		var timezone;
 		var request = gapi.client.calendar.calendarList.list();	
 		request.execute(function(longList){
-			console.log(longList);
 			for (eachCal in longList.items ){
-				if (longList.items[eachCal].summary==="Eventus"){
+				if (longList.items[eachCal].summary==="Eventus1"){
 					existEventus = true;
 					calendarID = longList.items[eachCal].id;
 					timezone = longList.items[eachCal].timeZone;
@@ -261,21 +288,31 @@ function makeApiCall() {
 				}
 			}
 			if (!existEventus){
-				addEventusCal = gapi.client.calendar.calendars.insert({
-					"summary": 'Eventus'
+			    console.log("adding eventus...");
+				var addEventusCal = gapi.client.calendar.calendars.insert({
+				    
+				    "resource":{
+					"summary": 'Eventus1'
+					}
 				});
 				addEventusCal.execute(function(newCalendar){
+				  
 					calendarID = newCalendar.id;
 					addEvent(calendarID);
 					timezone = newCalendar.timeZone;
+					addEvent(calendarID, timezone);
 				});
 			}
-			addEvent(calendarID, timezone);
+			else{
+			  addEvent(calendarID, timezone);
+			}
 		});
 	});
 }
 
 function addEvent(calendarID, timezone){
+	
+	console.log(calendarID);
 	
 		var startTimeString = $("#startTimeShown").text();
 	var endTimeString = $("#endTimeShown").text();
