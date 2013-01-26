@@ -8,10 +8,10 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'execjs'
 gem 'carrierwave'
-gem 'rmagick', :require => 'RMagick'
+#gem 'rmagick', :require => 'RMagick'
 gem 'fog'
 gem 'acts_as_commentable_with_threading'
-gem 'therubyracer'
+#gem 'therubyracer'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

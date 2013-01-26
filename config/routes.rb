@@ -1,8 +1,9 @@
 XDLRepo::Application.routes.draw do
+
   get "relationships/new"
 
   get "attendrelations/new"
-
+  resources :comments, only: [:create]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :events do

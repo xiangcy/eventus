@@ -22,7 +22,7 @@
         </div>
         <% end %>
         <div class="pull-left image" style="padding-left: 10px;">
-        <%= image_tag(@event.event_image_url(:thumb) || "default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
+        <%= image_tag(@event.event_image_url || "default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
         </div>
         <div class="media-body">
           <div class="row-fluid">
@@ -84,7 +84,7 @@
           <% @event.participants.each do |user| %>
           <li class="span2">
             <div class="thumbnail">
-              <%=image_tag(user.image_url(:thumb) || "default_profile.jpg") %>
+              <%=image_tag(user.image_url || "default_profile.jpg") %>
               <br>
               <p><%= link_to user.name, user %></p>
             </div>
@@ -96,8 +96,21 @@
     <div class="row-fluid">
       <h4>Comments</h4>
       <hr class="line">
+        <% @event.comment_threads.order('created_at DESC').each do |comment| %>
+        <% if !comment.parent_id.blank? %>
+          <p>reply <%= comment.parent.user.name %></p>
+        <% end %>
+          <p><%= comment.body %>, <%= link_to comment.user.name, comment.user %>, <%= time_ago_in_words(comment.created_at) %> ago.</p>
+       
+        <%end%>
       <div class="comments">
-        Users' comments go here!
+        <%= form_for(@new_comment) do |f|%>
+          <%=f.text_area :body, :placeholder => "Your comment goes here."%><br/><br/>
+          <%=f.hidden_field :event_id, :value => @event.id %>
+          <%=f.hidden_field :commentable_id, :value => @event.id %>  <!--change value into comment.id -->
+          <%=f.hidden_field :commentable_type, :value => 'Event' %>  <!--change value into 'Comment'-->
+          <%=f.submit "Add comment"%>
+        <%end%>
       </div>
     </div>
   </div>

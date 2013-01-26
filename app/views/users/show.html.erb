@@ -31,7 +31,7 @@
           <div class="row-fluid">
             <ul class="thumbnails">
               <li class="span2"><div class="thumbnail">
-                <%= image_tag(@user.image_url(:thumb) || "default_profile.jpg") %>
+                <%= image_tag(@user.image_url || "default_profile.jpg") %>
               </div></li>
               <li class="span4">
                 <h4><%= @user.name %></h2>
@@ -72,7 +72,7 @@
             <% @user.likers.each do |user| %>
               <li class="span2">
                 <div class="thumbnail">
-                <%=image_tag(user.image_url(:thumb) || "default_profile.jpg") %>
+                <%=image_tag(user.image_url || "default_profile.jpg") %>
                 <br>
                 <%=link_to user.name, user %>
                 </div>
@@ -90,7 +90,7 @@
             <% @user.liked_users.each do |user| %>
               <li class="span2">
                 <div class="thumbnail">
-                <%=image_tag(user.image_url(:thumb) || "default_profile.jpg") %>
+                <%=image_tag(user.image_url || "default_profile.jpg") %>
                 <br>
                 <%=link_to user.name, user %>
                 </div>
@@ -108,7 +108,7 @@
                 <h4>Personal Info</h4>
                 <hr class="line">
                 <div class="span2" style="text-align: center;">
-                  <div class="thumbnail"><%= image_tag(@user.image_url(:thumb) || "default_profile.jpg") %></div>
+                  <div class="thumbnail"><%= image_tag(@user.image_url || "default_profile.jpg") %></div>
                   <br>
                   <%= f.file_field :image %>
                   <br>  
@@ -204,7 +204,7 @@
           <div class="row-fluid">
             <ul class="thumbnails">
               <li class="span3"><div class="thumbnail">
-                <%= image_tag(@user.image_url(:thumb) ||"default_profile.jpg") %>
+                <%= image_tag(@user.image_url ||"default_profile.jpg") %>
               </div></li>
               <li class="span9">
                 <h2><%= @user.name %></h2>
@@ -253,7 +253,7 @@
             <% @user.liked_users.each do |user| %>
               <li class="span2">
                 <div class="thumbnail">
-                <%=image_tag(user.image_url(:thumb) || "default_profile.jpg") %>
+                <%=image_tag(user.image_url || "default_profile.jpg") %>
                 <br>
                 <%=link_to user.name, user %>
                 </div>
@@ -271,7 +271,7 @@
             <% @user.likers.each do |user| %>
               <li class="span2">
                 <div class="thumbnail">
-                <%=image_tag(user.image_url(:thumb) || "default_profile.jpg") %>
+                <%=image_tag(user.image_url || "default_profile.jpg") %>
                 <br>
                 <%=link_to user.name, user %>
                 </div>

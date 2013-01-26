@@ -12,7 +12,7 @@
           <% end %>
         </div>
         <div class="pull-left image">
-        <%= image_tag(event.event_image_url(:thumb) || "default_avatar.png" ,:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
+        <%= image_tag(event.event_image_url || "default_avatar.png" ,:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
         </div>
         <div class="media-body span8">
         <%= link_to event.title, event%><br>
