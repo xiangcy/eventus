@@ -12,6 +12,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'acts_as_commentable_with_threading'
 gem 'therubyracer'
+gem 'pusher'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

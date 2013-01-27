@@ -1,4 +1,8 @@
 XDLRepo::Application.configure do
+  require 'pusher'
+  Pusher.app_id = '36129'
+  Pusher.key    = 'b319ed07077d52ee9c5a'
+  Pusher.secret = '8f2b6cf5b96be546853d'
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on

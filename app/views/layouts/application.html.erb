@@ -6,6 +6,35 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Kavoon' rel='stylesheet' type='text/css'>
+  <script src="http://js.pusher.com/1.12/pusher.min.js"></script>
+  <script>
+    $(function() {
+      var pusher = new Pusher('b319ed07077d52ee9c5a');
+      var channel = pusher.subscribe('private-'+<%= current_user ? current_user.id : 'null' %>);
+      
+      channel.bind('new_message', function(data){
+        dom_notify();             
+      });
+      
+      function dom_notify(){
+        alert('You are a pig!');  
+      }
+      
+      // Some useful debug msgs
+    pusher.connection.bind('connecting', function() {
+      $('div#status').text('Connecting to Pusher...');
+    });
+    pusher.connection.bind('connected', function() {
+      $('div#status').text('Connected to Pusher!');
+    });
+    pusher.connection.bind('failed', function() {
+      $('div#status').text('Connection to Pusher failed :(');
+    });
+    channel.bind('subscription_error', function(status) {
+      $('div#status').text('Pusher subscription_error');
+    });
+    });
+  </script>
 </head>
 <body>
     <header>
@@ -89,6 +118,23 @@
         <% end %>
         <%= yield %>  
     </div>
+    
+    <!--notification area-->
+    <% if signed_in? %>
+      <% current_user.notifications.each do |notification| %>
+        <% if notification.kind == 'like' %>
+          <p>Hey, <%= link_to User.find(notification.sender_id).name, User.find(notification.sender_id) %> liked you.</p>
+        <% elsif notification.kind == 'attend' %>
+          <p>Hey, <%= link_to User.find(notification.link_id).name, User.find(notification.link_id)%> attended your event:
+            <%= link_to Event.find(notification.sender_id).title, Event.find(notification.sender_id)%></p>
+          
+        <% end %>
+      <%end%>
+    <% end %>
+    
+    <div id='status'></div>
+    
+    
 <footer>
   <div class="footer container-fluid navbar-fixed-bottom">
     <p>Copyright &copy; 2013</p><br>

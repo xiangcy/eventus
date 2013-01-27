@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :liked_users, through: :relationships, source: :liked
   has_many :reverse_relationships, foreign_key: "liked_id", class_name: "Relationship", dependent: :destroy
   has_many :likers, through: :reverse_relationships, source: :liker
+  has_many :notifications
   mount_uploader :image, ImageUploader
   #has_many :evaluations, class_name: "RSevaluation", as: :source
   

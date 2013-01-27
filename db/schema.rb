@@ -1,3 +1,4 @@
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -11,7 +12,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125215141) do
+ActiveRecord::Schema.define(:version => 20130127013530) do
 
   create_table "attendrelations", :force => true do |t|
     t.integer  "participant_id"
@@ -56,6 +57,16 @@ ActiveRecord::Schema.define(:version => 20130125215141) do
   end
 
   add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "sender_id"
+    t.string   "kind"
+    t.boolean  "seen"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "link_id"
+  end
 
   create_table "relationships", :force => true do |t|
     t.integer  "liker_id"
@@ -131,3 +142,4 @@ ActiveRecord::Schema.define(:version => 20130125215141) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end
+

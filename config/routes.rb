@@ -14,6 +14,7 @@ XDLRepo::Application.routes.draw do
   
   get "static_pages/home"
   get "static_pages/about"
+  post 'pusher/auth'
   
   root to: 'static_pages#home'
   match '/postevent', to: 'events#new'
