@@ -61,6 +61,6 @@ module XDLRepo
     
     config.time_zone = "Eastern Time (US & Canada)"
     config.assets.initialize_on_precompile = false
-    config.active_record.observers = :relationship_observer, :attendrelation_observer, :comment_observer
+    config.active_record.observers = :relationship_observer, :attendrelation_observer, :comment_observer, :event_observer
   end
 end

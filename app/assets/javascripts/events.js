@@ -52,12 +52,19 @@ $(document).ready(function(){
 	var location = $("locationInput").text();
 
 	if (locationShown != ""){
-		initializeMap(locationShown);
+	    initializeMap(locationShown);
+	    //timeToPage();
 	}
-	else if (location!="")
+	else if (addressCity!="")
 	{
-		initializeMap(address+" "+addressCity);
+
+	    
+	    initializeMap(address+" "+addressCity);
 	}
+	
+	$(".s, .e").change(function(){  
+	    timeToDatabase();
+	});
 	
 	$('#citySelect').change(function(){
 		addressCity = $(this).val();
@@ -107,8 +114,63 @@ $(document).ready(function(){
 });
 
 
+function timeFromDatabase(){
+  
+  
+  
+  
+}
 
-function updateTime() {
+
+
+
+function timeToDatabase() {
+
+	var startDateString = $(".startDate").val();
+	var startHourString = $(".startHour").val();
+	var startMinString = $(".startMin").val();
+	var startAP = $(".startAP").val();
+	
+	if (startAP == 'PM' && startHourString != 12){
+	  startHourString = parseInt(startHourString) + 12;
+	}
+	
+	if (startAP == "AM" && startHourString == 12){
+	  startHourString = 0;
+	}
+	
+	if (startHourString <10){
+	  startHourString = "0"+startHourString;
+	}
+	
+	if (startHourString <10){
+	  startHourString = "0"+startHourString;
+	}
+	
+	if (startAP == 'PM' && endHourString != 12){
+	  endHourString = parseInt(endHourString) + 12;
+	}
+	
+	if (endAP == "AM" && endHourString == 12){
+	  endHourString = 0;
+	}
+	
+	var endDateString = $(".endDate").val();
+	var endHourString = $(".endHour").val();
+	var endMinString = $(".endMin").val();
+	var endAP = $(".endAP").val();
+	
+	
+	console.log(startDateString);
+	var startTimeToDatabase = startDateString.split("/")[2]+"-"+startDateString.split("/")[0]+"-"+startDateString.split("/")[1]+
+				  " "+startHourString+":"+startMinString;
+	var endTimeToDatabase = endDateString.split("/")[2]+"-"+endDateString.split("/")[0]+"-"+endDateString.split("/")[1]+
+				  " "+endHourString+":"+endMinString;
+	
+	$("#startDateTime").val(startTimeToDatabase);
+	$("#endDateTime").val(endTimeToDatabase);
+
+
 
   }
   
@@ -316,7 +378,7 @@ function makeApiCall() {
 		var request = gapi.client.calendar.calendarList.list();	
 		request.execute(function(longList){
 			for (eachCal in longList.items ){
-				if (longList.items[eachCal].summary==="Eventus1"){
+				if (longList.items[eachCal].summary==="Eventus"){
 					existEventus = true;
 					calendarID = longList.items[eachCal].id;
 					timezone = longList.items[eachCal].timeZone;
@@ -328,7 +390,7 @@ function makeApiCall() {
 				var addEventusCal = gapi.client.calendar.calendars.insert({
 				    
 				    "resource":{
-					"summary": 'Eventus1'
+					"summary": 'Eventus'
 					}
 				});
 				addEventusCal.execute(function(newCalendar){
@@ -372,6 +434,8 @@ var request = gapi.client.calendar.events.insert({
 	'calendarId': calendarID,
 	
 	'resource' : {
+	  
+		"colorId" : "6",
 		"location" : eventLocation,
 
 		"summary" : summary,

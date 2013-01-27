@@ -4,11 +4,11 @@
       <div class="media">
         <div class="pull-left vote">
           <%= link_to vote_event_path(event, type: "up"), method: "post" do %>
-            <i class="icon-arrow-up"></i>
+            <%=image_tag ("http://png-2.findicons.com/files/icons/2338/reflection/128/arrow_up_1.png"), :class=>"bigicon"%>
           <% end %>
-          <p><span style="font-size: 18px;color:#d44413;font-family: fantasy"><%=event.reputation_for(:votes).to_i %></span></p>
+          <p><span class="color votenumber"><%=event.reputation_for(:votes).to_i %></span></p>
           <%= link_to vote_event_path(event, type: "down"), method: "post" do %>
-            <i class="icon-arrow-down"></i>
+            <%=image_tag ("http://png-1.findicons.com/files/icons/2338/reflection/128/arrow_down_1.png"),:class=>"bigicon"%>
           <% end %>
         </div>
         <div class="pull-left image">
