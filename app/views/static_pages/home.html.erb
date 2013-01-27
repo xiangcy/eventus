@@ -17,15 +17,15 @@
     <% else %>
     <div class="well home2" style="background-color: #d44413">
       <%=image_tag("eventus2.png",:class=>"logo" )%><br>
-      <h4 class="word">Find and attend the most popular events in the city</h4>
-      <h4 class="word">Meet new people and make new friends</h4>
+      <h4 class="word"><span class="fingerpaint">Find and attend the most popular events in the city</span></h4>
+      <h4 class="word"><span class="fingerpaint">Meet new people and make new friends</span></h4>
       <br>
       <%= link_to "Register", signup_path, class: "btn btn-info btn-large" %>
       <a href="#signin" class="btn btn-info btn-large" data-toggle="modal">Sign in</a>
     </div>
     <% end %>
     <h4>Hottest Events</h4> 
-    <div id="myCarousel" class="carousel slide">
+    <div id="myCarousel" class="carousel slide well">
   <!-- Carousel items -->
         <div class="carousel-inner">
           <!--item1-->
