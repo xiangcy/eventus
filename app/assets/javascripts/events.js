@@ -115,6 +115,7 @@ function generateAddress() {
 
 function timeToDatabase() {
 
+
     var startDateString = $(".startDate").val();
     var startHourString = $(".startHour").val();
     var startMinString = $(".startMin").val();
@@ -156,6 +157,7 @@ function timeToDatabase() {
 
 
 }
+
 
 
 function initializeMap(addInForm, inShowMode) {

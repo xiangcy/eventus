@@ -18,7 +18,18 @@
       });
       
       function dom_notify(){
-        alert('You are a pig!');  
+        var orig = $('div#noticount').text();
+        var orign = parseInt(orig) +1;
+        $('div#noticount').text(orign);
+        
+        
+        
+        $('#notify').text('Hey, you have a new massage!');
+        $('#notify').fadeIn();
+        setTimeout(function() {
+          $('#notify').fadeOut
+            ();
+          }, 2000);
       }
       
       // Some useful debug msgs
@@ -122,18 +133,15 @@
     
     <!--notification area-->
     <% if signed_in? %>
-      <% current_user.notifications.each do |notification| %>
-        <% if notification.kind == 'like' %>
-          <p>Hey, <%= link_to User.find(notification.sender_id).name, User.find(notification.sender_id) %> liked you.</p>
-        <% elsif notification.kind == 'attend' %>
-          <p>Hey, <%= link_to User.find(notification.link_id).name, User.find(notification.link_id)%> attended your event:
-            <%= link_to Event.find(notification.sender_id).title, Event.find(notification.sender_id)%></p>
-          
-        <% end %>
-      <%end%>
+      <div id='noticount'><%= current_user.notifications.count %> </div>
+      
+      <%= link_to "Show your notifications", {:controller => "notifications", :action => "index"} , :remote => true %>
+      
     <% end %>
     
     <div id='status'></div>
+    <div id='notification'></div>
+    <div id='notify'></div>
     
     
 <footer>
