@@ -126,7 +126,6 @@ function timeFromDatabase(){
 
 function timeToDatabase() {
 
-
 	var startDateString = $(".startDate").val();
 	var startHourString = $(".startHour").val();
 	var startMinString = $(".startMin").val();
