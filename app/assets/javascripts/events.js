@@ -19,6 +19,7 @@ var scopes = 'https://www.googleapis.com/auth/calendar';
 
 $(function() {
     $( "#datepicker1, #datepicker2" ).datepicker({
+      
 	dateFormat: "mm/dd/yy",
 	changeMonth: true,
 	changeYear: true,
@@ -48,11 +49,13 @@ $(document).ready(function(){
 	var addressCity = $("#citySelect").val();
 	var address = $("#locationInput").val();
 	var locationShown = $("#locationShown").text();
+	var location = $("locationInput").text();
 
 	if (locationShown != ""){
 		initializeMap(locationShown);
 	}
-	else{
+	else if (location!="")
+	{
 		initializeMap(address+" "+addressCity);
 	}
 	
@@ -75,11 +78,18 @@ $(document).ready(function(){
 		$( document ).tooltip();
 	})
 
-	$("#mapButton").click(function(){
+	$("#pinGen").click(function(){
 		address = $("#locationInput").val();
 		addressCity = $("#citySelect").val();
 		codeAddress(address+" "+addressCity);
 	})
+	
+	$("#geoLoc").click(function(){
+		geolocate();
+	  
+	})
+	
+	
 	$("#locGen").click(function(){
 		if (marker){
 			var markerPos=marker.position;
@@ -99,15 +109,10 @@ $(document).ready(function(){
 
 
 function updateTime() {
-	  if ($("#time4").val()) { // Only update when second input has a value.
-	    // Calculate duration.
-	    var duration = ($.timePicker("#time4").getTime() - oldTime);
-	    var time = $.timePicker("#time3").getTime();
-	    // Calculate and update the time in the second input.
-	    $.timePicker("#time4").setTime(new Date(new Date(time.getTime() + duration)));
-	    oldTime = time;
-	  }
+
   }
+  
+  
 function initializeMap(addInForm, inShowMode) {
 	geocoder = new google.maps.Geocoder();
 	geocoder.geocode( { 'address': addInForm}, function(results, status){
@@ -134,6 +139,8 @@ function initializeMap(addInForm, inShowMode) {
 			google.maps.event.addListener(map, 'click', function(event) {
 				addMarker(event.latLng);
 			});
+			
+		      
 		}
 			
 		marker = new google.maps.Marker({
@@ -145,6 +152,35 @@ function initializeMap(addInForm, inShowMode) {
 	
 
 }
+
+
+function geolocate(){
+  if(navigator.geolocation) {
+      browserSupportFlag = true;
+      navigator.geolocation.getCurrentPosition(function(position) {
+	initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	map.setCenter(initialLocation);
+	addMarker(initialLocation);
+      }, function() {
+	handleNoGeolocation(browserSupportFlag);
+      });
+    }
+    // Browser doesn't support Geolocation
+    else {
+      browserSupportFlag = false;
+      handleNoGeolocation(browserSupportFlag);
+    }
+    
+    function handleNoGeolocation(errorFlag) {
+      if (errorFlag == true) {
+	alert("Geolocation service failed.");
+      } else {
+	alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+      }
+    }
+
+}
+
 
 
 function codeAddress( address ) {
@@ -249,7 +285,7 @@ function fillLocation(address){
 
 function handleAuthClick() {  
 	
-	
+
 	gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, function(authResult){
 		if (authResult){
 			makeApiCall();
@@ -312,9 +348,7 @@ function makeApiCall() {
 
 function addEvent(calendarID, timezone){
 	
-	console.log(calendarID);
-	
-		var startTimeString = $("#startTimeShown").text();
+	var startTimeString = $("#startTimeShown").text();
 	var endTimeString = $("#endTimeShown").text();
 	
 	var startTime = startTimeString.split(",")[0].split(" ")[1];

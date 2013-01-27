@@ -37,7 +37,7 @@
 	     <div id="endTimeShown">To: <%= @event.endtime.strftime('%H:%M, %m/%d/%Y') %></div>
 	  </div>
           <p id="locationShown"><i class="icon-map-marker"></i><%= @event.place+", "+@event.city %></p><br>
-	  <a href="#" id="addCal"  data-placement="bottom" title="add events to google calendar"><p>Add to Google Calendar!</p><i class="icon-calendar"></i></a><button id="linkToCal">Go to Google Calendar</button><br>
+	  <a href="#" id="addCal"  data-placement="bottom" title="add events to google calendar"><p>Add to Google Calendar! (Please allow pop up)</p><i class="icon-calendar"></i></a><button id="linkToCal">Go to Google Calendar</button><br>
           <p><span class="color"><%= @event.participants.count %></span> people attend</p>
           </div>
           <div class="span3" style="padding-top: 25px; text-align: center;"><% if current_user?(@event.user) %>
@@ -117,7 +117,7 @@
     <h4>Where</h4>
     <div>
     <div id="map_canvas"><br/><br/></div>
-    <a id="returnAddress" class="madeUpButton">Return</a>
+    <a id="returnAddress" class="madeUpButton">Reset center</a>
     </div>
     
     </div>
