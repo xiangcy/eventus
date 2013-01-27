@@ -29,15 +29,11 @@ h1{
 }
 
 .left{
-
-	border-right: 2px solid #ccc;
-	padding-right: 2%;
-	margin-right:2%;
+    margin-left: 0px !important;
 }
-
-
 .setupright{
-
+        min-height: 702px !important;
+        border-left: 2px solid #ffffff;
 	padding-left:2%;
 	min-width: 150px;
 	margin-left: 4%;	
@@ -157,4 +153,50 @@ h5{
 }
 .none{
 	display:none;
+}
+.commentlist{
+    list-style: none;
+    .commentbody{
+        margin-left: 50px;
+        width: 70%;
+    }
+    .reply{
+        position: relative;
+        left: 90%;
+    }
+}
+#comment_body{
+    width: 60%;
+    height: 100px;
+}
+.bigicon{
+    width: 30px;
+    height: 30px;
+}
+.image{
+    img{
+        width: 120px;
+        height: auto;
+        margin-right: 10px;
+    }
+}
+.media-body{
+    padding-left: 0px !important;
+}
+.votenumber{
+    font-size: 30px;
+}
+.writecomment{
+    cursor: pointer;
+}
+.map{
+    background-color: #F2EDD0;
+    -webkit-border-radius:20px;
+    padding: 5px 0px;
+    h4{
+        margin: 3px 10px;
+    }
+    .madeUpButton{
+        margin-left: 5px;
+    }
 }
