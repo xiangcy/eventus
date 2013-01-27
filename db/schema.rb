@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -142,4 +141,3 @@ ActiveRecord::Schema.define(:version => 20130127013530) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end
-

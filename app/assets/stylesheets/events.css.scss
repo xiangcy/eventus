@@ -55,10 +55,14 @@ h5{
 
 #map_canvas{
 	float: left;
-	//overflow: auto;
 	margin-top: 0px;
         height: 240px;
         width: 100%;
+}
+
+
+.resultsHidden{
+   // visibility:hidden;
 }
 
 .vote{

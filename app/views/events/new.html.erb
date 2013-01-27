@@ -16,43 +16,85 @@
       <div>
 		<%= form_for @event, :html => {:multipart => true} do |f| %>
 		<%= render 'shared/error_messages', object: f.object %>
-
-
-
+		<!--start div-->
 		<div class="span4 offset0 left" >
 		  <div class="span12">
-		    <div>
-			<div class="span5">
+			<div class="span6">
 			  <p class="eachItem">Start date:</p>
-			  <%= f.text_field :time, :value=> f.object.time, :id=>"datepicker1" %>
-			</div>
-			<div class ="span6 offset1 right">
-			  <p class="eachItem">Start time:</p>
-<!---===========================-change":time" to ":startHour etc."=====================-->
-			  <%= f.select(:time, [['0','0'],['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],
-			  ['6','6'],['7','7'],['8','8'],['9','9'],['10','10'],['11','11'],['12','12']],{},
-			  :class=>"span5", :id=>"startHour")%>
-<!---===========================-change":time" to ":startHour etc."=====================-->
-			  <%= f.select(:time, [['00','00'],['15','15'],['30','30'],['45','45']],{},:class=>"span6", :id=>"startMinute")%>
-
+			  <input type="text" id="datepicker1" class="s startDate">
 			</div>
 		  </div>
-		</div>
-		<div class="span12">
-		      <div class="span5">
-			<p class="eachItem">End date:</p>
-			<%= f.text_field :endtime, :value=> f.object.endtime, :id=>"datepicker2"%>
-		      </div>
-		      <div class ="span6 offset1 right">
-			<p class="eachItem">End time:</p>
-<!---===========================-change":endtime" to ":endHour etc."=====================-->
-			<%= f.select(:endtime, [['0','0'],['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],
-			['6','6'],['7','7'],['8','8'],['9','9'],['10','10'],['11','11'],['12','12']],{},
-			:class=>"span5", :id=>"endHour")%>
-<!---===========================-change":endtime" to ":endHour etc."=====================-->
-			<%= f.select(:endtime, [['00','00'],['15','15'],['30','30'],['45','45']],{},:class=>"span6", :id=>"endMinute")%>
 
-		      </div>
+		  <div class="span12">
+			  <p class="eachItem">Start time:</p>
+			  <div class="span12">
+			    <div class = "span3">
+			    <select class="span12 s startHour">
+			<option>HH</option><option>01</option>
+			<option>02</option><option>03</option><option>04</option>
+			<option>05</option><option>06</option><option>07</option>
+			<option>08</option><option>09</option>
+			<option>10</option><option>11</option>
+			<option>12</option>
+			    </select>
+			    </div>
+			  <div class = "span3">
+			    <select class = "span12 s startMin">
+			      <option>MM</option>
+			      <option>00</option>
+			      <option>15</option>
+			      <option>30</option>
+			      <option>45</option>	
+			    </select>
+			  </div>
+			  <div class="span3">
+			    <select class = "span12 s startAP">
+			      <option>AM</option>
+			      <option>PM</option>	
+			    </select>
+			  
+			  </div>
+			</div>
+		</div>
+		<!--end div-->
+		  <div class="span12">
+			<div class="span6">
+			  <p class="eachItem">End date:</p>
+			  <input type="text" id="datepicker2" class="e endDate">
+			</div>
+		  </div>
+
+		  <div class="span12">
+			  <p class="eachItem">End time:</p>
+			  <div class="span12">
+			    <div class = "span3">
+			    <select class="span12 endHour e">
+			<option>HH</option><option>01</option>
+			<option>02</option><option>03</option><option>04</option>
+			<option>05</option><option>06</option><option>07</option>
+			<option>08</option><option>09</option>
+			<option>10</option><option>11</option>
+			<option>12</option>
+			    </select>
+			    </div>
+			  <div class = "span3">
+			    <select class = "span12 endMin e">
+			      <option>MM</option>
+			      <option>00</option>
+			      <option>15</option>
+			      <option>30</option>
+			      <option>45</option>	
+			    </select>
+			  </div>
+			  <div class="span3">
+			    <select class = "span12 endAP e">
+			      <option>AM</option>
+			      <option>PM</option>	
+			    </select>
+			  
+			  </div>
+		</div>
+
 		</div>
 			
 	      
@@ -70,20 +112,19 @@
 				</div>
 			    </div>
 			      <a id="pinGen" class="madeUpButton">Pin the above location on map</a>
+			      
+
 			  </div>
-			  <div class="input-prepend input-append">
-			    <span class="add-on"></span>
-			    <input class="span2">
-			    <span class="add-on"></span>
-			  </div>
+
 			  
 						
 		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
 			 <div id="map_canvas"><br/><br/></div>
 				<a id="locGen" class = "madeUpButton">Generate address from marker</a>
 			 </div>
-		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
 
+		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
+			    
 		</div><!--left ends-->
 
 
@@ -117,6 +158,9 @@
 
 		<div class="span12">
 		  <br>
+		  <%= f.text_field :time, :value=> f.object.time, :id=>"startDateTime", :class=>"resultsHidden span3" %>
+		  <%= f.text_field :endtime, :value=> f.object.endtime, :id=>"endDateTime", :class=>"resultsHidden span3" %>
+
 		  <%= f.submit :class=> "offset6 btn btn-large btn-primary" %>
 		</div>
 		<%end%>
