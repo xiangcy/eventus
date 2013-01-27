@@ -9,7 +9,4 @@ if($(".pagination").length != undefined){
     })
     $(window).scroll();
 }
-})
-
-
-/
+});
