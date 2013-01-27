@@ -10,3 +10,10 @@ if($(".pagination").length != undefined){
     $(window).scroll();
 }
 })
+
+$(function(){
+    $(".writecomment").click(function(){
+        var commentposition = $(document).height()-$(window).height();
+        window.scrollTo(0, commentposition);
+    })
+})
