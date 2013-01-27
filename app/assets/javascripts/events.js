@@ -131,6 +131,11 @@ function timeToDatabase() {
 	var startMinString = $(".startMin").val();
 	var startAP = $(".startAP").val();
 	
+	var endDateString = $(".endDate").val();
+	var endHourString = $(".endHour").val();
+	var endMinString = $(".endMin").val();
+	var endAP = $(".endAP").val();
+	
 	if (startAP == 'PM' && startHourString != 12){
 	  startHourString = parseInt(startHourString) + 12;
 	}
@@ -138,16 +143,9 @@ function timeToDatabase() {
 	if (startAP == "AM" && startHourString == 12){
 	  startHourString = 0;
 	}
+      
 	
-	if (startHourString <10){
-	  startHourString = "0"+startHourString;
-	}
-	
-	if (startHourString <10){
-	  startHourString = "0"+startHourString;
-	}
-	
-	if (startAP == 'PM' && endHourString != 12){
+	if (endAP == 'PM' && endHourString != 12){
 	  endHourString = parseInt(endHourString) + 12;
 	}
 	
@@ -155,17 +153,13 @@ function timeToDatabase() {
 	  endHourString = 0;
 	}
 	
-	var endDateString = $(".endDate").val();
-	var endHourString = $(".endHour").val();
-	var endMinString = $(".endMin").val();
-	var endAP = $(".endAP").val();
-	
+
 	
 	console.log(startDateString);
 	var startTimeToDatabase = startDateString.split("/")[2]+"-"+startDateString.split("/")[0]+"-"+startDateString.split("/")[1]+
 				  " "+startHourString+":"+startMinString;
 	var endTimeToDatabase = endDateString.split("/")[2]+"-"+endDateString.split("/")[0]+"-"+endDateString.split("/")[1]+
-				  " "+endHourString+endMinString;
+				  " "+endHourString+":"+endMinString;
 	
 	$("#startDateTime").val(startTimeToDatabase);
 	$("#endDateTime").val(endTimeToDatabase);
