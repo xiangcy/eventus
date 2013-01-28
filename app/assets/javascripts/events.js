@@ -9,22 +9,58 @@ var clientId = '157080884144.apps.googleusercontent.com';
 var apiKey = 'AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE';
 var scopes = 'https://www.googleapis.com/auth/calendar';
 
-$(function () {
-    $("#datepicker1, #datepicker2").datepicker({
+
+
+$(document).ready(function () {
+  
+      $( "#sortable" ).sortable({
+	revert: true
+      });
+      
+      $( ".searchEventsDiv" ).draggable({
+	  containment:parent,
+	  connectToSortable: "#sortable",
+	  revert: "invalid"
+	});
+      
+
+  
+      $(".closeIcon").click(function(){
+	$(this).parent().parent().parent().toggleClass("hiddenByUser");
+	$(this).parent().parent().parent().hide("blind");
+	
+      })
+      
+      $(".icon-refresh").click(function(){
+	
+	$(".hiddenByUser").show("drop", {direction:"left"}, 500, function(){
+	    $(this).toggleClass("hiddenByUser");
+	  });
+      });
+  
+      $("#events").css("visibility", "hidden");
+
+      
+      $(".searchevents").mouseover(function(){
+	
+	$(this).find(".closeIcon").css("visibility","visible");
+	$(this).find(".closeIcon").css("border","10px");
+
+      });
+      
+      $(".searchevents").mouseleave(function(){
+	
+	$(this).find(".closeIcon").css("visibility","hidden");
+
+      });
+  
+      $("#datepicker1, #datepicker2").datepicker({
 
         dateFormat: "mm/dd/yy",
         changeMonth: true,
         changeYear: true,
         altFormat: "yy-mm-dd"
     })
-    $("#timepicker1, #timepicker2").timePicker({
-        step: 15,
-        show24Hours: false
-    });
-
-});
-
-$(document).ready(function () {
 
 
     $("#locAlert").hide();
@@ -33,14 +69,13 @@ $(document).ready(function () {
         updateTime();
     });
 
-
     $("#linkToCal").hide();
 
     $("#addCal").click(function () {
         handleAuthClick();
     })
 
-    var addressCity = $("#citySelect").val();
+    var addressCity = $("#citySelectEvent").val();
     var address = $("#locationInput").val();
     var locationShown = $("#locationShown").text();
     var location = $("locationInput").text();
@@ -51,7 +86,8 @@ $(document).ready(function () {
 
     if (locationShown != "") {
         initializeMap(locationShown);
-    } else if (addressCity.length != 0) {
+    } else if (addressCity!= undefined) {
+      console.log(addressCity);
         initializeMap(address + " " + addressCity);
     }
 
@@ -95,8 +131,22 @@ $(document).ready(function () {
     $("#locGen").click(function () {
         generateAddress();
     });
+    
+    var options = {};
+    
+    $(".head").show("fold", options, 1000, showEventList());
+    
+    
 });
 
+
+function showEventList(){
+  setTimeout(function(){
+    $("#events").css("visibility", "");
+    $("#events").show("drop", {direction:"up"}, 500);
+  },900);
+  
+}
 
 function timeFromDatabase() {
   

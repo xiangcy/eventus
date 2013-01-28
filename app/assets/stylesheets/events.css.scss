@@ -90,6 +90,12 @@ h5{
     -webkit-border-radius: 10px;
 }
 
+.closeIcon{
+    visibility:hidden;
+}
+
+
+
 #returnAddress{
 	width: 100px;
 	color: #d44421;
@@ -99,6 +105,17 @@ h5{
 .madeUpButton:hover{
       cursor:pointer;
 
+}
+
+
+.eventListDiv{
+  border-radius: 30px;	
+}
+
+.eventListDiv:hover{
+  background-color : #ff9900;
+  box-shadow:10px 10px 5px #888888;
+  border: 2px dashed #d44412;
 }
 
 a:hover{
