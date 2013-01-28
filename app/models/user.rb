@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   end
   
   def attend!(event)
-    attendrelations.create!(event_id: event.id, event_title: event.title)
+    attendrelations.create!(event_id: event.id)
   end
   
   def unattend!(event)
