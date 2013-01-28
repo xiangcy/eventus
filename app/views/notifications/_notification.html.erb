@@ -1,0 +1,25 @@
+<% if notification.kind == 'like' %>
+    <p>Hey, <%= link_to User.find(notification.sender_id).name, User.find(notification.sender_id) %> liked you.</p>
+<% elsif notification.kind == 'attend' %>
+  <% if Event.find_by_id(notification.sender_id).blank? %>
+    <p>Sorry, this notification is invalid now!</p>
+  <% else %>
+    <p>Hey, <%= link_to User.find(notification.link_id).name, User.find(notification.link_id)%> attended your event:
+    <%= link_to Event.find(notification.sender_id).title, Event.find(notification.sender_id)%></p>
+  <%end%>
+<% elsif notification.kind == 'comment' %>
+  <% if Event.find_by_id(notification.sender_id).blank? %>
+    <p>Sorry, this notification is invalid now!</p>
+  <% else %>
+    <p>Hey, <%= link_to User.find(notification.link_id).name, User.find(notification.link_id) %> left a comment on your event:
+    <%= link_to Event.find(notification.sender_id).title, Event.find(notification.sender_id)%></p>
+  <% end %>
+<% elsif notification.kind == 'edit' %>
+  <% if Event.find_by_id(notification.sender_id).blank? %>
+    <p>Sorry, this notification is invalid now!</p>
+  <% else %>
+    <p>Hey, the event, <%= link_to Event.find(notification.sender_id).title, Event.find(notification.sender_id)%> was updated!</p>
+  <% end %>
+<% elsif notification.kind == 'destroy' %>
+    <p>Hey, the event, <%= notification.seen %> was cancelled! %></p>
+<% end %>
