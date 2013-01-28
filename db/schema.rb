@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128004901) do
+ActiveRecord::Schema.define(:version => 20130128062231) do
 
   create_table "attendrelations", :force => true do |t|
     t.integer  "participant_id"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20130128004901) do
     t.string   "blog"
     t.string   "city"
     t.string   "image"
+    t.integer  "read"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -142,3 +143,4 @@ ActiveRecord::Schema.define(:version => 20130128004901) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end
+>>>>>>> fake data

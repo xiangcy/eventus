@@ -10,7 +10,7 @@
   <script src="http://js.pusher.com/1.12/pusher.min.js"></script>
   <script>
     $(function() {
-      var pusher = new Pusher('f4af10706ffa9afd9590');
+      var pusher = new Pusher('b319ed07077d52ee9c5a');
       var channel = pusher.subscribe('private-'+<%= current_user ? current_user.id : 'null' %>);
       
       channel.bind('new_message', function(data){
@@ -136,7 +136,6 @@
         <%= yield %>  
     </div>
     <div id='status'></div>
-    <div id='notify'></div>
 <footer>
   <div class="footer container-fluid navbar-fixed-bottom">
     <p>Copyright &copy; 2013</p><br>
