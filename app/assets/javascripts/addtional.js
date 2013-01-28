@@ -1,16 +1,3 @@
-$(function(){
-if($(".pagination").length != undefined){
-    $(window).scroll(function(){
-        var $url=$(".pagination .next_page a").attr("href");
-        if ($url != undefined && $(window).scrollTop()>$(document).height()-$(window).height()-50){
-            $(".pagination").text("fetching more events...");
-            $.getScript($url);
-            }
-    })
-    $(window).scroll();
-}
-});
-
 /*!
  * Pusher JavaScript Library v1.12.5
  * http://pusherapp.com/
@@ -61,31 +48,6 @@ var _require=function(){function c(a,c){document.addEventListener?a.addEventList
 a():setTimeout(b,0)};b()},g=function(){e(b)};a.length>0?_require(a,g):g()})();
 
 
-$(function(){
-    $(".writecomment").click(function(){
-        var commentposition = $(document).height()-$(window).height();
-        window.scrollTo(0, commentposition);
-    })
-
-    var x = $(".noti").text();
-    if(parseInt(x)==0){
-        $("#noticount").hide();
-    }
-    $(".notification").click(function(){
-        $(".noti").text("0");
-        $("#noticount").hide();
-        if($(".notification").hasClass("open")){
-            $(".notification").removeClass("open");
-        }
-        else{
-           $(".notification").addClass("open"); 
-        }
-    })
- })
-
-
-
-
 window.google = window.google || {};
 google.maps = google.maps || {};
 (function() {
@@ -111,11 +73,7 @@ google.maps = google.maps || {};
 
 
 
-    apiLoad([0.009999999776482582,[[["https://mts0.googleapis.com/vt?lyrs=m@206000000\u0026src=api\u0026hl=en\u0026","https://mts1.googleapis.com/vt?lyrs=m@206000000\u0026src=api\u0026hl=en\u0026"],null,null,null,null,"m@206000000"],[["https://khms0.googleapis.com/kh?v=124\u0026hl=en\u0026","https://khms1.googleapis.com/kh?v=124\u0026hl=en\u0026"],null,null,null,1,"124"],[["https://mts0.googleapis.com/vt?lyrs=h@206000000\u0026src=api\u0026hl=en\u0026","https://mts1.googleapis.com/vt?lyrs=h@206000000\u0026src=api\u0026hl=en\u0026"],null,null,"imgtp=png32\u0026",null,"h@206000000"],[["https://mts0.googleapis.com/vt?lyrs=t@130,r@206000000\u0026src=api\u0026hl=en\u0026","https://mts1.googleapis.com/vt?lyrs=t@130,r@206000000\u0026src=api\u0026hl=en\u0026"],null,null,null,null,"t@130,r@206000000"],null,null,[["https://cbks0.googleapis.com/cbk?","https://cbks1.googleapis.com/cbk?"]],[["https://khms0.googleapis.com/kh?v=69\u0026hl=en\u0026","https://khms1.googleapis.com/kh?v=69\u0026hl=en\u0026"],null,null,null,null,"69"],[["https://mts0.googleapis.com/mapslt?hl=en\u0026","https://mts1.googleapis.com/mapslt?hl=en\u0026"]],[["https://mts0.googleapis.com/mapslt/ft?hl=en\u0026","https://mts1.googleapis.com/mapslt/ft?hl=en\u0026"]],[["https://mts0.googleapis.com/vt?hl=en\u0026","https://mts1.googleapis.com/vt?hl=en\u0026"]]],["en","US",null,0,null,null,"https://maps.gstatic.com/mapfiles/","https://csi.gstatic.com","https://maps.googleapis.com","https://maps.googleapis.com"],["https://maps.gstatic.com/intl/en_ALL/mapfiles/api-3/10/20","3.10.20"],[1282701887],1.0,null,null,null,null,0,"",null,null,1,"https://khms.googleapis.com/mz?v=124\u0026",null,"https://earthbuilder.google.com","https://earthbuilder.googleapis.com"], loadScriptTime);
-  };
-  var loadScriptTime = (new Date).getTime();
-  getScript("https://maps.gstatic.com/intl/en_ALL/mapfiles/api-3/10/20/main.js");
-})();
+
 
 
 var gapi=window.gapi=window.gapi||{};gapi._bs=new Date().getTime();(function(){var f=null,g=window,h="push",i="replace",k="length";var m=g,r=document,u=m.location,w=function(){},x=/\[native code\]/,A=function(a,b,c){return a[b]=a[b]||c},C=function(a){for(var b=0;b<this[k];b++)if(this[b]===a)return b;return-1},D=function(){var a;if((a=Object.create)&&x.test(a))a=a(f);else{a={};for(var b in a)a[b]=void 0}return a},E=A(m,"gapi",{});var F;F=A(m,"___jsl",D());A(F,"I",0);A(F,"hel",10);var G=function(){var a=u.href,b;if(F.dpo)b=F.h;else{b=F.h;var c=RegExp("([#].*&|[#])jsh=([^&#]*)","g"),e=RegExp("([?#].*&|[?#])jsh=([^&#]*)","g");if(a=a&&(c.exec(a)||e.exec(a)))try{b=decodeURIComponent(a[2])}catch(d){}}return b},I=function(a){return A(A(F,"H",D()),a,D())};var J=A(F,"perf",D()),L=A(J,"g",D()),M=A(J,"i",D());A(J,"r",[]);D();D();var N=function(a,b,c){var e=J.r;"function"===typeof e?e(a,b,c):e[h]([a,b,c])},P=function(a,b,c){b&&0<b[k]&&(b=O(b),c&&0<c[k]&&(b+="___"+O(c)),28<b[k]&&(b=b.substr(0,28)+(b[k]-28)),c=b,b=A(M,"_p",D()),A(b,c,D())[a]=(new Date).getTime(),N(a,"_p",c))},O=function(a){return a.join("__")[i](/\./g,"_")[i](/\-/g,"_")[i](/\,/g,"_")};var Q=D(),R=[],S;S={a:"callback",g:"sync",e:"config",c:"_c",d:"h",l:"platform",i:"jsl",TIMEOUT:"timeout",f:"ontimeout",k:"mh",j:"u"};R[h]([S.i,function(a){for(var b in a)if(Object.prototype.hasOwnProperty.call(a,b)){var c=a[b];"object"==typeof c?F[b]=A(F,b,[]).concat(c):A(F,b,c)}if(b=a[S.j])a=A(F,"us",[]),a[h](b),(b=/^https:(.*)$/.exec(b))&&a[h]("http:"+b[1])}]);var T=decodeURI("%73cript");Q.m=function(a){var b=F.ms||"https://apis.google.com";a=a[0];var c;if(!(c=!a))c=0<=a.indexOf("..");if(c)throw"Bad hint";return b+"/"+a[i](/^\//,"")};
