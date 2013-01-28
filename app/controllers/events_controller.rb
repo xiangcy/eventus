@@ -44,10 +44,8 @@ class EventsController < ApplicationController
   end
   
   def destroy
-    participants = Event.find(params[:id]).participants
-    title = Event.find(params[:id]).title
     Event.find(params[:id]).destroy
-    flash[:success] = "Event destroyed"
+    flash[:success] = "Event deleted!"
     redirect_to current_user
   end
   

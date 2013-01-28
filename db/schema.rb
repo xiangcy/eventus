@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127013530) do
+ActiveRecord::Schema.define(:version => 20130128004901) do
 
   create_table "attendrelations", :force => true do |t|
     t.integer  "participant_id"
     t.integer  "event_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "event_title"
   end
 
   add_index "attendrelations", ["event_id"], :name => "index_attendrelations_on_event_id"
@@ -141,4 +142,3 @@ ActiveRecord::Schema.define(:version => 20130127013530) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end
->>>>>>> 52fe04cf59ecef1fae8e247b08a0edca5e3c9838
