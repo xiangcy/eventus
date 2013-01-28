@@ -21,10 +21,7 @@
         var orig = $(".noti").text();
         var orign = parseInt(orig) +1;
         $(".noti").text(orign);
-        if($("#noticount").is(":visible")){}
-        else{
-          $("#noticount").show();
-        }
+        $("#noticount").show();
         $('#notify').text('Hey, you have a new massage!');
         $('#notify').fadeIn();
         
@@ -78,11 +75,13 @@
               </ul>
               <% if signed_in? %>
                 <%= link_to "Sign Out", signout_path, class: "navbar-text pull-right", method: "delete" %>
-                <div class="pull-right notification">
-                  <%= link_to image_tag("message-new.png"), {:controller => "notifications", :action => "index"} , :remote => true %>
+                <p class="navbar-text pull-right">Welcome, <%= current_user.name%></p>
+                    <!--notification area-->
+                <div class="pull-right notification dropdown">
+                  <%= link_to image_tag("message-new.png"), {:controller => "notifications", :action => "index"} , :remote => true, :data=>{:toggle=>"dropdown"}, :class=>"dropdown-toggle",:id=>"dLabel" %>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="notification"></ul>
                   <div id="noticount"><span class="noti"><%= current_user.notifications.count %></span></div>
                 </div>
-                <p class="navbar-text pull-right">Welcome, <%= current_user.name%></p>
               <% else %>
                 <%= link_to "Register", signup_path, class: "navbar-text pull-right" %>
                 <a href="#signin" class="navbar-text pull-right" data-toggle="modal">Sign in</a>
@@ -136,20 +135,8 @@
         <% end %>
         <%= yield %>  
     </div>
-    
-    <!--notification area-->
-    <% if signed_in? %>
-      <div id='noticount'><%= current_user.notifications.count %> </div>
-      
-      <%= link_to "Show your notifications", {:controller => "notifications", :action => "index"} , :remote => true %>
-      
-    <% end %>
-    
     <div id='status'></div>
-    <div id='notification'></div>
     <div id='notify'></div>
-    
-    
 <footer>
   <div class="footer container-fluid navbar-fixed-bottom">
     <p>Copyright &copy; 2013</p><br>

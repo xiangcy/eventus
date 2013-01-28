@@ -67,9 +67,19 @@ $(function(){
         var commentposition = $(document).height()-$(window).height();
         window.scrollTo(0, commentposition);
     })
+    var x = $(".noti").text();
+    if(parseInt(x)==0){
+        $("#noticount").hide();
+    }
     $(".notification").click(function(){
         $(".noti").text("0");
         $("#noticount").hide();
+        if($(".notification").hasClass("open")){
+            $(".notification").removeClass("open");
+        }
+        else{
+           $(".notification").addClass("open"); 
+        }
     })
  })
 
