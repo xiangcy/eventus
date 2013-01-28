@@ -9,16 +9,16 @@
 		<%= render 'shared/error_messages', object: f.object %>
 		<!--start div-->
 		<div class="span12">
-		  <div class="span12 left">
+		  <div class="span12">
 			<div class="span9">
 			  <p class="eachItem">Start date:</p>
 			  <input type="text" id="datepicker1" class="s startDate">
 			</div>
 		  </div>
 
-		  <div class="span12 left">
+		  <div class="span12">
 			  <p class="eachItem">Start time:</p>
-			  <div class="span12 left">
+			  <div class="span12">
 			    <div class = "span3">
 			    <select class="span12 s startHour">
 			<option>01</option>
@@ -48,16 +48,16 @@
 			</div>
 		</div>
 		<!--end div-->
-		  <div class="span12 left">
+		  <div class="span12">
 			<div class="span9">
 			  <p class="eachItem">End date:</p>
 			  <input type="text" id="datepicker2" class="e endDate">
 			</div>
 		  </div>
 
-		  <div class="span12 left">
+		  <div class="span12">
 			  <p class="eachItem">End time:</p>
-			  <div class="span12 left">
+			  <div class="span12">
 			    <div class = "span3">
 			    <select class="span12 endHour e">
 			<option>01</option>
@@ -90,9 +90,9 @@
 			
 	      
 			
-			<div class="span12 left">
+			<div class="span12">
 			  <p class="control-label eachItem" for="City">City:</p>
-			  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12", :id=>"citySelect")%>
+			  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12", :id=>"citySelectEvent")%>
 			  <p class="eachItem">Location:</p>
 			  <div class="control-group" title="Click on the marker icon to pin your current location on the map">
 				  <div class="controls">

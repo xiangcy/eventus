@@ -1,15 +1,15 @@
 <% if current_user && !event.has_evaluation?(:votes, current_user) %><% else %><% end %>
-
-    <li class="searchevents">
-      <div class="media">
+<div class="searchEventsDiv">
+    <li class="searchevents ">
+      <div class="media eventListDiv media-list ui-widget-content">
         <div class="pull-left vote">
-          <%= link_to vote_event_path(event, type: "up"), method: "post" do %>
-            <%=image_tag ("http://png-2.findicons.com/files/icons/2338/reflection/128/arrow_up_1.png"), :class=>"bigicon"%>
-          <% end %>
-          <p><span class="color votenumber"><%=event.reputation_for(:votes).to_i %></span></p>
-          <%= link_to vote_event_path(event, type: "down"), method: "post" do %>
-            <%=image_tag ("http://png-1.findicons.com/files/icons/2338/reflection/128/arrow_down_1.png"),:class=>"bigicon"%>
-          <% end %>
+	<%= link_to vote_event_path(event, type: "up"), method: "post" do %>
+	  <%=image_tag ("http://png-2.findicons.com/files/icons/2338/reflection/128/arrow_up_1.png"), :class=>"bigicon"%>
+	<% end %>
+	<p><span class="color votenumber"><%=event.reputation_for(:votes).to_i %></span></p>
+	<%= link_to vote_event_path(event, type: "down"), method: "post" do %>
+	  <%=image_tag ("http://png-1.findicons.com/files/icons/2338/reflection/128/arrow_down_1.png"),:class=>"bigicon"%>
+	<% end %>
         </div>
         <div class="pull-left image">
         <%= image_tag(event.event_image_url || "default_avatar.png" ,:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
@@ -20,9 +20,11 @@
         <p><i class="icon-map-marker"></i><%= event.place %></p><br>
         <p><%= event.content[0..200]+"..." %></p>
         </div>
+	<div class="offset11"><%=image_tag ("http://findicons.com/files/icons/2162/minimal_perception/32/gtk_close.png"), :class=>" bigicon closeIcon"%></div> 
       </div>
       <hr class="line">
     </li>
+  </div>
  
 
   
