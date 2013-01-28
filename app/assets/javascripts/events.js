@@ -12,19 +12,7 @@ var scopes = 'https://www.googleapis.com/auth/calendar';
 
 
 $(document).ready(function () {
-  
-      $( "#sortable" ).sortable({
-	revert: true
-      });
-      
-      $( ".searchEventsDiv" ).draggable({
-	  containment:parent,
-	  connectToSortable: "#sortable",
-	  revert: "invalid"
-	});
-      
-
-  
+     
       $(".closeIcon").click(function(){
 	$(this).parent().parent().parent().toggleClass("hiddenByUser");
 	$(this).parent().parent().parent().hide("blind");
@@ -85,6 +73,8 @@ $(document).ready(function () {
     }
 
     if (locationShown != "") {
+            console.log(addressCity);
+
         initializeMap(locationShown);
     } else if (addressCity!= undefined) {
       console.log(addressCity);
