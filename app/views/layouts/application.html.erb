@@ -78,7 +78,7 @@
                 <p class="navbar-text pull-right">Welcome, <%= current_user.name%></p>
                     <!--notification area-->
                 <div class="pull-right notification dropdown">
-                  <%= link_to image_tag("message-new.png"), {:controller => "notifications", :action => "index"} , :remote => true, :data=>{:toggle=>"dropdown"}, :class=>"dropdown-toggle",:id=>"dLabel" %>
+                  <%= link_to image_tag("message-new.png"), {:controller => "notifications", :action => "index"} , :remote => true,:class=>"dropdown-toggle",:id=>"dLabel" %>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="notification"></ul>
                   <div id="noticount"><span class="noti"><%= current_user.notifications.count %></span></div>
                 </div>
