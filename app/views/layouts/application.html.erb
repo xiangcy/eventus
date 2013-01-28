@@ -18,14 +18,16 @@
       });
       
       function dom_notify(){
-        var orig = $('div#noticount').text();
+        var orig = $(".noti").text();
         var orign = parseInt(orig) +1;
-        $('div#noticount').text(orign);
-        
-        
-        
+        $(".noti").text(orign);
+        if($("#noticount").is(":visible")){}
+        else{
+          $("#noticount").show();
+        }
         $('#notify').text('Hey, you have a new massage!');
         $('#notify').fadeIn();
+        
         setTimeout(function() {
           $('#notify').fadeOut
             ();
@@ -76,6 +78,10 @@
               </ul>
               <% if signed_in? %>
                 <%= link_to "Sign Out", signout_path, class: "navbar-text pull-right", method: "delete" %>
+                <div class="pull-right notification">
+                  <%= link_to image_tag("message-new.png"), {:controller => "notifications", :action => "index"} , :remote => true %>
+                  <div id="noticount"><span class="noti"><%= current_user.notifications.count %></span></div>
+                </div>
                 <p class="navbar-text pull-right">Welcome, <%= current_user.name%></p>
               <% else %>
                 <%= link_to "Register", signup_path, class: "navbar-text pull-right" %>

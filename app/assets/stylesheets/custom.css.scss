@@ -99,4 +99,30 @@ p{
 .fingerpaint{
     font-family: Finger Paint, cursive;
 }
+.notification{
+    height: 40px;
+    width: 40px;
+    position: relative;
+    &:hover{background-color: #a5360f;}
+    img{
+        margin: 8px;
+    }
+    #noticount{
+        background-color: #121ADF;
+        width: 15px;
+        height: 15px;
+        -webkit-border-radius: 5px;
+        position: absolute;
+        left:23px;
+        top: 4px;
+        .noti{
+            font-size: 10px;
+            color: white;
+            position: absolute;
+            font-weight: bold;
+            left: 3px;
+            top: -2px;
+        }
+    }
+}
 
