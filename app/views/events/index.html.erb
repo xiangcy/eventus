@@ -1,18 +1,16 @@
 <% provide(:title, 'Search Results') %>
 <div class="row-fluid">
-<div class="span8 offset2">
+<div class="span8 offset1">
   <div class="head">
     <div>
-    <h2>Search results</h2>
-    <a style="float:right"><i class="icon-refresh"></i></a>
+    <h2>Search results<i style="float:right" class="icon-refresh"></i></h2>
     </div>
     
   </div>
   <div id="events" >
-    <ul class='media-list' id="sortable">
+    <ul class='media-list'>
       <%= render @events %>
     </ul>
-    <div><%=image_tag "loading.gif", :class => 'loading none'%></div>
   </div>
 <%= will_paginate @events %>
 </div>
