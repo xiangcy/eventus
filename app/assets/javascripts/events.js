@@ -27,6 +27,8 @@ $(function () {
 $(document).ready(function () {
 
 
+    $("#locAlert").hide();
+
     $("#timepicker1").change(function () {
         updateTime();
     });
@@ -43,19 +45,21 @@ $(document).ready(function () {
     var locationShown = $("#locationShown").text();
     var location = $("locationInput").text();
 
+    if ($("h1").text()=="Edit my event"){
+      timeFromDatabase();
+    }
+
     if (locationShown != "") {
         initializeMap(locationShown);
-        //timeToPage();
-    } else if (addressCity != "") {
-
-
+    } else if (addressCity.length != 0) {
         initializeMap(address + " " + addressCity);
     }
 
     $(".s, .e").change(function () {
 
-        timeToDatabase();
-    });
+	  timeToDatabase();
+      });
+
 
     $('#citySelect').change(function () {
         addressCity = $(this).val();
@@ -95,7 +99,57 @@ $(document).ready(function () {
 
 
 function timeFromDatabase() {
-
+  
+   var endDate = $("#endDateTime").val().split(" ")[0];
+   var endTime = $("#endDateTime").val().split(" ")[1];
+   var startDate = $("#startDateTime").val().split(" ")[0];
+   var startTime = $("#startDateTime").val().split(" ")[1];
+   
+   var startDateShown = startDate.split("-")[1]+"/"+startDate.split("-")[2]+"/"+startDate.split("-")[0];
+   var endDateShown = endDate.split("-")[1]+"/"+endDate.split("-")[2]+"/"+endDate.split("-")[0];
+   
+   if (startTime.split(":")[0]>=12){
+     var time1 = parseInt(startTime.split(":")[0])-12;
+     if (time1<10){
+       var time2 = "0"+time1;
+     }
+     $('.startHour').val(time2);
+     $('.startAP').val("PM");
+   }
+   else{
+     if (startTime.split(":")[0]==00){
+       $('.startHour').val("12");
+     }
+     else{
+      $('.startHour').val(startTime.split(":")[0]);
+      }
+     $('.startAP').val("AM");
+   }
+   
+   if (endTime.split(":")[0]>=12){
+     var time1 = parseInt(endTime.split(":")[0])-12;
+     if (time1<10){
+       var time2 = "0"+time1;
+     }
+     $('.endHour').val(time2);
+     
+     $('.endAP').val("PM");
+   }
+   else{
+     if (endTime.split(":")[0]==00){
+       $('.endHour').val("12");
+     }
+     else{
+      $('.endHour').val(endTime.split(":")[0]);
+      }
+     $('.endAP').val("AM");
+   }
+   
+   $('.startDate').val(startDateShown);
+   $('.startMin').val(startTime.split(":")[1]);
+   
+   $('.endDate').val(endDateShown);
+   $('.endMin').val(endTime.split(":")[1]);
 }
 
 function generateAddress() {
@@ -141,10 +195,6 @@ function timeToDatabase() {
     if (endAP == "AM" && endHourString == 12) {
         endHourString = 0;
     }
-
-
-
-    console.log(startDateString);
     var startTimeToDatabase = startDateString.split("/")[2] + "-" + startDateString.split("/")[0] + "-" + startDateString.split("/")[1] +
         " " + startHourString + ":" + startMinString;
     var endTimeToDatabase = endDateString.split("/")[2] + "-" + endDateString.split("/")[0] + "-" + endDateString.split("/")[1] +
@@ -245,7 +295,7 @@ function codeAddress(address) {
                 marker = null;
             }
             if (results.length > 1) {
-
+		$("#locAlert").fadeIn('slow');
                 letUserChoose(results);
 
             } else {
@@ -283,6 +333,7 @@ function letUserChoose(results) {
                     markerArray[i].setMap(null);
                 } else {
                     marker = markerArray[i];
+		    $("#locAlert").fadeOut('slow');
                 }
             }
             markerArray.length = 0;
@@ -458,21 +509,29 @@ function addMarker(location, mapZoom) {
 
         var startTimeString = $("#startTimeShown").text();
         var endTimeString = $("#endTimeShown").text();
+	
+	console.log(startTimeString);
+	console.log(endTimeString);
+	
 
-        var startTime = startTimeString.split(",")[0].split(" ")[1];
-        var startDateArray = startTimeString.split(",")[1].split("/");
+        var startTime = startTimeString.split(",")[0];
+        var startDateArray = startTimeString.split(" ")[1].split("/");
 
-        var endTime = endTimeString.split(",")[0].split(" ")[1];
-        var endDateArray = endTimeString.split(",")[1].split("/");
-
-        var startDateTime = startDateArray[2] + "-" + startDateArray[0].slice(1) + "-" + startDateArray[1] + "T" + startTime + ":00.000-07:00";
-        var endDateTime = endDateArray[2] + "-" + endDateArray[0].slice(1) + "-" + endDateArray[1] + "T" + endTime + ":00.000-07:00";
+        var endTime = endTimeString.split(",")[0];
+        var endDateArray = endTimeString.split(" ")[1].split("/");
+	console.log(startDateArray);
+	console.log(endDateArray);
+        var startDateTime = startDateArray[2] + "-" + startDateArray[0] + "-" + startDateArray[1] + "T" + startTime + ":00.000-00:00";
+        var endDateTime = endDateArray[2] + "-" + endDateArray[0] + "-" + endDateArray[1] + "T" + endTime + ":00.000-00:00";
 
         var eventLocation = $("#locationShown").text();
         var summary = $("#summary").text();
         var description = $("#descriptionShown").text();
 
         var summary = $("#titleShown").text();
+	
+	console.log(startDateTime);
+	console.log(endDateTime);
 
         var request = gapi.client.calendar.events.insert({
 

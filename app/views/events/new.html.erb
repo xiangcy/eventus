@@ -1,10 +1,5 @@
 <% provide(:title, 'Post Event') %>
 
-<script src="https://apis.google.com/js/client.js?onload=onLoadCallBack&async=2"></script>
-
-
-
-</script>
 
 <div class='row-fluid'>	
   <div class="span10 offset1 well signup">                                                          
@@ -26,7 +21,7 @@
 			  <div class="span12 left">
 			    <div class = "span3">
 			    <select class="span12 s startHour">
-			<option>HH</option><option>01</option>
+			<option>01</option>
 			<option>02</option><option>03</option><option>04</option>
 			<option>05</option><option>06</option><option>07</option>
 			<option>08</option><option>09</option>
@@ -36,7 +31,7 @@
 			    </div>
 			  <div class = "span3">
 			    <select class = "span12 s startMin">
-			      <option>MM</option>
+			      
 			      <option>00</option>
 			      <option>15</option>
 			      <option>30</option>
@@ -65,7 +60,7 @@
 			  <div class="span12 left">
 			    <div class = "span3">
 			    <select class="span12 endHour e">
-			<option>HH</option><option>01</option>
+			<option>01</option>
 			<option>02</option><option>03</option><option>04</option>
 			<option>05</option><option>06</option><option>07</option>
 			<option>08</option><option>09</option>
@@ -75,7 +70,7 @@
 			    </div>
 			  <div class = "span3">
 			    <select class = "span12 endMin e">
-			      <option>MM</option>
+			      
 			      <option>00</option>
 			      <option>15</option>
 			      <option>30</option>
@@ -107,11 +102,15 @@
 				  </div>
 				</div>
 			    </div>
-			       <div class="input-prepend input-append offset5">
+			    <div>
+			       <div class="input-prepend input-append span2">
 				<a><span class="add-on" id="locGen" title="generate addresss from pin"><i class ="icon-arrow-up"></i></span></a>
 				<a><span class="add-on" id="pinGen" title="pin event address on map"><i class ="icon-arrow-down"></i></span></a>
-			      </div>
-
+				</div>
+				<div class="span10 alert alert-info" id="locAlert">
+				    Multiple locations found. Choose by clicking on a marker.
+				</div>
+			    </div>
 			  </div>
 
 			  

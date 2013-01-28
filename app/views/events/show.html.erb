@@ -35,7 +35,7 @@
           </p><br>
           <div class = "form-inline">
             <i class="icon-time"></i>
-	    <p><b>From: </b><%= @event.time.strftime('%H:%M, %m/%d/%Y') %>&nbsp<b>To: </b><%= @event.endtime.strftime('%H:%M, %m/%d/%Y') %></p>
+	    <p><b>From: </b><%= @event.time.strftime('%a, %b %d, %Y %H:%M') %>&nbsp<b>To: </b><%= @event.endtime.strftime('%a, %b %d, %Y %H:%M ') %></p>
           </div>
           <p id="locationShown"><i class="icon-map-marker"></i><%= @event.place+", "+@event.city %></p><br>
 	  <a href="#" id="addCal"  data-placement="bottom" title="add events to google calendar"><i class="icon-calendar"></i><p>Add to Google Calendar! (Please allow pop up)</p></a><br>
@@ -132,3 +132,5 @@
     </div>
   </div>
 </div>
+<div class="resultsHidden"><p id="startTimeShown"><%= @event.time.strftime('%H:%M, %m/%d/%Y') %></p><b>To: </b><p id="endTimeShown"><%= @event.endtime.strftime('%H:%M, %m/%d/%Y') %></p></div>
+
