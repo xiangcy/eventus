@@ -21,5 +21,5 @@
     <p>Hey, the event, <%= link_to Event.find(notification.sender_id).title, Event.find(notification.sender_id)%> was updated!</p>
   <% end %>
 <% elsif notification.kind == 'destroy' %>
-    <p>Hey, the event, <%= notification.seen %> was cancelled! %></p>
+    <p>Hey, a event was cancelled, go to your <%= link_to "Profile page", current_user %> to check! </p>
 <% end %>

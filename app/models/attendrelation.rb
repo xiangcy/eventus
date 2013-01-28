@@ -1,5 +1,5 @@
 class Attendrelation < ActiveRecord::Base
-  attr_accessible :event_id, :participant_id
+  attr_accessible :event_id, :participant_id, :event_title
   
   belongs_to :participant, class_name: "User"
   belongs_to :event, class_name: "Event"
