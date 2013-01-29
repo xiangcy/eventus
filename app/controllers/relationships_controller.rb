@@ -4,13 +4,19 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:relationship][:liked_id])
     current_user.like!(@user)
-    redirect_to @user
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end
   end
   
   def destroy
     @user = Relationship.find(params[:id]).liked
     current_user.unlike!(@user)
-    redirect_to @user
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end
   end
   
 end

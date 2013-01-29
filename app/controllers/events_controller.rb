@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(params[:event])
     if @event.save
       flash[:success] = "Event created!"
-      redirect_to current_user
+      redirect_to @event
     else
       render 'new'
     end
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
       flash[:success] = "Event Updated"
-      redirect_to current_user
+      redirect_to @event
     else
       render 'edit'
     end
