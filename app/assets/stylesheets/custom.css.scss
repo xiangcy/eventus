@@ -4,11 +4,17 @@ body{
     background-color:#eee1ba;
     //background-image: url("orang082.jpg");
     color: #1f5944;
-    font-family:'Libre Baskerville', sanserif;
+    font-family: 'Amaranth', sans-serif;
 }
 p{
     word-wrap: break-word !important;
 }
+.wendyone{font-family: 'Wendy One', sans-serif;}
+.monda{font-family: 'Monda', sans-serif;}
+.russoone{font-family: 'Russo One', sans-serif;}
+.amaranth{font-family: 'Amaranth', sans-serif;}
+.quantico{font-family: 'Quantico', sans-serif;}
+
 .well{
     background-color: #F2EDD0;
 }
@@ -28,12 +34,8 @@ p{
     left: 20px;
 }
 .searchbar{
-    //padding-top: 10px;
     .search{
         background-color:  #F2EDD0;
-       // background: -webkit-linear-gradient(top, #e4683e 0%,#d74d1e 50%,#e4683e 100%);
-        //background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,#19408D), color-stop(50%,#356DDB), color-stop(80%,#19408D));
-        //background:-webkit-linear-gradient(top, rgba(90,137,230,1) 0%,rgba(43,92,189,1) 44%,rgba(25,64,141,1) 100%);
         padding: 20px;
         text-align: center;
         color: #1f5944;
@@ -100,7 +102,7 @@ p{
 }
 .color{
     color: #1533ad;
-    font-family: 'Kavoon', cursive;
+    font-family: 'Wendy One', sans-serif;
     font-size: 30px !important;
 }
 .fingerpaint{
