@@ -1,6 +1,6 @@
 <li class="span2" id="user-<%= user.id%>">
 	      <div class="thumbnail" >
-		<%=image_tag(user.image_url || "default_profile.jpg") %><br>
-		<p><%= link_to user.name, user %></p>  
+		<%=image_tag(user.image_url || "default_profile.jpg") %>
+		<%= link_to user.name, user %>
 	      </div>
 	    </li>

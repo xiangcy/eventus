@@ -17,11 +17,7 @@ $(document).ready(function () {
 	$(this).parent().parent().parent().toggleClass("hiddenByUser");
 	$(this).parent().parent().parent().hide();
       })
-      
-      
-      
       $(".refresh").click(function(){
-	
 	$(".hiddenByUser").show("drop", {direction:"left"}, 500, function(){
 	    $(this).toggleClass("hiddenByUser");
 	  });
