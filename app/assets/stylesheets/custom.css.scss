@@ -1,10 +1,13 @@
 $color: #d44413;
 body{
     min-width:1121px;
-    background-color:#eee1ba;
+    background-color:#FAFAFA;
     //background-image: url("orang082.jpg");
-    color: #1f5944;
-    font-family: 'Amaranth', sans-serif;
+    color: #1F1F1F;
+    font-family: 'Lato', sans-serif;
+}
+input, button{
+    font-family: 'Lato', sans-serif;
 }
 p{
     word-wrap: break-word !important;
@@ -18,8 +21,10 @@ p{
 .well{
     background-color: #F2EDD0;
 }
-.navbar .brand{
+.navbar{
+.brand{
     padding:0px;
+}
 }
 .brand img{
     height: 30px;
@@ -92,7 +97,9 @@ p{
     }
 }
 .line{
-    margin:5px 10px 10px 10px;  
+    margin:5px 10px 10px 10px;
+    border-top-color: #050505;
+    border-bottom-color: #000000;
 }
 .votecolor{
     font-family: 'Snowburst One', cursive;
@@ -101,8 +108,9 @@ p{
     font-size: 20px;
 }
 .color{
-    color: #1533ad;
-    font-family: 'Wendy One', sans-serif;
+    color: #28384D;
+    font-family: 'Amaranth', sans-serif;
+    font-weight: 700;
     font-size: 30px !important;
 }
 .fingerpaint{
@@ -146,4 +154,18 @@ p{
 
   border: #d44413, solid, 2px !important;
 
+}
+.itemtab{
+    border-radius: 20px;
+    margin:5px 0px;
+    min-height: 250px;
+    background: -webkit-linear-gradient(top, #d44413 0px, #F49A1A 40px, #ffffff 45px);
+    .thumbnails li{
+        margin-left: 0px !important;
+        margin-right: 15px;
+    }
+    h4{
+        color: #ffffff;
+        margin-left: 10px;
+    }
 }

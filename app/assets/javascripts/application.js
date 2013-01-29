@@ -29,7 +29,7 @@ $(function(){
     if($(".pagination").length != undefined){
         $(window).scroll(function(){
             var $url=$(".pagination .next_page a").attr("href");
-            if ($url != undefined && $(window).scrollTop()>$(document).height()-$(window).height()-50){
+            if ($url != undefined && $(window).scrollTop()>$(document).height()-$(window).height()-80){
                 $(".pagination").text("fetching more events...");
                 $.getScript($url);
             }
