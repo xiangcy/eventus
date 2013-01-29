@@ -1,6 +1,25 @@
-$(".searchevents:last").append("<%=j render(@events)%>");
+$(".searchEventsDiv:last").after("<%=j render(@events)%>");
 <% if @events.next_page %>
     $(".pagination").replaceWith("<%= j will_paginate(@events) %>");
 <%else %>
     $(".pagination").remove();
 <%end%>
+$(".closeIcon").click(function(){
+	$(this).parent().parent().parent().toggleClass("hiddenByUser");
+	$(this).parent().parent().parent().hide();
+      })
+  
+
+      
+      $(".searchevents").mouseover(function(){
+	
+	$(this).find(".closeIcon").css("visibility","visible");
+	$(this).find(".closeIcon").css("border","10px");
+
+      });
+      
+      $(".searchevents").mouseleave(function(){
+	
+	$(this).find(".closeIcon").css("visibility","hidden");
+
+      });

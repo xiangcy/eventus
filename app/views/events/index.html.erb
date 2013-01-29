@@ -1,28 +1,40 @@
 <% provide(:title, 'Search Results') %>
 <div class="row-fluid">
-<div class="span8 offset1">
-  <div class="head">
-    <div>
-    <h2>Search results<i style="float:right" class="icon-refresh"></i></h2>
+  <div class="span8 offset1">
+    <div class="head">
+      <h2 style="color: whitesmoke">Search results</h2>
+      <%=image_tag("http://png-4.findicons.com/files/icons/1681/siena/32/refresh.png", :class=>"refresh")%>
     </div>
-    
+    <div id="events" >
+      <ul class='media-list'>
+        <%= render @events %>
+      </ul>
+    </div>
+    <%= will_paginate @events %>
   </div>
-  <div id="events" >
-    <ul class='media-list'>
-      <%= render @events %>
-    </ul>
+  <div class="span3 popularhost">
+    <div class="head">
+      <h4 style="color: whitesmoke">Popular Hosts</h4>
+    </div>
+    <div class="hostcontent">
+      <ul class="hosts">
+      <% @goodpeople.each do |user| %>
+      <li class="user thumbnails">
+        <div class="thumbnail span2"><%=image_tag(user.image_url ||"default_profile.jpg") %></div>
+        <div class="span8">
+          <%=link_to user.name, user, :class=>"username" %><br>
+          <p>Liked by <span class="color"><%=user.likers.count %></span>
+          <%if user.likers.count==1%>
+            user
+          <%else%>
+            users
+          <%end%>
+          </p>
+        </div>
+      </li>
+      <hr class="line">
+      <%end%>
+      </ul>
+    </div>
   </div>
-<%= will_paginate @events %>
-
-
-<% @goodpeople.each do |user| %>
-<%= user.likers.count %>
-<%= user.image %>
-
-<%end%>
 </div>
-</div>
-
-
-  
-

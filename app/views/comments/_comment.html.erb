@@ -1,0 +1,8 @@
+<li class="comment">
+	  
+	    <div class="commenthead">
+	      <p><b><%= link_to comment.user.name, comment.user %></b> wrote<span style="float: right; margin-right:8px"><%= time_ago_in_words(comment.created_at) %> ago</span></p>
+	    </div>
+	    <div class="commentbody"><p><%= comment.body %></p></div>
+	    </li>
+	    <hr class="line">
