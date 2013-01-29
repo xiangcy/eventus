@@ -7,17 +7,21 @@ $(".searchEventsDiv:last").after("<%=j render(@events)%>");
 $(".closeIcon").click(function(){
 	$(this).parent().parent().parent().toggleClass("hiddenByUser");
 	$(this).parent().parent().parent().hide();
-      })
-      
-      $(".searchevents").mouseover(function(){
+})
+$(".refresh").click(function(){
+    $(".hiddenByUser").show("drop", {direction:"left"}, 500, function(){
+	$(this).toggleClass("hiddenByUser");
+	});
+});
+$(".searchevents").mouseover(function(){
 	
-	$(this).find(".closeIcon").css("visibility","visible");
-	$(this).find(".closeIcon").css("border","10px");
+    $(this).find(".closeIcon").css("visibility","visible");
+    $(this).find(".closeIcon").css("border","10px");
 
-      });
+});
       
-      $(".searchevents").mouseleave(function(){
+$(".searchevents").mouseleave(function(){
 	
-	$(this).find(".closeIcon").css("visibility","hidden");
+    $(this).find(".closeIcon").css("visibility","hidden");
 
-      });
+});

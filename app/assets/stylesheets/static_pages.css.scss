@@ -1,6 +1,7 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/*home page*/
 .page{
     min-height: 500px !important;
     .home1{  
@@ -33,5 +34,13 @@
     }
     a{
         margin-top: -20px;
+    }
+}
+/*about page*/
+.aboutItems{
+    margin-bottom: 20px;
+    border:solid 1px #D9D7DB;
+    img{
+        margin: 10% 24%;
     }
 }

@@ -90,10 +90,6 @@ p{
             margin: 0 0 18px 0;
             }
         }
-        .field_with_errors {
-            @extend .control-group;
-            @extend .error;
-        }
     }
 }
 .line{
@@ -159,12 +155,12 @@ p{
     border-radius: 20px;
     margin:5px 0px;
     min-height: 250px;
-    background: -webkit-linear-gradient(top, #d44413 0px, #F49A1A 40px, #ffffff 45px);
+    background: -webkit-linear-gradient(top, #d44413 0px, #F49A1A 40px, #ffffff 50px);
     .thumbnails li{
         margin-left: 0px !important;
         margin-right: 15px;
     }
-    h4{
+    h1,h2,h3,h4{
         color: #ffffff;
         margin-left: 10px;
     }

@@ -29,7 +29,7 @@ $(function(){
     if($(".pagination").length != undefined){
         $(window).scroll(function(){
             var $url=$(".pagination .next_page a").attr("href");
-            if ($url != undefined && $(window).scrollTop()>$(document).height()-$(window).height()-80){
+            if ($url != undefined && $(window).scrollTop()>$(document).height()-$(window).height()-30){
                 $(".pagination").text("fetching more events...");
                 $.getScript($url);
             }
@@ -42,7 +42,10 @@ $(function(){
         var commentposition = $(document).height()-$(window).height();
         window.scrollTo(0, commentposition);
     })
-
+    $(".carousel").carousel({
+        interval: 3000
+    })
+    
     var x = $(".noti").text();
     if(parseInt(x)==0){
         $("#noticount").hide();
