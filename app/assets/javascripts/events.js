@@ -68,8 +68,12 @@ $(document).ready(function () {
     var address = $("#locationInput").val();
     var locationShown = $("#locationShown").text();
     var location = $("locationInput").text();
-
+    
     if ($("h1").text()=="Edit my event"){
+      timeFromDatabase();
+    }
+
+    if ($("#error_explanation").text()!="" && $("h1").text()=="Post my event"){
       timeFromDatabase();
     }
 
@@ -85,6 +89,18 @@ $(document).ready(function () {
 	  timeToDatabase();
       });
 
+    if ($('.resultsHidden').parent().hasClass('field_with_errors'))
+    {
+      $('.resultsHidden').parent().hide();
+      if ($('.field_with_errors').children().hasClass("startDateTime")){
+	$(".inputDateAndTime").addClass("field_with_errors");
+      }
+      if ($('.field_with_errors').children().hasClass("endDateTime")){
+	$(".inputDateAndTimeEnd").addClass("field_with_errors");
+      }
+    }
+
+    
 
     $('#citySelectEvent').change(function () {
         addressCity = $(this).val();
@@ -139,6 +155,8 @@ function showEventList(){
 
 function timeFromDatabase() {
   
+  if ( $("#endDateTime").val()!="" && $("#startDateTime").val()!=""){
+  console.log("importing");
    var endDate = $("#endDateTime").val().split(" ")[0];
    var endTime = $("#endDateTime").val().split(" ")[1];
    var startDate = $("#startDateTime").val().split(" ")[0];
@@ -189,6 +207,7 @@ function timeFromDatabase() {
    
    $('.endDate').val(endDateShown);
    $('.endMin').val(endTime.split(":")[1]);
+ }
 }
 
 function generateAddress() {
@@ -200,7 +219,8 @@ function generateAddress() {
                 map.setCenter(markerPos);
             }
         });
-    } else {
+    } 
+    else {
         alert("put a pin first...");
     }
 }
@@ -244,7 +264,7 @@ function timeToDatabase() {
     $("#endDateTime").val(endTimeToDatabase);
 
 
-
+  
 }
 
 
@@ -300,7 +320,7 @@ function geolocate() {
         navigator.geolocation.getCurrentPosition(function (position) {
             initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             map.setCenter(initialLocation);
-            addMarker(initialLocation);
+            addMarker(initialLocation, map.getZoom());
         }, function () {
             handleNoGeolocation(browserSupportFlag);
         });

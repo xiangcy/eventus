@@ -2,23 +2,23 @@
 
 
 <div class='row-fluid'>	
-  <div class="span10 offset1 well signup">                                                          
+  <div class="span10 offset1 well signup postEventBig">                                                          
     <h1>Edit my event</h1><br>
       <div class="span4">
 		<%= form_for @event, :html => {:multipart => true} do |f| %>
 		<%= render 'shared/error_messages', object: f.object %>
 		<!--start div-->
-		<div class="span12">
-		  <div class="span12 left">
+		<div class="span12 setupleft" >
+		  <div class="span12">
 			<div class="span9">
 			  <p class="eachItem">Start date:</p>
 			  <input type="text" id="datepicker1" class="s startDate">
 			</div>
 		  </div>
 
-		  <div class="span12 left">
+		  <div class="span12">
 			  <p class="eachItem">Start time:</p>
-			  <div class="span12 left">
+			  <div class="span12">
 			    <div class = "span3">
 			    <select class="span12 s startHour">
 			<option>01</option>
@@ -48,16 +48,16 @@
 			</div>
 		</div>
 		<!--end div-->
-		  <div class="span12 left">
+		  <div class="span12">
 			<div class="span9">
 			  <p class="eachItem">End date:</p>
 			  <input type="text" id="datepicker2" class="e endDate">
 			</div>
 		  </div>
 
-		  <div class="span12 left">
+		  <div class="span12">
 			  <p class="eachItem">End time:</p>
-			  <div class="span12 left">
+			  <div class="span12">
 			    <div class = "span3">
 			    <select class="span12 endHour e">
 			<option>01</option>
@@ -90,35 +90,38 @@
 			
 	      
 			
-			<div class="span12 left">
+			<div class="span12">
 			  <p class="control-label eachItem" for="City">City:</p>
 			  <%= f.select(:city, [['Boston','Boston'],['New York','New York']],{},:class=>"span12", :id=>"citySelectEvent")%>
 			  <p class="eachItem">Location:</p>
 			  <div class="control-group" title="Click on the marker icon to pin your current location on the map">
 				  <div class="controls">
 				  <div class="input-append" >
-					  <%= f.text_field :place, :class=>"span11", :id=>"locationInput"%>	
+					  <%= f.text_field :place, :class=>"span12", :id=>"locationInput"%>	
 					  <a><span class="add-on madeUpButton" id="geoLoc"><i class="icon-map-marker"></i></span></a>
 				  </div>
 				</div>
 			    </div>
 			    <div>
 			       <div class="input-prepend input-append span2">
+				
 				<a><span class="add-on" id="locGen" title="generate addresss from pin"><i class ="icon-arrow-up"></i>Generate address</span></a>
 				<a><span class="add-on" id="pinGen" title="pin event address on map"><i class ="icon-arrow-down"></i>Pin address</span></a><br>
 				</div>
-				<div class="span10 alert alert-info" id="locAlert">
+				<div class="span12 alert alert-info" id="locAlert">
 				    Multiple locations found. Choose by clicking on a marker.
 				</div>
 			    </div>
-			  </div>
+			    </div>
 
 			  
 						
 		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
 			 <div id="map_canvas"><br/><br/></div>
+			 
 			</div>
-
+		      
+		    
 		<!--MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP -->
 			    
 		</div><!--left ends-->
@@ -148,8 +151,8 @@
 			  <p class="eachItem">Describe your event:</p>
 			  <%= f.text_area :content,  :class=> "field span12" ,:width => "350px", :hight => "400px", placeholder: "Briefly introduce your event Here..."%>
 			</div>
-                        <br>
-                        <%= f.submit :class=> "offset6 btn btn-large btn-primary" %>
+			<br>
+			<%= f.submit :class=> "offset4 btn btn-large btn-primary" %>
 
 		</div><!--right ends-->
 		
@@ -158,6 +161,8 @@
 		  <br>
 		  <%= f.text_field :time, :value=> f.object.time, :id=>"startDateTime", :class=>"resultsHidden span3" %>
 		  <%= f.text_field :endtime, :value=> f.object.endtime, :id=>"endDateTime", :class=>"resultsHidden span3" %>
+
+		  
 		</div>
 		<%end%>
 

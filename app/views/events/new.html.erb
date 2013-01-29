@@ -2,13 +2,14 @@
 
 
 <div class='row-fluid'>	
-  <div class="span10 offset1 well signup">                                                          
+  <div class="span10 offset1 well signup postEventBig">                                                          
     <h1>Post my event</h1><br>
       <div class="span4">
 		<%= form_for @event, :html => {:multipart => true} do |f| %>
 		<%= render 'shared/error_messages', object: f.object %>
 		<!--start div-->
 		<div class="span12 setupleft" >
+		  <div class="inputDateAndTime span12">
 		  <div class="span12">
 			<div class="span9">
 			  <p class="eachItem">Start date:</p>
@@ -47,7 +48,9 @@
 			  </div>
 			</div>
 		</div>
+		</div>
 		<!--end div-->
+		<div class="inputDateAndTimeEnd span12">
 		  <div class="span12">
 			<div class="span9">
 			  <p class="eachItem">End date:</p>
@@ -84,8 +87,9 @@
 			    </select>
 			  
 			  </div>
-		</div>
+		      </div>
 
+		    </div>
 		</div>
 			
 	      
@@ -97,7 +101,7 @@
 			  <div class="control-group" title="Click on the marker icon to pin your current location on the map">
 				  <div class="controls">
 				  <div class="input-append" >
-					  <%= f.text_field :place, :class=>"span11", :id=>"locationInput"%>	
+					  <%= f.text_field :place, :class=>"span12", :id=>"locationInput"%>	
 					  <a><span class="add-on madeUpButton" id="geoLoc"><i class="icon-map-marker"></i></span></a>
 				  </div>
 				</div>
