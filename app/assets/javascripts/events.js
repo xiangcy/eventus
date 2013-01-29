@@ -77,7 +77,6 @@ $(document).ready(function () {
 
         initializeMap(locationShown);
     } else if (addressCity!= undefined) {
-      console.log(addressCity);
         initializeMap(address + " " + addressCity);
     }
 
@@ -109,7 +108,6 @@ $(document).ready(function () {
     $("#pinGen").click(function () {
         address = $("#locationInput").val();
         addressCity = $("#citySelectEvent").val();
-	console.log(address + " " + addressCity);
         codeAddress(address + " " + addressCity);
     })
 
@@ -275,7 +273,6 @@ function initializeMap(addInForm, inShowMode) {
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         if ($("#locationShown").text() === "") {
             google.maps.event.addListener(map, 'click', function (event) {
-
                 var mapZoom = map.getZoom();
                 setTimeout(function () {
                     addMarker(event.latLng, mapZoom);
@@ -327,7 +324,6 @@ function geolocate() {
 
 
 function codeAddress(address) {
-    console.log(address);
     geocoder.geocode({
         'address': address
     }, function (results, status) {
@@ -361,41 +357,42 @@ function letUserChoose(results) {
 
     for (oneResult in results) {
         mybounds.extend(results[oneResult].geometry.location);
-        markerArray[oneResult] = new google.maps.Marker({
+        var anotherMarker = new google.maps.Marker({
             map: map,
             position: results[oneResult].geometry.location,
         });
+	markerArray.push(anotherMarker);
     }
     map.fitBounds(mybounds);
     for (oneMarker in markerArray) {
+	google.maps.event.addListener(markerArray[oneMarker], 'click', function (clickedMarker) {
+		for (i in markerArray){
+		  markerArray[i].setMap(null);
+		}
+		marker = new google.maps.Marker({
+		  position: clickedMarker.latLng,
+		  map: map,
+                //title: titleName
+		});
+		markerArray.length = 0;
+		$("#locAlert").fadeOut('slow');
+		generateAddress();
 
-        google.maps.event.addListener(markerArray[oneMarker], 'click', function () {
-            for (i in markerArray) {
-                if (i != oneMarker) {
-                    markerArray[i].setMap(null);
-                } else {
-                    marker = markerArray[i];
-		    $("#locAlert").fadeOut('slow');
-                }
-            }
-            markerArray.length = 0;
-            generateAddress();
-            google.maps.event.addListener(map, 'click', function (event) {
-                var mapZoom = map.getZoom();
-                setTimeout(function () {
-                    addMarker(event.latLng, mapZoom);
-                }, 300);
-            });
+		google.maps.event.addListener(map, 'click', function (event) {
+		    var mapZoom = map.getZoom();
+		    setTimeout(function () {
+			addMarker(event.latLng, mapZoom);
+		    }, 300);
+		});
 
-        });
-    }
-
+	    });
+		
+	}
 }
 
 
 
-function addMarker(location, mapZoom) {
-
+function addMarker(location, mapZoom, callback) {
 
         if (mapZoom == map.getZoom()) {
             if (marker) {
@@ -418,6 +415,7 @@ function addMarker(location, mapZoom) {
             });
 
         }
+	callback;
 
     }
 
@@ -497,7 +495,6 @@ function addMarker(location, mapZoom) {
 
                 function (authResult) {
 
-                    console.log("111");
                     if (authResult) {
                         makeApiCall();
                     } else {
@@ -509,7 +506,6 @@ function addMarker(location, mapZoom) {
     }
 
     function makeApiCall() {
-        console.log("making api call...");
         gapi.client.setApiKey('AIzaSyApTRZxR9qAHBk8vBJDwELX3ExZs5eATIE');
         gapi.client.load('calendar', 'v3', function () {
             var existEventus = false;
@@ -526,7 +522,6 @@ function addMarker(location, mapZoom) {
                     }
                 }
                 if (!existEventus) {
-                    console.log("adding eventus...");
                     var addEventusCal = gapi.client.calendar.calendars.insert({
 
                         "resource": {
@@ -552,8 +547,6 @@ function addMarker(location, mapZoom) {
         var startTimeString = $("#startTimeShown").text();
         var endTimeString = $("#endTimeShown").text();
 	
-	console.log(startTimeString);
-	console.log(endTimeString);
 	
 
         var startTime = startTimeString.split(",")[0];
@@ -561,8 +554,6 @@ function addMarker(location, mapZoom) {
 
         var endTime = endTimeString.split(",")[0];
         var endDateArray = endTimeString.split(" ")[1].split("/");
-	console.log(startDateArray);
-	console.log(endDateArray);
         var startDateTime = startDateArray[2] + "-" + startDateArray[0] + "-" + startDateArray[1] + "T" + startTime + ":00.000-00:00";
         var endDateTime = endDateArray[2] + "-" + endDateArray[0] + "-" + endDateArray[1] + "T" + endTime + ":00.000-00:00";
 
@@ -572,9 +563,6 @@ function addMarker(location, mapZoom) {
 
         var summary = $("#titleShown").text();
 	
-	console.log(startDateTime);
-	console.log(endDateTime);
-
         var request = gapi.client.calendar.events.insert({
 
             'approval_prompt': 'force',
@@ -599,7 +587,6 @@ function addMarker(location, mapZoom) {
         });
 
         request.execute(function (anewEvent) {
-            console.log(anewEvent);
             if (anewEvent.kind == "calendar#event") {
 
                 showUpLindToCal(anewEvent.htmlLink);
