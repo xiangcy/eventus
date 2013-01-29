@@ -1,22 +1,5 @@
 <% provide(:title, @user.name) %>
-<!--People who like me
-<% @user.likers.each do |user| %>
-  <%= user.name %>
-<% end %>-->
-
-<!--People who I like
-<% @user.liked_users.each do |user| %>
-  <%= user.name %>
-<% end %>
--->
- 
 <% if current_user?(User.find(params[:id])) %><!--view self profile-->
-
-<!-- Here is the link to the host -->
-<% @hosts.each do |host| %>
-<% link_to host.name, host %>
-<% end %>
-
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span10 offset1 tabbable">
@@ -78,10 +61,9 @@
             <div class="likelist">
             <ul class="thumbnails"> 
             <% @user.likers.each do |user| %>
-              <li class="span3">
+              <li class="span2">
                 <div class="thumbnail">
                 <%=image_tag(user.image_url || "default_profile.jpg") %>
-                <br>
                 <%=link_to user.name, user %>
                 </div>
               </li>
@@ -96,10 +78,9 @@
             <div class="likelist">
             <ul class="thumbnails"> 
             <% @user.liked_users.each do |user| %>
-              <li class="span3">
+              <li class="span2">
                 <div class="thumbnail">
                 <%=image_tag(user.image_url || "default_profile.jpg") %>
-                <br>
                 <%=link_to user.name, user %>
                 </div>
               </li>
@@ -230,7 +211,7 @@
                 <h2><%= @user.name %></h2>
                 <p>
                   <span class="color" id="likers"><%= @user.likers.count%></span>
-                  <%if @user.likers.count==1%>user<%else%>users<%end%> like <%=@user.name %>.
+                  <%if @user.likers.count==1 %>user<%else%>users<%end%> like <%=@user.name %>.
                 </p>
                 <% unless current_user?(@user) %>
                 <div id="like_form">
@@ -272,10 +253,9 @@
             <div class="likelist">
             <ul class="thumbnails"> 
             <% @user.liked_users.each do |user| %>
-              <li class="span3">
+              <li class="span2">
                 <div class="thumbnail">
                 <%=image_tag(user.image_url || "default_profile.jpg") %>
-                <br>
                 <%=link_to user.name, user %>
                 </div>
               </li>
@@ -290,10 +270,9 @@
             <div class="likelist">
             <ul class="thumbnails"> 
             <% @user.likers.each do |user| %>
-              <li class="span3">
+              <li class="span2">
                 <div class="thumbnail">
                 <%=image_tag(user.image_url || "default_profile.jpg") %>
-                <br>
                 <%=link_to user.name, user %>
                 </div>
               </li>
