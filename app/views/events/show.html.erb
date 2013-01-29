@@ -72,7 +72,6 @@
 	    
 	    </div> 
 	  <!--media body ends-->
-      
       <div class="map">
 	<h4>Where</h4>
 	<hr class="line">
@@ -89,7 +88,7 @@
 	  </div>
 	<% end %>
       </div>
- 
+
 
       
       
@@ -111,7 +110,7 @@
           <% else %>
 	  <ul class="thumbnails attendlist">
 	    <% @event.participants.each do |user| %>
-	    <li class="span2">
+	    <li class="span2" id="user-<%= user.id%>">
 	      <div class="thumbnail">
 		<%=image_tag(user.image_url || "default_profile.jpg") %><br>
 		<p><%= link_to user.name, user %></p>  

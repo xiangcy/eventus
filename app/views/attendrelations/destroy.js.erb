@@ -1,2 +1,3 @@
 $("#attend_form").html("<%= escape_javascript(render('events/attend')) %>")
 $("#attenders").html("<%=@event.participants.count%>")
+$("#user-<%= current_user.id%>").remove()
