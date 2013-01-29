@@ -1,11 +1,15 @@
 <% provide(:title, 'Home') %>
 <div class="row-fluid">
   <div class="span10 offset1 page">
-    <div class="well home2" style="background-color: #d44413">
+    <div class="well home2" style="background-color: #d44413; color: #eeeeee">
       <%=image_tag("eventus2.png",:class=>"logo" )%><br>
-
-      <h4 class="word"><span class="quantico">Find and attend the most popular events in the city</span></h4>
-      <h4 class="word"><span class="quantico">Meet new people and make new friends</span></h4>
+      <ul id = "slidingItems" style="list-style-type: none">
+	<li><h4 class="word"><span class="russoone">Find and attend the most popular events in the city</span></h4></li>
+	<li><h4 class="work"><span class="russoone">Use Google Maps to look up and store location</span></h4></li>
+	<li><h4 class="work"><span class="russoone">Add events to your Google Calendar</span></h4></li>
+	<li><h4 class="work"><span class="russoone">Real time notifications</span></h4></li>
+	<li><h4 class="word"><span class="russoone">Meet new people and make new friends</span></h4></li>
+      </ul>
       <br>
     <% if signed_in? %>
 
@@ -14,7 +18,7 @@
       <a href="#signin" class="btn btn-info btn-large" data-toggle="modal">Sign in</a>
     <% end %>
   </div>
-    <h4>Hottest Events</h4> 
+    <h4 style="color: red; font-style: italic">Hottest Events</h4> 
     <div id="myCarousel" class="carousel slide well">
     <!-- Carousel items -->
         <div class="carousel-inner">
