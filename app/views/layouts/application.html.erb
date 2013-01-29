@@ -28,18 +28,6 @@
       }
       
       // Some useful debug msgs
-    pusher.connection.bind('connecting', function() {
-      $('div#status').text('Connecting to Pusher...');
-    });
-    pusher.connection.bind('connected', function() {
-      $('div#status').text('Connected to Pusher!');
-    });
-    pusher.connection.bind('failed', function() {
-      $('div#status').text('Connection to Pusher failed :(');
-    });
-    channel.bind('subscription_error', function(status) {
-      $('div#status').text('Pusher subscription_error');
-    });
     });
   </script>
 </head>
