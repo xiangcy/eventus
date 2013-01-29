@@ -36,7 +36,7 @@ def make_events
     n.times do |i|
       city = ['Boston', 'New York'].sample
       category = ['Music', 'Sports', 'Movies', 'Volunteer', 'Tour', 'Party'].sample
-      time =  (Date.tomorrow + rand(10..20).hour).to_datetime
+      time =  (Date.tomorrow + rand(0..20).day + rand(10..20).hour).to_datetime
       endtime = time + rand(1..3).hour
       case city
         when 'Boston'
