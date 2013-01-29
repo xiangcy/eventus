@@ -11,6 +11,12 @@
 -->
  
 <% if current_user?(User.find(params[:id])) %><!--view self profile-->
+
+<!-- Here is the link to the host -->
+<% @hosts.each do |host| %>
+<% link_to host.name, host %>
+<% end %>
+
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span10 offset1 tabbable">
@@ -36,7 +42,7 @@
               <li class="span4">
                 <h4><%= @user.name %></h2>
                 <p>
-                  <span class="color"><%= pluralize @user.likers.count, '' %></span>  people like your event.
+                  <span class="color"><%= pluralize @user.likers.count, 'user' %></span> like your event.
                 </p>
               </li>
               <li class="span5 cartoon">  
@@ -209,16 +215,16 @@
               <li class="span9">
                 <h2><%= @user.name %></h2>
                 <p>
-                  <span class="color"><%= pluralize @user.likers.count, '' %></span> people like <%=@user.name %>.
+                  <span class="color" id="likers"><%= pluralize @user.likers.count, 'user' %></span> like <%=@user.name %>.
                 </p>
                 <% unless current_user?(@user) %>
                 <div id="like_form">
                   <% if current_user.liking?(@user) %>
-                    <%= form_for(current_user.relationships.find_by_liked_id(@user),html: { method: :delete }) do |f| %>
+                    <%= form_for(current_user.relationships.find_by_liked_id(@user),html: { method: :delete }, remote: true) do |f| %>
                       <%= f.submit "Unlike", class: "btn btn-small" %>
                     <% end %> 
                   <% else %>
-                    <%= form_for(current_user.relationships.build(liked_id: @user.id)) do |f| %>
+                    <%= form_for(current_user.relationships.build(liked_id: @user.id), remote: true) do |f| %>
                     <div><%= f.hidden_field :liked_id %></div>
                     <p>If you like <%= @user.name %>'s events, click like!</p>
                     <%= f.submit "Like", class: "btn btn-small btn-primary" %>
