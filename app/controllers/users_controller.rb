@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @pastevents = @user.events.past.order('time DESC')
     @futureevents = @user.events.future.order('time DESC')
-    @hosts = @user.attended_events.map{ |event| event.user}
+    @hosts = @user.attended_events.map{ |event| event.user}.uniq
   end
   
   def new
