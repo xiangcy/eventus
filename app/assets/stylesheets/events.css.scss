@@ -152,6 +152,15 @@ a:hover{
 .eventprofile{
     margin-bottom: 10px;
     padding-top: 5px;
+    .detail{
+        margin-left: 0px !important;
+        .vote{
+            margin-top: 32px;
+            .color{
+                font-size: 25px;
+            }
+        }
+    }
     .media a{
         font-size: 14px;
         font-weight: normal;
@@ -160,6 +169,12 @@ a:hover{
     .iconbutton{
             margin:0px 10px;
         }
+    .attend{
+        padding-top: 10px !important;
+    }
+    .attendnumber{
+        padding: 20px 0px 10px 30px;
+    }
     h4{
         margin-left:10px;
     }
@@ -199,8 +214,9 @@ a:hover{
     }
 }
 #comment_body{
-    width: 60%;
+    width: 90%;
     height: 100px;
+    margin-left: 5%;
 }
 .bigicon{
     width: 30px;
@@ -208,8 +224,8 @@ a:hover{
 }
 .imageProfile{
     img{
-        width: 300px;
-        height: auto;
+        width: 160px;
+        height: 160px;
         margin-right: 10px;
     }
 }
@@ -251,12 +267,7 @@ a:hover{
 .eventShowItems{
   border-radius: 20px;
   margin:5px;
-}
-.eventShowTitle{
-  text-align:center;
-  margin-left: auto;
-  margin-right:auto;
-  border-radius:10px;
+  min-height: 250px;
 }
 
 .setupleft div{

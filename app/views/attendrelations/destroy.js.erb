@@ -1,2 +1,2 @@
 $("#attend_form").html("<%= escape_javascript(render('events/attend')) %>")
-$("#attenders").html("<%= pluralize @event.participants.count, 'user' %>")
+$("#attenders").html("<%=@event.participants.count%>")

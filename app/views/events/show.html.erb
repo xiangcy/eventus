@@ -1,30 +1,23 @@
 <% provide(:title, @event.title) %>
-  <div class="row-fluid">
-    <div class="span4 offset1">
-      <div class="span8 eventShowTitle"><h2 id = "titleShown" style="margin: 5px 0px;"><%= @event.title %></div></h2> 
-
-    
-    </div>
-    <div class="span12">
-    <div class="span3 offset1 ">
+<div class="row-fluid">
+  <div class="span10 offset1 eventprofile">
+    <h2><%= @event.title %></h2><hr class="line">
+    <div class="span4 detail">
       
-      <div class="row-fluid eventprofile">
 	<div class="media">
-	  <% if current_user?(@event.user) %>
-	  <% else %>
-	  <div class="pull-left vote" id="event-<%=@event.id%>">         
+          <% if current_user?(@event.user) %>
+	    <% else %>
+              <div class="pull-left vote" id="event-<%=@event.id%>">         
 	    <%= link_to vote_event_path(@event, type: "up"), method: "post", remote: true do %>
-	      <!--<i class="icon-arrow-up bigicon"></i>-->
-	      <%=image_tag ("http://png-2.findicons.com/files/icons/2338/reflection/128/arrow_up_1.png"), :class=>"bigicon"%>
+	      <%=image_tag ("http://png-4.findicons.com/files/icons/2652/gentleface/32/round_plus_icon.png"), :class=>"bigicon"%>
 	    <% end %>
 	    <p><span class="color votenumber"><%=@event.reputation_for(:votes).to_i %></span></p>
 	    <%= link_to vote_event_path(@event, type: "down"), method: "post", remote: true do %>
-	      <!--<i class="icon-arrow-down bigicon">--></i>
-	      <%=image_tag ("http://png-1.findicons.com/files/icons/2338/reflection/128/arrow_down_1.png"),:class=>"bigicon"%>
+	      <%=image_tag ("http://png-3.findicons.com/files/icons/2232/wireframe_mono/32/round_minus.png"),:class=>"bigicon"%>
 	    <% end %>
 	  </div>
-	  <% end %>
-	  <div class="pull-left imageProfile" style="padding-left: 10px;">
+        <% end %>
+          <div class="pull-left imageProfile">
 	  <%= image_tag(@event.event_image_url || "default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
 	  </div>
 	  <div class="media-body span12">
@@ -39,20 +32,22 @@
 	      <i class="icon-time"></i>
 	      <p><b>To: </b><%= @event.endtime.strftime('%a, %b %d, %Y %H:%M ') %></p><br>
 	      <i class="icon-map-marker"></i>
-	      <p id="locationShown">x<%= @event.place+", "+@event.city %></p><br>
+	      <p id="locationShown"><%= @event.place+", "+@event.city %></p><br>
 	      <i class="icon-calendar"></i>
 	      <p><a href="#" id="addCal"  data-placement="bottom" title="add events to google calendar">Add to Google Calendar! (Please allow pop up)</p></a><br>
-	      <a href="#" ><i class="icon-edit"></i>Send an email to host</a><br>
-	      <p><a class="writecomment"><i class="icon-comment"></i>Write a comment</a></p>
+	      <i class="icon-edit"></i><%=mail_to @event.user.email,"Send an email to host",:subject =>@event.title %>
+              <br>
+              <p><a class="writecomment"><i class="icon-comment"></i>Write a comment</a></p>
 	    </div>
 
 	    </div>
 	            </div>
 
         </div>
+        <div class="span12">
 	    <% if current_user?(@event.user) %>
 	    <% else %>
-	      <div class="span3" style="padding-top: 25px; text-align: center;">
+	      <div class="span3 attend" style="padding-top: 25px; text-align: center;">
 	      <!--button attend event-->
 	      <% unless current_user?(@event.user) %>
 	      <div id="attend_form">
@@ -68,11 +63,15 @@
 	      <% end %>
 	      </div>
 	      <% end %><!--button ends-->
-	      <p><span class="color" id="attenders" ><%= pluralize @event.participants.count, 'user' %></span> attend</p>
-	      </div><% end %>
-	    </div>
+              </div>
+              <div class="span9 attendnumber">
+	      <p><span class="color" id="attenders" ><%=@event.participants.count%></span>
+                <%if @event.participants.count==1 %>user<%else%>users<%end%> attend</p></div>
+        </div>
+              <% end %>
 	    
-	  </div><!--media body ends-->
+	    </div> 
+	  <!--media body ends-->
       
       <div class="map">
 	<h4>Where</h4>
@@ -90,40 +89,37 @@
 	  </div>
 	<% end %>
       </div>
+ 
 
       
       
-      <div class="span6 eventprofile">
+      <div class="span8">
 	
-        <div class="row-fluid ui-widget-content eventShowItems">
-	
+        <div class="ui-widget-content eventShowItems">
 	<h4>Description</h4>
 	<hr class="line">
-	<div id = "summary" class="eventcontent ">
+	<div id = "summary" class="eventcontent">
 	<p id = "descriptionShown"><%= @event.content%></p>
 	</div>
-      </div>
+        </div>
         <div class="row-fluid ui-widget-content eventShowItems">
 	<h4>Attending</h4>
 	<hr class="line">
-	<div>
+	<div class="attend">
+          <% if @event.participants.count == 0 %>
+            <p class="eventcontent">Nobody is attending this event.</p>
+          <% else %>
 	  <ul class="thumbnails attendlist">
 	    <% @event.participants.each do |user| %>
 	    <li class="span2">
 	      <div class="thumbnail">
-		<%=image_tag(user.image_url || "default_profile.jpg") %>
-		<br>
-		<p><% if @event.participants.count > 0 %> 
-		  <%= link_to user.name, user %>
-
-		</p>
-		  <% else %>
-		    <p>Nobody is attending this event.</p>
-		  <% end%>
+		<%=image_tag(user.image_url || "default_profile.jpg") %><br>
+		<p><%= link_to user.name, user %></p>  
 	      </div>
 	    </li>
 	    <% end %>
 	  </ul>
+          <% end%>
 	</div>
       </div>
         <!--comments-->
@@ -144,21 +140,17 @@
 	  <%end%>
 	    </ul>
 	  </div>
-	<div class="writecomments span12">
+	<div class="writecomments">
 	  <%= form_for(@new_comment, remote: true) do |f|%>
 	    <%=f.text_area :body, :placeholder => "Your comment goes here."%><br/><br/>
 	    <%=f.hidden_field :event_id, :value => @event.id %>
-	    <%=f.submit "Add comment", :class=>"btn btn-primary offset5"%>
+	    <%=f.submit "Add comment", :class=>"btn btn-primary offset9"%>
 	  <%end%>
 	</div>
       </div>
     </div>
-    <!--right begins-->
-    <div>
-          
-
-    </div>
-    </div>
   </div>
-  <div class="resultsHidden"><p id="startTimeShown"><%= @event.time.strftime('%H:%M, %m/%d/%Y') %></p><b>To: </b><p id="endTimeShown"><%= @event.endtime.strftime('%H:%M, %m/%d/%Y') %></p></div>
+  <div class="resultsHidden"><p id="startTimeShown"><%= @event.time.strftime('%H:%M, %m/%d/%Y') %></p><b>To: </b><p id="endTimeShown"><%= @event.endtime.strftime('%H:%M, %m/%d/%Y') %></p>
+  </div>
+</div>
 
