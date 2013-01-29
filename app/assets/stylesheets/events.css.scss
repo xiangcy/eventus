@@ -124,6 +124,10 @@ h5{
     }
     .image{
         margin-top: 22px;
+        img{
+            width: 96px;
+            width: 96px;
+        }
     }
     .closeIcon{
         position:absolute;
@@ -202,14 +206,6 @@ a:hover{
     width: 30px;
     height: 30px;
 }
-.image{
-    img{
-        width: 120px;
-        height: auto;
-        margin-right: 10px;
-    }
-}
-
 .imageProfile{
     img{
         width: 300px;

@@ -50,11 +50,7 @@ $(function(){
     $(".notification").click(function(){
         $(".noti").text("0");
         $("#noticount").hide();
-        if($(".notification").hasClass("open")){
-            $(".notification").removeClass("open");
-        }
-        else{
-           $(".notification").addClass("open"); 
-        }
+        $(".notification").toggleClass("open");
     })
+
  })
