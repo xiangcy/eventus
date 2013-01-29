@@ -135,7 +135,7 @@ h5{
 .eventListDiv:hover{
   background: -webkit-linear-gradient(top, #FFBB68 0%, #FF9900 56%, #FFBB68 100%);
   box-shadow:10px 10px 5px #888888;
-  border: 2px dashed #d44412;
+  border: 2px solid #d44412;
 }
 
 a:hover{
@@ -202,6 +202,21 @@ a:hover{
     width: 30px;
     height: 30px;
 }
+.image{
+    img{
+        width: 120px;
+        height: auto;
+        margin-right: 10px;
+    }
+}
+
+.imageProfile{
+    img{
+        width: 300px;
+        height: auto;
+        margin-right: 10px;
+    }
+}
 
 .media-body{
     padding-left: 0px !important;
@@ -224,6 +239,7 @@ a:hover{
         margin-left: 5px;
     }
 }
+
 .popularhost{
     position: fixed;
     top: 150px;
@@ -233,4 +249,16 @@ a:hover{
         font-family: 'Kavoon', cursive;
         font-size: 18px;
     }
+}
+
+
+.eventShowItems{
+  border-radius: 20px;
+  margin:5px;
+}
+.eventShowTitle{
+  text-align:center;
+  margin-left: auto;
+  margin-right:auto;
+  border-radius:10px;
 }

@@ -1,0 +1,5 @@
+<%= form_for(current_user.relationships.build(liked_id: @user.id), remote: true) do |f| %>
+                    <div><%= f.hidden_field :liked_id %></div>
+                    <p>If you like <%= @user.name %>'s events, click like!</p>
+                    <%= f.submit "Like", class: "btn btn-small btn-primary" %>
+                    <% end %>
