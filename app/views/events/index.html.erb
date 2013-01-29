@@ -13,6 +13,13 @@
     </ul>
   </div>
 <%= will_paginate @events %>
+
+
+<% @goodpeople.each do |user| %>
+<%= user.likers.count %>
+<%= user.image %>
+
+<%end%>
 </div>
 </div>
 

@@ -10,7 +10,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :gender, :hobby, :blog, :city, :image
+  attr_accessible :email, :name, :password, :password_confirmation, :gender, :hobby, :blog, :city, :image, :read
   has_secure_password
   has_many :events
   has_many :attendrelations, foreign_key: "participant_id", dependent: :destroy
@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
   has_many :notifications
   mount_uploader :image, ImageUploader
   #has_many :evaluations, class_name: "RSevaluation", as: :source
+  before_save :default_values
+  def default_values
+    self.read = 0 if self.read.nil?
+  end
   
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token

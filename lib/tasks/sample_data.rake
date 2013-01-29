@@ -79,8 +79,8 @@ end
 def make_attendrelations
   Event.all.each do |event|
     rand(6..15).times do |n|
-      a = rand(1..99) && !User.find(a).attending?(event)
-      if a!= event.user.id
+      a = rand(1..99) 
+      if a!= event.user.id && !User.find(a).attending?(event)
         User.find(a).attend!(event)
       end
     end

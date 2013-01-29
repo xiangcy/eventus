@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Kavoon' rel='stylesheet' type='text/css'>
   <script src="http://js.pusher.com/1.12/pusher.min.js"></script>
   <script>
@@ -13,22 +14,19 @@
       var channel = pusher.subscribe('private-'+<%= current_user ? current_user.id : 'null' %>);
       
       channel.bind('new_message', function(data){
-        dom_notify();             
+        dom_notify();
+        title_notify();
       });
       
       function dom_notify(){
-        var orig = $('div#noticount').text();
+        var orig = $(".noti").text();
         var orign = parseInt(orig) +1;
-        $('div#noticount').text(orign);
-        
-        
-        
-        $('#notify').text('Hey, you have a new massage!');
-        $('#notify').fadeIn();
-        setTimeout(function() {
-          $('#notify').fadeOut
-            ();
-          }, 2000);
+        $(".noti").text(orign);
+        $("#noticount").show();
+      }
+      
+      function title_notify(){
+        $.titleAlert('New message!');
       }
       
       // Some useful debug msgs
@@ -76,6 +74,12 @@
               <% if signed_in? %>
                 <%= link_to "Sign Out", signout_path, class: "navbar-text pull-right", method: "delete" %>
                 <p class="navbar-text pull-right">Welcome, <%= current_user.name%></p>
+                    <!--notification area-->
+                <div class="pull-right notification dropdown">
+                  <%= link_to image_tag("message-new.png"), {:controller => "notifications", :action => "index"} , :remote => true,:class=>"dropdown-toggle",:id=>"dLabel" %>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="notification"></ul>
+                  <div id="noticount"><span class="noti"><%= current_user.notifications.where('seen = ?', false).count %></span></div>
+                </div>
               <% else %>
                 <%= link_to "Register", signup_path, class: "navbar-text pull-right" %>
                 <a href="#signin" class="navbar-text pull-right" data-toggle="modal">Sign in</a>
@@ -129,20 +133,7 @@
         <% end %>
         <%= yield %>  
     </div>
-    
-    <!--notification area-->
-    <% if signed_in? %>
-      <div id='noticount'><%= current_user.notifications.count %> </div>
-      
-      <%= link_to "Show your notifications", {:controller => "notifications", :action => "index"} , :remote => true %>
-      
-    <% end %>
-    
     <div id='status'></div>
-    <div id='notification'></div>
-    <div id='notify'></div>
-    
-    
 <footer>
   <div class="footer container-fluid navbar-fixed-bottom">
     <p>Copyright &copy; 2013</p><br>

@@ -1,3 +1,4 @@
+<li>
 <% if notification.kind == 'like' %>
     <p>Hey, <%= link_to User.find(notification.sender_id).name, User.find(notification.sender_id) %> liked you.</p>
 <% elsif notification.kind == 'attend' %>
@@ -23,3 +24,4 @@
 <% elsif notification.kind == 'destroy' %>
     <p>Hey, a event was cancelled, go to your <%= link_to "Profile page", current_user %> to check! </p>
 <% end %>
+</li>
