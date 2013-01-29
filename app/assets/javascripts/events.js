@@ -18,6 +18,8 @@ $(document).ready(function () {
 	$(this).parent().parent().parent().hide();
       })
       
+      
+      
       $(".refresh").click(function(){
 	
 	$(".hiddenByUser").show("drop", {direction:"left"}, 500, function(){

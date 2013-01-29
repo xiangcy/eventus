@@ -12,13 +12,13 @@
 	<div class="media">
 	  <% if current_user?(@event.user) %>
 	  <% else %>
-	  <div class="pull-left vote">         
-	    <%= link_to vote_event_path(@event, type: "up"), method: "post" do %>
+	  <div class="pull-left vote" id="event-<%=@event.id%>">         
+	    <%= link_to vote_event_path(@event, type: "up"), method: "post", remote: true do %>
 	      <!--<i class="icon-arrow-up bigicon"></i>-->
 	      <%=image_tag ("http://png-2.findicons.com/files/icons/2338/reflection/128/arrow_up_1.png"), :class=>"bigicon"%>
 	    <% end %>
 	    <p><span class="color votenumber"><%=@event.reputation_for(:votes).to_i %></span></p>
-	    <%= link_to vote_event_path(@event, type: "down"), method: "post" do %>
+	    <%= link_to vote_event_path(@event, type: "down"), method: "post", remote: true do %>
 	      <!--<i class="icon-arrow-down bigicon">--></i>
 	      <%=image_tag ("http://png-1.findicons.com/files/icons/2338/reflection/128/arrow_down_1.png"),:class=>"bigicon"%>
 	    <% end %>
@@ -55,20 +55,20 @@
 	      <div class="span3" style="padding-top: 25px; text-align: center;">
 	      <!--button attend event-->
 	      <% unless current_user?(@event.user) %>
-	      <div id="follow_form">
+	      <div id="attend_form">
 	      <% if current_user.attending?(@event) %>
-	      <%= form_for(current_user.attendrelations.find_by_event_id(@event),html: { method: :delete }) do |f| %>
+	      <%= form_for(current_user.attendrelations.find_by_event_id(@event),html: { method: :delete }, remote: true) do |f| %>
 		<%= f.submit "Unattend", class: "btn btn-large" %>
 		<% end %>
 	      <% else %>
-	      <%= form_for(current_user.attendrelations.build(event_id: @event.id)) do |f| %>
+	      <%= form_for(current_user.attendrelations.build(event_id: @event.id), remote:true) do |f| %>
 		<div><%= f.hidden_field :event_id %></div>
 		<%= f.submit "Attend", class: "btn btn-large btn-primary" %>
 		<% end %>
 	      <% end %>
 	      </div>
 	      <% end %><!--button ends-->
-	      <p><span class="color"><%= @event.participants.count %></span> people attend</p>
+	      <p><span class="color" id="attenders" ><%= pluralize @event.participants.count, 'user' %></span> attend</p>
 	      </div><% end %>
 	    </div>
 	    
@@ -115,10 +115,10 @@
 		<br>
 		<p><% if @event.participants.count > 0 %> 
 		  <%= link_to user.name, user %>
-		   <p>Nobody has liked this event so far.</p>
+
 		</p>
 		  <% else %>
-		 
+		    <p>Nobody is attending this event.</p>
 		  <% end%>
 	      </div>
 	    </li>
@@ -131,7 +131,7 @@
 	<h4>Comments</h4>
 	<hr class="line">
 	  <div class="comments">
-	    <ul class="commentlist">
+	    <ul class="commentlist" id="commentlist">
 	  <% @event.comment_threads.order('created_at DESC').each do |comment| %>
 	    <li class="comment">
 	  
@@ -145,7 +145,7 @@
 	    </ul>
 	  </div>
 	<div class="writecomments span12">
-	  <%= form_for(@new_comment) do |f|%>
+	  <%= form_for(@new_comment, remote: true) do |f|%>
 	    <%=f.text_area :body, :placeholder => "Your comment goes here."%><br/><br/>
 	    <%=f.hidden_field :event_id, :value => @event.id %>
 	    <%=f.submit "Add comment", :class=>"btn btn-primary offset5"%>

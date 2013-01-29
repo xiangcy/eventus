@@ -1,11 +1,12 @@
 <% provide(:title, "Edit user") %> 
-<h1>Update your profile</h1>
 
-<div class="row">
-  <div class="span6 offset3">
+
+<div class="row-fluid">
+  <div class="span8 offset2 well signup">
+  <h1>Update your profile</h1>
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-
+      <div class="span5">
       <%= f.label :name %>
       <%= f.text_field :name %>
 
@@ -17,21 +18,22 @@
 
       <%= f.label :password_confirmation, "Confirm Password" %>
       <%= f.password_field :password_confirmation %>
-      
+      </div>
+      <div class="span5 offset1">
       <%= f.label :city %>
       <%= f.select(:city, [['Not Public', ''],['Boston','Boston'],['New York','New York']],{},:class=>"span12")%>
             
       <%= f.label :gender %>
       <%= f.select(:gender, [['Not Public', ''],['Male','Male'],['Female','Female']],{},:class=>"span12")%>
                   
-      <%= f.label :hobby %>
+      <%= f.label :hobbies%>
       <%= f.text_field :hobby %>
                   
       <%= f.label :blog, "Blog Address" %>
       <%= f.text_field :blog %>
-      
-
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      </div>
+      <div class="span12"></div>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary offset7" %>
     <% end %>
 
     <!--<%= gravatar_for @user %>
