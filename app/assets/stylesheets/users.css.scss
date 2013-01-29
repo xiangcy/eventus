@@ -37,7 +37,10 @@
         }
         .thumbnail{
             text-align: center;
-            height: 150px;
+            height: 160px;
+            a{
+                font-size: 10px;
+            }
         }
     }
 /*nav-pills*/
@@ -60,6 +63,8 @@
         color: #ffffff;
     }
     .hostlist{
+        height: 200px;
+        overflow-y: scroll;
         width: 200px;
     }
 }
