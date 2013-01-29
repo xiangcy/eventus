@@ -1,3 +1,5 @@
 $("#like_form").html("<%= escape_javascript(render('users/unlike')) %>")
                     
 $("#likers").html('<%= @user.likers.count%>')
+
+$("#likelist li:last").after("<%= escape_javascript(render(current_user))%>")
