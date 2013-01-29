@@ -35,7 +35,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Don't forget to like the hosts of events you attend <span class="caret"></span></a>
                 <ul class="dropdown-menu hostlist" role="menu" aria-labelledby="dLabel">
                   <% @hosts.each do |host| %>
-                  <li><%=link_to host.name, host %></li><hr class="line">
+                  <li><%=link_to host.name, host %></li>
                   <% end %>
                 </ul>
                 </div>
