@@ -49,3 +49,37 @@
   font-weight: 400;
   src: local('Wendy One'), local('WendyOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/wendyone/v1/oRf9i5HKN7RZoSnys4E2uj8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/9k-RPmcnxYEPm8CNFsH2gg.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/wkfQbvfT_02e2IWO3yYueQ.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Copse';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Copse'), url(http://themes.googleusercontent.com/static/fonts/copse/v3/wpqdPiqIhpZbF5z3WfvSXg.woff) format('woff');
+}
+
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Nunito-Regular'), url(http://themes.googleusercontent.com/static/fonts/nunito/v4/0rdItLTcOd8TSMl72RUU5w.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Nunito-Bold'), url(http://themes.googleusercontent.com/static/fonts/nunito/v4/TttUCfJ272GBgSKaOaD7Kj8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}

@@ -1,3 +1,10 @@
 $("#attend_form").html("<%= escape_javascript(render('events/unattend')) %>")
 $("#attenders").html("<%=@event.participants.count%>")
-$(".attendlist li:last").after("<%= escape_javascript(render(current_user))%>")
+var x = <%=@event.participants.count%>-1;
+if(x==0){
+    $(".attend").html("<ul class='thumbnails attendlist'></ul>")
+    $(".attendlist").append("<%= escape_javascript(render(current_user))%>");
+}
+else{
+    $(".attendlist li:last").after("<%= escape_javascript(render(current_user))%>");
+}

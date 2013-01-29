@@ -7,7 +7,7 @@
 	<%= link_to vote_event_path(event, type: "up"), :method => "post", :remote => true do %>
 	  <%=image_tag ("http://png-4.findicons.com/files/icons/2652/gentleface/32/round_plus_icon.png"), :class=>"bigicon"%>
 	<% end %>
-	<p><span class="votecolor votenumber"><%=event.reputation_for(:votes).to_i %></span></p>
+	<p><span class="color votenumber"><%=event.reputation_for(:votes).to_i %></span></p>
 	<%= link_to vote_event_path(event, type: "down"), :method => "post", :remote => true do %>
 	  <%=image_tag ("http://png-3.findicons.com/files/icons/2232/wireframe_mono/32/round_minus.png"),:class=>"bigicon"%>
 	<% end %>

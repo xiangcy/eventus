@@ -1,4 +1,4 @@
-./jquery-cookies
+./events
 
 pause
 del "%0"
