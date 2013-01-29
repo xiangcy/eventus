@@ -1,6 +1,6 @@
 <% if current_user && !event.has_evaluation?(:votes, current_user) %><% else %><% end %>
 <div class="searchEventsDiv" id="event-<%=event.id%>">
-    <li class="searchevents">
+    <li class="searchevents ">
       <%= link_to event do %>
       <div class="media eventListDiv media-list">
         <div class="pull-left vote">
