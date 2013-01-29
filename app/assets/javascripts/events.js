@@ -88,11 +88,11 @@ $(document).ready(function () {
     if ($('.resultsHidden').parent().hasClass('field_with_errors'))
     {
       $('.resultsHidden').parent().hide();
-      if ($('.field_with_errors').children().hasClass("startDateTime")){
-	$(".inputDateAndTime").addClass("field_with_errors");
+      if ($('.field_with_errors').children().is("#startDateTime")){
+	$(".inputDateAndTime").find('input, select').addClass("field_with_errors");
       }
-      if ($('.field_with_errors').children().hasClass("endDateTime")){
-	$(".inputDateAndTimeEnd").addClass("field_with_errors");
+      if ($('.field_with_errors').children().is("#endDateTime")){
+	$(".inputDateAndTimeEnd").find('input, select').addClass("field_with_errors");
       }
     }
 
