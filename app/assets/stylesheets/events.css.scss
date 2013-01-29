@@ -81,13 +81,19 @@ h5{
     word-wrap: break-word;
 }
 .head{
-    h2{
-        color: #ffffff;
-    }
-    background-color: #d44413;
+    position: relative;
+    background:-webkit-linear-gradient(top, #d44413 0%, #ff670f 100%);
     border: #d3d3d3;
     padding: 0px 20px;
     -webkit-border-radius: 10px;
+    h2{
+        width: 300px;
+    }
+    img{
+        position: absolute;
+        right: 5%;
+        top:4px;
+    }
 }
 
 .closeIcon{
@@ -109,11 +115,25 @@ h5{
 
 
 .eventListDiv{
-  border-radius: 30px;	
+    height: 150px;
+    position: relative;
+    border-radius: 30px;
+    background: -webkit-linear-gradient(top, #FCF7CC 0%, #f1da36 69%, #EFE392 100%);
+    .vote{
+        margin-top: 22px;
+    }
+    .image{
+        margin-top: 22px;
+    }
+    .closeIcon{
+        position:absolute;
+        left: 93%;
+        top: 5px;
+    }
 }
 
 .eventListDiv:hover{
-  background-color : #ff9900;
+  background: -webkit-linear-gradient(top, #FFBB68 0%, #FF9900 56%, #FFBB68 100%);
   box-shadow:10px 10px 5px #888888;
   border: 2px dashed #d44412;
 }
@@ -182,15 +202,10 @@ a:hover{
     width: 30px;
     height: 30px;
 }
-.image{
-    img{
-        width: 120px;
-        height: auto;
-        margin-right: 10px;
-    }
-}
+
 .media-body{
     padding-left: 0px !important;
+    margin-top: 5px;
 }
 .votenumber{
     font-size: 30px;
@@ -207,5 +222,15 @@ a:hover{
     }
     .madeUpButton{
         margin-left: 5px;
+    }
+}
+.popularhost{
+    position: fixed;
+    top: 150px;
+    left: 73%;
+    .username{
+        color: #1533ad;
+        font-family: 'Kavoon', cursive;
+        font-size: 18px;
     }
 }

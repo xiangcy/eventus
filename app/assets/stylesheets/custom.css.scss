@@ -4,6 +4,7 @@ body{
     background-color:#eee1ba;
     //background-image: url("orang082.jpg");
     color: #1f5944;
+    font-family:'Libre Baskerville', serif;
 }
 p{
     word-wrap: break-word !important;
@@ -91,9 +92,15 @@ p{
 .line{
     margin:5px 10px 10px 10px;  
 }
+.votecolor{
+    font-family: 'Snowburst One', cursive;
+    font-weight: bold;
+    color: #1533ad;
+    font-size: 20px;
+}
 .color{
-    font-family: "Kavoon", cursive;
-    color: #d44413;
+    color: #1533ad;
+    font-family: 'Kavoon', cursive;
     font-size: 20px;
 }
 .fingerpaint{

@@ -15,11 +15,10 @@ $(document).ready(function () {
      
       $(".closeIcon").click(function(){
 	$(this).parent().parent().parent().toggleClass("hiddenByUser");
-	$(this).parent().parent().parent().hide("blind");
-	
+	$(this).parent().parent().parent().hide();
       })
       
-      $(".icon-refresh").click(function(){
+      $(".refresh").click(function(){
 	
 	$(".hiddenByUser").show("drop", {direction:"left"}, 500, function(){
 	    $(this).toggleClass("hiddenByUser");
