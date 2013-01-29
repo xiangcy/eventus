@@ -4,7 +4,7 @@ body{
     background-color:#eee1ba;
     //background-image: url("orang082.jpg");
     color: #1f5944;
-    font-family:'Libre Baskerville', serif;
+    font-family:'Libre Baskerville', sanserif;
 }
 p{
     word-wrap: break-word !important;
@@ -140,3 +140,8 @@ p{
     }
 }
 
+.userContent{
+
+  border: #d44413, solid, 2px !important;
+
+}

@@ -3,19 +3,19 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span10 offset1 tabbable">
-      <div class="span2 sidenav">
-      <ul class="nav nav-pills nav-stacked tabs">
-        <li><h4>Profile</h4></li>
+      <div class="span2 offset1 sidenav navRegion">
+      <ul class="nav nav-pills nav-stacked">
+        <li><h4 class="tabTitle">Profile</h4></li>
         <hr class="line">
         <li class="active"><a href="#pill1" data-toggle="pill">My Account</a>
         <li><a href="#pill6" data-toggle="pill">Edit</a></li>
-        <li><h4>Events</h4></li>
+        <li><h4 class="tabTitle">Events</h4></li>
         <hr class="line">
         <li><a href="#pill3" data-toggle="pill">Host</a></li>
         <li><a href="#pill4" data-toggle="pill">Attend</a></li>
       </ul>
       </div>
-      <div class="tab-content span10">
+      <div class="tab-content span8">
         <div class="tab-pane active" id="pill1">
           <div class="row-fluid">
             <ul class="thumbnails">
@@ -47,10 +47,10 @@
                 <tr><th></th><th></th></tr>
               </thead>
               <tbody>
-                <tr><td>Email Address</td><td class="content"><p><%= @user.email %></p></td></tr>                <tr><td>City</td><td class="content"><p><%= @user.city %></p></td></tr>
-                <tr><td>Gender</td><td class="content"><p><%= @user.gender %></p></td></tr>
-                <tr><td>Hobbies</td><td class="content"><p><%= @user.hobby %></p></td></tr>
-                <tr><td>Blog Address</td><td class="content"><p><%= @user.blog %></p></td></tr>
+                <tr><td>Email Address: </td><td class="content"><p><%= @user.email %></p></td></tr>                <tr><td>City</td><td class="content"><p><%= @user.city %></p></td></tr>
+                <tr><td>Gender: </td><td class="content"><p><%= @user.gender %></p></td></tr>
+                <tr><td>Hobbies: </td><td class="content"><p><%= @user.hobby %></p></td></tr>
+                <tr><td>Blog Address: </td><td class="content"><p><%= @user.blog %></p></td></tr>
               </tbody>
             </table>
           </div>
@@ -200,7 +200,7 @@
         <li class="active"><a href="#pill1" data-toggle="pill"><%= @user.name %>'s profile</a>
         <li><a href="#pill3" data-toggle="pill"><%= @user.name %>'s Events</a></li>
       </ul>
-      <div class="tab-content span8">
+      <div class="tab-content span8 userContent">
         <div class="tab-pane active" id="pill1">
           <div class="row-fluid">
             <ul class="thumbnails">
