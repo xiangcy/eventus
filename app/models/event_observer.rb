@@ -4,6 +4,7 @@ class EventObserver < ActiveRecord::Observer
         n = Notification.new
         n.kind = 'destroy'
         n.user_id = participant.id
+        n.seen = 'false'
         n.save
         Pusher[('private-'+n.user_id.to_s())].trigger('new_message', { })
     end

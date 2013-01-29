@@ -8,6 +8,7 @@ class EventsController < ApplicationController
     @city = params[:city]
     @category = params[:category]
     @timeperiod = params[:timeperiod]
+    @goodpeople = User.all.sort_by{|user| -user.likers.count}[0..4]
   end
   
   def show

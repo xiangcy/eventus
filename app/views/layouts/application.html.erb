@@ -14,7 +14,8 @@
       var channel = pusher.subscribe('private-'+<%= current_user ? current_user.id : 'null' %>);
       
       channel.bind('new_message', function(data){
-        dom_notify();             
+        dom_notify();
+        title_notify();
       });
       
       function dom_notify(){
@@ -22,13 +23,10 @@
         var orign = parseInt(orig) +1;
         $(".noti").text(orign);
         $("#noticount").show();
-        $('#notify').text('Hey, you have a new massage!');
-        $('#notify').fadeIn();
-        
-        setTimeout(function() {
-          $('#notify').fadeOut
-            ();
-          }, 2000);
+      }
+      
+      function title_notify(){
+        $.titleAlert('New message!');
       }
       
       // Some useful debug msgs
@@ -80,7 +78,7 @@
                 <div class="pull-right notification dropdown">
                   <%= link_to image_tag("message-new.png"), {:controller => "notifications", :action => "index"} , :remote => true,:class=>"dropdown-toggle",:id=>"dLabel" %>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="notification"></ul>
-                  <div id="noticount"><span class="noti"><%= current_user.notifications.count %></span></div>
+                  <div id="noticount"><span class="noti"><%= current_user.notifications.where('seen = ?', false).count %></span></div>
                 </div>
               <% else %>
                 <%= link_to "Register", signup_path, class: "navbar-text pull-right" %>
