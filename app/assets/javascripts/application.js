@@ -45,7 +45,9 @@ $(function(){
     $(".carousel").carousel({
         interval: 3000
     })
-    
+    $(".useralert").click(function(){
+        alert("You can't vote for your own event!")    
+    });
     var x = $(".noti").text();
     if(parseInt(x)==0){
         $("#noticount").hide();

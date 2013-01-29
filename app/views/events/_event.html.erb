@@ -1,8 +1,13 @@
-<% if current_user && !event.has_evaluation?(:votes, current_user) %><% else %><% end %>
 <div class="searchEventsDiv" id="event-<%=event.id%>">
     <li class="searchevents ">
-      <%= link_to event do %>
       <div class="media eventListDiv media-list">
+      <% if current_user?(event.user) %>
+        <div class="pull-left vote">
+	  <%=image_tag ("http://png-4.findicons.com/files/icons/2652/gentleface/32/round_plus_icon.png"), :class=>"bigicon useralert"%>
+	<p><span class="color votenumber"><%=event.reputation_for(:votes).to_i %></span></p>
+	  <%=image_tag ("http://png-3.findicons.com/files/icons/2232/wireframe_mono/32/round_minus.png"),:class=>"bigicon useralert"%>
+        </div>
+      <%else%>
         <div class="pull-left vote">
 	<%= link_to vote_event_path(event, type: "up"), :method => "post", :remote => true do %>
 	  <%=image_tag ("http://png-4.findicons.com/files/icons/2652/gentleface/32/round_plus_icon.png"), :class=>"bigicon"%>
@@ -12,6 +17,9 @@
 	  <%=image_tag ("http://png-3.findicons.com/files/icons/2232/wireframe_mono/32/round_minus.png"),:class=>"bigicon"%>
 	<% end %>
         </div>
+      <%end%>
+        
+        
         <div class="pull-left image">
         <%= image_tag(event.event_image_url || "default_avatar.png" ,:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
         </div>
@@ -26,7 +34,6 @@
         <%else%>
         <%end%>
       </div>
-      <%end%>
       <hr class="line">
     </li>
   </div>
