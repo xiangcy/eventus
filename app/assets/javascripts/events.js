@@ -29,7 +29,7 @@ $(document).ready(function () {
       $("#events").css("visibility", "hidden");
 
       
-      $(".searchevents").mouseover(function(){
+      $(".searchevents").mouseenter(function(){
 	
 	$(this).find(".closeIcon").css("visibility","visible");
 	$(this).find(".closeIcon").css("border","10px");
@@ -87,7 +87,7 @@ $(document).ready(function () {
       });
 
 
-    $('#citySelect').change(function () {
+    $('#citySelectEvent').change(function () {
         addressCity = $(this).val();
         codeAddress(addressCity);
     });
@@ -98,7 +98,7 @@ $(document).ready(function () {
 
     $('#locationInput').change(function () {
         address = $(this).val();
-        addressCity = $("#citySelect").val();
+        addressCity = $("#citySelectEvent").val();
         //codeAddress(address+" "+addressCity);
     });
 
@@ -108,7 +108,8 @@ $(document).ready(function () {
 
     $("#pinGen").click(function () {
         address = $("#locationInput").val();
-        addressCity = $("#citySelect").val();
+        addressCity = $("#citySelectEvent").val();
+	console.log(address + " " + addressCity);
         codeAddress(address + " " + addressCity);
     })
 
@@ -259,7 +260,6 @@ function initializeMap(addInForm, inShowMode) {
             firstLocation = results[0].geometry.location;
             titleName = addInForm;
         } else {
-            alert("Cannot pin location for the following reason: " + status);
             var titleName = "Boston";
             firstLocation = new google.maps.LatLng(42.3583, -71.0603)
         }
@@ -327,6 +327,7 @@ function geolocate() {
 
 
 function codeAddress(address) {
+    console.log(address);
     geocoder.geocode({
         'address': address
     }, function (results, status) {
@@ -348,7 +349,6 @@ function codeAddress(address) {
                 });
             }
         } else {
-            alert("Cannot pin location for the following reason: " + status);
         }
     });
 }
