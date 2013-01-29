@@ -115,10 +115,10 @@
 		<br>
 		<p><% if @event.participants.count > 0 %> 
 		  <%= link_to user.name, user %>
-		   <p>Nobody has liked this event so far.</p>
+
 		</p>
 		  <% else %>
-		 
+		    <p>Nobody is attending this event.</p>
 		  <% end%>
 	      </div>
 	    </li>
