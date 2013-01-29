@@ -176,10 +176,10 @@ a:hover{
             margin:0px 10px;
         }
     .attendnumber{
-        padding: 20px 0px 10px 30px;
+        padding: 20px 0px 10px 50px;
     }
     .imageProfile{
-        img{margin-left: 45%;}
+        .self{margin-left: 45%;}
     }
     h4{
         margin-left:10px;
@@ -283,5 +283,9 @@ a:hover{
 .pagination{
     text-align: center;
 }
-
+.location{
+    p,a{
+        display: inline;
+    }
+}
 

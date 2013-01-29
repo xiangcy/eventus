@@ -198,11 +198,13 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span10 offset1 tabbable">
-      <ul class="nav nav-pills nav-stacked span3">
-        <li class="active"><a href="#pill1" data-toggle="pill"><%= @user.name %>'s profile</a>
-        <li><a href="#pill3" data-toggle="pill"><%= @user.name %>'s Events</a></li>
+      <ul class="nav nav-pills nav-stacked span2">
+        <li><h4 class="tabTitle"><%= @user.name %></h4></li>
+        <hr class="line">
+        <li class="active"><a href="#pill1" data-toggle="pill">Profile</a>
+        <li><a href="#pill3" data-toggle="pill">Events</a></li>
       </ul>
-      <div class="tab-content span8 userContent">
+      <div class="tab-content span10 userContent">
         <div class="tab-pane active" id="pill1">
           <div class="row-fluid">
             <ul class="thumbnails">
@@ -249,7 +251,7 @@
             </table>
           </div>
           <!--people this people like-->
-          <div class="row-fluid">
+          <div class="row-fluid itemtab">
             <h4>People <%= @user.name %> like</h4>
             <hr class="line">
             <div class="likelist">
@@ -266,7 +268,7 @@
             </div>
           </div>
           <!--people like this person-->
-          <div class="row-fluid">
+          <div class="row-fluid itemtab">
             <h4>People who like <%=@user.name %></h4>
             <hr class="line">
             <div class="likelist" id="likelist">
