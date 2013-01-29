@@ -5,6 +5,9 @@
     <div class="span4 detail">
 	<div class="media">
           <% if current_user?(@event.user) %>
+            <div class="pull-left imageProfile">
+              <%= image_tag(@event.event_image_url || "default_avatar.png",:class=>'media-object self', :data=>{:src=>'holder.js/64*64'})%> 
+            </div>
 	    <% else %>
               <div class="pull-left vote" id="event-<%=@event.id%>">         
 	    <%= link_to vote_event_path(@event, type: "up"), method: "post", remote: true do %>
@@ -15,10 +18,11 @@
 	      <%=image_tag ("http://png-3.findicons.com/files/icons/2232/wireframe_mono/32/round_minus.png"),:class=>"bigicon"%>
 	    <% end %>
 	  </div>
-        <% end %>
           <div class="pull-left imageProfile">
 	  <%= image_tag(@event.event_image_url(:thumb) || "default_avatar.png",:class=>'media-object', :data=>{:src=>'holder.js/64*64'})%> 
 	  </div>
+        <% end %>
+          
 	  <div class="media-body span12">
 	    <div class="row-fluid">
 	    <div class="span12">
@@ -26,6 +30,8 @@
 	    <p>Hosted by: <%=link_to @event.user.name, @event.user %>
 	    </p><br>
 	    <div class = "form-inline">
+              <i class="icon-th-large"></i>
+              <p><b>Category:</b><%= @event.category%></p><br>
 	      <i class="icon-time"></i>
 	      <p><b>From: </b><%= @event.time.strftime('%a, %b %d, %Y %H:%M') %></p><br>
 	      <i class="icon-time"></i>

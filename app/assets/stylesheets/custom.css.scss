@@ -121,12 +121,13 @@ p{
         margin: 8px;
     }
     #noticount{
-        width: auto;
         height: 15px;
         position: absolute;
         left:23px;
         top: 4px;
         .noti{
+            padding: 3px 0px;
+            min-width: 15px;
             background-color: #121ADF;
             -webkit-border-radius: 5px;
             font-size: 10px;
@@ -162,8 +163,6 @@ p{
 }
 
 .postEventBig{
- min-width: 1085px;
-
 input, textarea {
 
   margin-bottom: 0px !important;
@@ -176,7 +175,7 @@ input, textarea {
     border-radius: 20px;
     margin:5px 0px;
     min-height: 250px;
-    background: -webkit-linear-gradient(top, #d44413 0px, #F49A1A 40px, #ffffff 50px);
+    background: -webkit-linear-gradient(top, #d44413 0px, #F49A1A 40px, #ffffff 45px);
     .thumbnails li{
         margin-left: 0px !important;
         margin-right: 15px;
