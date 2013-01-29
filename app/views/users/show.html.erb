@@ -267,10 +267,10 @@
           <div class="row-fluid">
             <h4>People who like <%=@user.name %></h4>
             <hr class="line">
-            <div class="likelist">
+            <div class="likelist" id="likelist">
             <ul class="thumbnails"> 
             <% @user.likers.each do |user| %>
-              <li class="span2">
+              <li class="span2" id="user-<%= user.id%>">
                 <div class="thumbnail">
                 <%=image_tag(user.image_url || "default_profile.jpg") %>
                 <%=link_to user.name, user %>

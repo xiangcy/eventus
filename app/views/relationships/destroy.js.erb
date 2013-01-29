@@ -1,2 +1,3 @@
 $("#likers").html('<%= @user.likers.count%>')
 $("#like_form").html("<%= escape_javascript(render('users/like')) %>")
+$("#user-<%= current_user.id%>").remove()
