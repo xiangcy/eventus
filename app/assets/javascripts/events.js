@@ -73,7 +73,6 @@ $(document).ready(function () {
     }
 
     if (locationShown != "") {
-            console.log(addressCity);
 
         initializeMap(locationShown);
     } else if (addressCity!= undefined) {
@@ -125,7 +124,7 @@ $(document).ready(function () {
     
     var options = {};
     
-    $(".head").show("fold", options, 1000, showEventList());
+    $(".head").show("fold", options, 600, showEventList());
     
     
 });
@@ -134,8 +133,8 @@ $(document).ready(function () {
 function showEventList(){
   setTimeout(function(){
     $("#events").css("visibility", "");
-    $("#events").show("drop", {direction:"up"}, 500);
-  },900);
+    $("#events").show("drop", {direction:"down"}, 500);
+  },300);
   
 }
 
