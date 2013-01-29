@@ -1,2 +1,3 @@
 $("#attend_form").html("<%= escape_javascript(render('events/unattend')) %>")
 $("#attenders").html("<%=@event.participants.count%>")
+$(".attendlist li:last").after("<%= escape_javascript(render(current_user))%>")
