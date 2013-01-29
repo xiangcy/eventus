@@ -1,14 +1,14 @@
 <% if current_user && !event.has_evaluation?(:votes, current_user) %><% else %><% end %>
-<div class="searchEventsDiv">
+<div class="searchEventsDiv" id="event-<%=event.id%>">
     <li class="searchevents">
       <%= link_to event do %>
       <div class="media eventListDiv media-list">
         <div class="pull-left vote">
-	<%= link_to vote_event_path(event, type: "up"), method: "post" do %>
+	<%= link_to vote_event_path(event, type: "up"), :method => "post", :remote => true do %>
 	  <%=image_tag ("http://png-2.findicons.com/files/icons/2338/reflection/128/arrow_up_1.png"), :class=>"bigicon"%>
 	<% end %>
 	<p><span class="votecolor votenumber"><%=event.reputation_for(:votes).to_i %></span></p>
-	<%= link_to vote_event_path(event, type: "down"), method: "post" do %>
+	<%= link_to vote_event_path(event, type: "down"), :method => "post", :remote => true do %>
 	  <%=image_tag ("http://png-1.findicons.com/files/icons/2338/reflection/128/arrow_down_1.png"),:class=>"bigicon"%>
 	<% end %>
         </div>
@@ -21,7 +21,10 @@
         <p><i class="icon-map-marker"></i><%= event.place %></p><br>
         <p><%= event.content[0..150]+"..." %></p>
         </div>
+        <%if controller.action_name=="index" && controller.controller_name=="events"%>
 	<%=image_tag ("http://findicons.com/files/icons/2162/minimal_perception/32/gtk_close.png"), :class=>"bigicon closeIcon"%>
+        <%else%>
+        <%end%>
       </div>
       <%end%>
       <hr class="line">

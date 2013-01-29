@@ -7,7 +7,9 @@
     </div>
     <div id="events" >
       <ul class='media-list'>
-        <%= render @events %>
+        <% @events.each do |event| %>
+          <%= render event %>
+        <% end %>
       </ul>
     </div>
     <%= will_paginate @events %>

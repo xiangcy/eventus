@@ -19,30 +19,7 @@
         font-weight: bold;
     }
 }
-.dialog{
-    padding-left: 10px;
-    border:4px solid #d44413;
-    position:relative;
-    margin-right: 20px;
-    p{
-        margin: 0;
-    }
-}
-.dialog span{width:0; height:0; font-size:0; overflow:hidden; position:absolute;}
-.dialog span.bot{
-    border-width:4px; 
-    border-style:solid dashed dashed; 
-    border-color:#d44413 transparent transparent; 
-    left:40px; 
-    bottom:-12px;
-}
-.dialog span.top{
-    border-width: 4px; 
-    border-style:solid dashed dashed; 
-    border-color:#FFE089 transparent transparent; 
-    left:40px; 
-    bottom:-8px;
-}
+
 .picture{
     margin-top: 10px;
     img{
@@ -60,6 +37,7 @@
         }
         .thumbnail{
             text-align: center;
+            height: 150px;
         }
     }
 /*nav-pills*/
@@ -68,5 +46,20 @@
         h4{
             margin-left: 5px;
         }
+    }
+}
+.likehost {
+    position: absolute;
+    left: 60%;
+    top: 134px;
+    -webkit-border-radius: 10px;
+    background-color: #d44413;
+    width: 200px;
+    padding: 5px 10px;
+    a{
+        color: #ffffff;
+    }
+    .hostlist{
+        width: 200px;
     }
 }

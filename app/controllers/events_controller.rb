@@ -54,7 +54,10 @@ class EventsController < ApplicationController
     value = params[:type] == "up" ? 1 : -1
     @event = Event.find(params[:id])
     @event.add_or_update_evaluation(:votes, value, current_user)
-    redirect_to :back, notice: "Thank you for voting"
+    respond_to do |format|
+      format.html { redirect_to :back, notice: "Thank you for voting" }
+      format.js
+    end
   end
   
   private
