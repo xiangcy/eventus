@@ -6,7 +6,8 @@ $(document).ready(function(){
   setInterval(function(){
 
   if(lastList.is(":visible")){
-  firstList.fadeIn(500).addClass("in");lastList.hide()
+    firstList.fadeIn(500).addClass("in");
+    lastList.hide();
   }
 
   else{
