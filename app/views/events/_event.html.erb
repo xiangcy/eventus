@@ -1,6 +1,7 @@
 <% if current_user && !event.has_evaluation?(:votes, current_user) %><% else %><% end %>
 <div class="searchEventsDiv">
     <li class="searchevents">
+      <%= link_to event do %>
       <div class="media eventListDiv media-list">
         <div class="pull-left vote">
 	<%= link_to vote_event_path(event, type: "up"), method: "post" do %>
@@ -22,6 +23,7 @@
         </div>
 	<%=image_tag ("http://findicons.com/files/icons/2162/minimal_perception/32/gtk_close.png"), :class=>"bigicon closeIcon"%>
       </div>
+      <%end%>
       <hr class="line">
     </li>
   </div>
